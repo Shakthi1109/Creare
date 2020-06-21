@@ -1,7 +1,7 @@
 # Creare
-### Creare is an E-Learning and school mangement platform.
+>## E-Learning and school mangement platform.
 
-### Tech
+>### Tech
 We will be using number of open-source frameworks and libraries to work properly:
 - [NodeJs] - Base Javascript framework for writing code
 - [ReactJs] - To create web pages with JS
@@ -10,7 +10,7 @@ We will be using number of open-source frameworks and libraries to work properly
 - [Typescript] - to strongly typed code with proper data types
 - [MongooseJs] - to use compiled MongoDB with Express
 
-### Installation
+>### Installation
 
 1. Open Terminal / Command Prompt
 2. run command ```git clone https://github.com/negocis/Creare.git```
@@ -33,7 +33,7 @@ http://localhost:3000/dummy
 http://localhost:3000/api
 ```
 
-### To create pages in Front-end
+>### To create pages in Front-end
 
 1. open ```/src``` folder
 2. open ```/pages``` folder
