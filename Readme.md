@@ -13,10 +13,12 @@ We will be using number of open-source frameworks and libraries to work properly
 - [MongooseJs] - to use compiled MongoDB with Express
 
 ### Installation
+
 1. Open Terminal / Command Prompt
-2. Change directory to project directory
-3. run command ```npm run install ```
-4. once installation is done, run command ```npm run dev```
+2. run command ```git clone https://github.com/negocis/Creare.git```
+3. Change directory to project directory
+4. run command ```npm run install ```
+5. once installation is done, run command ```npm run dev```
 5. wait until you see ```Creare ready on port 3000 !!!```
 
 to verify if the server is running, open browser and visit
