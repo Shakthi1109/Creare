@@ -35,6 +35,17 @@ http://localhost:3000/dummy
 http://localhost:3000/api
 ```
 
+### To create pages in Front-end
+
+1. open ```/src``` folder
+2. open ```/pages``` folder
+3. create a file with ```<routename>.tsx```
+
+-- Be careful as to route to your page is same as your file name, 
+so in case file is named ```dummy.tsx``` . The route to access it is ```http://localhost:3000/dummy``` 
+
+--  if the route has be of form ```http://localhost:3000/user/profile```
+Then create a folder named ```user``` under ```/pages``` folder and create ```profile.tsx``` file inside it.
 [NodeJs]:<https://nodejs.org/en/>
 [ReactJs]:<https://reactjs.org/>
 [ExpressJs]:<https://expressjs.com/> 
