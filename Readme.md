@@ -1,6 +1,4 @@
 # Creare
-### E-Learning platform
-
 ### Creare is an E-Learning and school mangement platform.
 
 ### Tech
