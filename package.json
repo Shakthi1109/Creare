@@ -2,9 +2,15 @@
   "name": "creare",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node dist/index.js",
+    "dev": "ts-node --project tsconfig.server.json server/index.ts",
+    "dev:client": "next",
+    "build:client": "next build",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build": "npm run build:client && npm run build:server",
+    "heroku:postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
