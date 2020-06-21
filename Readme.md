@@ -14,7 +14,7 @@ We will be using number of open-source frameworks and libraries to work properly
 
 1. Open Terminal / Command Prompt
 2. run command ```git clone https://github.com/negocis/Creare.git```
-3. Change directory to project directory
+3. Change directory using command ```cd Creare```
 4. run command ```npm install ```
 5. once installation is done, get ```.env``` file from admin
 6. add this file to root of the project directory
