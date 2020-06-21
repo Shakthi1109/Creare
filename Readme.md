@@ -46,6 +46,7 @@ so in case file is named ```dummy.tsx``` . The route to access it is ```http://l
 
 --  if the route has be of form ```http://localhost:3000/user/profile```
 Then create a folder named ```user``` under ```/pages``` folder and create ```profile.tsx``` file inside it.
+
 [NodeJs]:<https://nodejs.org/en/>
 [ReactJs]:<https://reactjs.org/>
 [ExpressJs]:<https://expressjs.com/> 
