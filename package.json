@@ -15,5 +15,38 @@
   "bugs": {
     "url": "https://github.com/negocis/Creare/issues"
   },
-  "homepage": "https://github.com/negocis/Creare#readme"
+  "homepage": "https://github.com/negocis/Creare#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^6.5.0",
+    "helmet": "^3.23.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.19",
+    "morgan": "^1.10.0",
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/body-parser": "^1.19.0",
+    "@types/compression": "^1.7.0",
+    "@types/cookie-session": "^2.0.40",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/helmet": "0.0.47",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongoose": "^5.7.27",
+    "@types/morgan": "^1.9.1",
+    "@types/react": "^16.9.38",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
 }
