@@ -16,8 +16,9 @@ We will be using number of open-source frameworks and libraries to work properly
 2. run command ```git clone https://github.com/negocis/Creare.git```
 3. Change directory to project directory
 4. run command ```npm install ```
-5. once installation is done, run command ```npm run dev```
-5. wait until you see ```Creare ready on port 3000 !!!```
+5. get ```.env``` file from admin and add it to project root
+6. once installation is done, run command ```npm run dev```
+7. wait until you see ```Creare ready on port 3000 !!!```
 
 to verify if the server is running, open browser and visit
 ####  For Front-end pages 
