@@ -1,1 +1,0 @@
-export default () => <div> this is dummy page</div>
