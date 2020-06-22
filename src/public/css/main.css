@@ -1,0 +1,43 @@
+.gettingStarted {
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  margin: 0px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #03e99cf1; }
+  .gettingStarted .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: white; }
+    .gettingStarted .row #prev {
+      font-size: 5em;
+      cursor: pointer; }
+    .gettingStarted .row #next {
+      font-size: 5em;
+      cursor: pointer; }
+    .gettingStarted .row .card {
+      width: 40vw;
+      height: 60vh;
+      position: relative;
+      background-color: #fff; }
+      .gettingStarted .row .card img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        clip-path: polygon(0 0, 100% 0%, 100% 25%, 0 48%);
+        width: 40vw; }
+      .gettingStarted .row .card .below {
+        padding: 10px;
+        text-align: center;
+        color: #014931f1;
+        position: absolute;
+        bottom: 0;
+        left: 0; }
+        .gettingStarted .row .card .below p {
+          text-align: justify; }

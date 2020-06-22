@@ -5,7 +5,7 @@
   "main": "server/index.ts",
   "scripts": {
     "start": "NODE_ENV=production node dist/index.js",
-    "dev": "ts-node --project tsconfig.server.json server/index.ts",
+    "dev": "ts-node --project tsconfig.server.json server/index.ts & node-sass src/public/sass/main.scss src/public/css/main.css -w" ,
     "dev:client": "next",
     "build:client": "next build",
     "build:server": "tsc --project tsconfig.server.json",
