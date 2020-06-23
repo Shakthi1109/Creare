@@ -6,7 +6,6 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import next from "next";
-import "express-async-errors";
 import enVariable from "dotenv";
 import morgan from "morgan";
 
