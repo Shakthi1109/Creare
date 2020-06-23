@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import "express-async-errors";
 import mongoose from "mongoose";
 
 import { router } from "./routes";
