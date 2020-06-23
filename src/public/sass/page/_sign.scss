@@ -1,0 +1,29 @@
+// @use "../abstract/flex";
+
+.sign {
+	background-color: #0cbd57;
+	color: #fff;
+	width: 100vw;
+	height: 100vh;
+	padding: 10px;
+	@extend %columnFlex;
+	.form {
+		width: 30vw;
+		@extend %columnFlex;
+		a {
+			text-decoration: none;
+			color: white;
+			margin: 10px;
+			font-size: 17px;
+		}
+		button {
+			width: 20vw;
+			@include responsive() {
+				width: 50vw;
+			}
+		}
+		@include responsive() {
+			width: 90vw;
+		}
+	}
+}

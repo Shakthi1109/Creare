@@ -1,26 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Cantora+One&family=Sriracha&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+body {
+  margin: 0%;
+  padding: 0%;
+  font-family: "Cantora One", sans-serif; }
+
+.btn {
+  color: #0cbd57;
+  font-weight: bolder;
+  background-color: #fff;
+  padding: 10px;
+  font-size: 18px;
+  border-style: none;
+  width: inherit;
+  border-radius: 5px; }
+
+.gettingStarted, .gettingStarted .row, .sign, .sign .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.gettingStarted .row #controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
+
+input[type="text"],
+input[type="password"] {
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  margin: 0px;
+  margin-bottom: 20px;
+  height: 3vh;
+  font-family: inherit;
+  outline: none !important;
+  border-style: none none solid none;
+  border-bottom-width: 2px;
+  border-bottom-color: white;
+  width: inherit; }
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-style: none none solid none;
+  border-bottom-width: 5px;
+  border-bottom-color: white; }
+
+::placeholder {
+  color: white;
+  opacity: 0.8; }
+
+.gettingStarted .row #controls .ActiveCircle, .gettingStarted .row #controls .Circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer; }
+
 .gettingStarted {
   width: 100vw;
   height: 100vh;
   color: white;
   margin: 0px;
   padding: 2px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #03e99cf1; }
+  background-color: #0db047; }
   .gettingStarted .row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     color: white; }
-    .gettingStarted .row #prev {
-      font-size: 5em;
-      cursor: pointer; }
-    .gettingStarted .row #next {
-      font-size: 5em;
-      cursor: pointer; }
+    .gettingStarted .row #controls .ActiveCircle {
+      background-color: #fff; }
+    .gettingStarted .row #controls .Circle {
+      background-color: rgba(255, 255, 255, 0.349); }
     .gettingStarted .row .card {
       width: 40vw;
       height: 60vh;
@@ -30,9 +81,10 @@
         position: absolute;
         top: 0;
         left: 0;
-        clip-path: polygon(0 0, 100% 0%, 100% 25%, 0 48%);
-        width: 40vw; }
+        width: 40vw;
+        height: 50vh; }
       .gettingStarted .row .card .below {
+        background-color: white;
         padding: 10px;
         text-align: center;
         color: #014931f1;
@@ -41,3 +93,28 @@
         left: 0; }
         .gettingStarted .row .card .below p {
           text-align: justify; }
+      @media (max-width: 800px) {
+        .gettingStarted .row .card {
+          width: 70vw; } }
+
+.sign {
+  background-color: #0cbd57;
+  color: #fff;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px; }
+  .sign .form {
+    width: 30vw; }
+    .sign .form a {
+      text-decoration: none;
+      color: white;
+      margin: 10px;
+      font-size: 17px; }
+    .sign .form button {
+      width: 20vw; }
+      @media (max-width: 800px) {
+        .sign .form button {
+          width: 50vw; } }
+    @media (max-width: 800px) {
+      .sign .form {
+        width: 90vw; } }
