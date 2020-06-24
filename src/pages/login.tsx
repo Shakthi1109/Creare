@@ -1,11 +1,86 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import Router from "next/router"
+import useRequest from "../custom-hook/use-request"
+import Loader from "../components/loader"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+import Toast from "../components/toasts"
 export default () => {
 	const [email, setemail] = useState("")
 	const [password, setpassword] = useState("")
+	const [isLoading, setisLoading] = useState(false)
+	const [err, seterr] = useState("")
+	const [vEmail, setvEmail] = useState(false)
+	const [vPass, setvPass] = useState(false)
+	const [canLogin, setcanLogin] = useState(false)
+	const [onErr, setonErr] = useState(false)
+	const [visiblePass, setvisiblePass] = useState(false)
+	const { doRequest } = useRequest({
+		url: "/api/user/signin",
+		method: "post",
+		body: {
+			email,
+			password,
+		},
+		onSuccess: () => Router.push("/home"),
+	})
+
+	let checkEmail = () => {
+		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+			setvEmail(true)
+		} else {
+			setvEmail(false)
+		}
+	}
+
+	let checkPassword = () => {
+		if (password.length >= 8) {
+			setvPass(true)
+		} else {
+			setvPass(false)
+		}
+	}
+
+	const Login = async () => {
+		if (canLogin) {
+			setisLoading(true)
+			const resp = await doRequest()
+			if (resp[0].message) {
+				setonErr(true)
+				seterr(resp[0].message)
+				setisLoading(false)
+			}
+		}
+	}
+
+	useEffect(() => {
+		checkEmail()
+		checkPassword()
+	}, [email, password])
+
+	useEffect(() => {
+		if (vEmail && vPass) {
+			setcanLogin(true)
+		} else {
+			setcanLogin(false)
+			seterr(
+				`Please Provide a valid email \nPassword must be of 8 characters`,
+			)
+		}
+	}, [vEmail, vPass])
 
 	return (
 		<div className='sign'>
+			{onErr ? (
+				<Toast
+					data={err}
+					closeErr={() => {
+						setonErr(false)
+					}}
+				/>
+			) : (
+				<> </>
+			)}
 			<h1>Creare</h1>
 			<div className='form'>
 				<input
@@ -14,14 +89,46 @@ export default () => {
 					onChange={(e) => setemail(e.target.value)}
 				/>
 				<br />
-				<input
-					type='password'
-					placeholder='Password'
-					onChange={(e) => setpassword(e.target.value)}
-				/>
+				<div className='pass'>
+					<input
+						type={visiblePass ? "text" : "password"}
+						placeholder='Password'
+						onChange={(e) => setpassword(e.target.value)}
+					/>
+					{visiblePass ? (
+						<FaEyeSlash
+							className='icon'
+							onClick={() => {
+								setvisiblePass(false)
+							}}
+						/>
+					) : (
+						<FaEye
+							className='icon'
+							onClick={() => {
+								setvisiblePass(true)
+							}}
+						/>
+					)}
+				</div>
+				{isLoading ? (
+					<Loader isLoading={isLoading}></Loader>
+				) : (
+					<>
+						<p>{err}</p>
+						<button
+							disabled={!canLogin}
+							className='btn'
+							onClick={() => Login()}>
+							Sign In
+						</button>
+					</>
+				)}
 				<br />
-				<Link href='/signup'>Create New Account</Link>
-				<button className='btn'>Sign In</button>
+				or
+				<Link href='/signup'>
+					<a>Create New Account</a>
+				</Link>
 			</div>
 		</div>
 	)

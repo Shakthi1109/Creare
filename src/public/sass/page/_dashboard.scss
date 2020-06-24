@@ -1,0 +1,10 @@
+.dashboard {
+	margin-left: 5.5rem !important;
+	@extend %rowFlex;
+	@include responsive() {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-top: 5.5rem !important;
+	}
+}

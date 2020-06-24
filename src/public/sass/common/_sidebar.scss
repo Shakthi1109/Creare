@@ -1,0 +1,64 @@
+%tab {
+	width: inherit;
+	height: 15vh;
+	@extend %columnFlex;
+	justify-content: space-evenly;
+	background-color: inherit;
+	cursor: pointer;
+	border-style: solid;
+	border-width: 5px;
+	border-bottom-width: 0px;
+	border-color: #fff;
+	@include responsive {
+		border-style: none none none solid;
+	}
+}
+%tab:last-child {
+	border-bottom-width: 5px;
+}
+.sideBar {
+	// width: 10rem;
+	width: 5rem;
+	background-color: #0cbd57;
+	height: 100vh;
+	position: fixed;
+	@extend %columnFlex;
+	justify-content: flex-start;
+	transition: 250ms ease-out;
+	@include responsive() {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 0px;
+		width: 100vw;
+		height: 5rem;
+		margin-top: -5.5rem !important;
+	}
+	a {
+		font-size: 18px;
+		text-decoration: none;
+		color: #fff;
+	}
+	.icon {
+		font-size: 30px;
+		color: #fff;
+		@include responsive() {
+			font-size: 20px;
+		}
+	}
+	.current {
+		@extend %tab;
+		background-color: #005323;
+	}
+	.option {
+		@extend %tab;
+	}
+	.logo {
+		display: block;
+		color: white;
+		margin: 70px 0px;
+		@include responsive() {
+			display: none;
+		}
+	}
+}

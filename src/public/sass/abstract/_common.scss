@@ -17,3 +17,6 @@ body {
 	width: inherit;
 	border-radius: 5px;
 }
+.btn:disabled {
+	opacity: 0.5;
+}

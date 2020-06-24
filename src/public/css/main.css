@@ -15,17 +15,54 @@ body {
   width: inherit;
   border-radius: 5px; }
 
-.gettingStarted, .gettingStarted .row, .sign, .sign .form {
+.btn:disabled {
+  opacity: 0.5; }
+
+.sideBar .current, .sideBar .option, .sideBar, .gettingStarted, .gettingStarted .row, .sign, .sign .form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.gettingStarted .row #controls {
+.toast, .toast .right, .gettingStarted .row #controls, .dashboard {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center; }
+
+.toast, .toast .right .icon {
+  background-color: #ff5b5bfd;
+  color: #fff; }
+
+.toast .right {
+  background-color: white;
+  color: #ff5b5bfd; }
+
+.toast {
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-align: center;
+  width: 20vw;
+  height: max-content;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 18px; }
+  .toast .ico {
+    font-size: 30px;
+    width: 5vw; }
+  .toast .right {
+    position: relative;
+    border-radius: inherit;
+    width: 15vw;
+    padding: 10px; }
+    .toast .right .icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer; }
 
 input[type="text"],
 input[type="password"] {
@@ -51,6 +88,59 @@ input[type="password"]:focus {
 ::placeholder {
   color: white;
   opacity: 0.8; }
+
+.sideBar .current, .sideBar .option {
+  width: inherit;
+  height: 15vh;
+  justify-content: space-evenly;
+  background-color: inherit;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 5px;
+  border-bottom-width: 0px;
+  border-color: #fff; }
+  @media (max-width: 800px) {
+    .sideBar .current, .sideBar .option {
+      border-style: none none none solid; } }
+
+.sideBar .current:last-child, .sideBar .option:last-child {
+  border-bottom-width: 5px; }
+
+.sideBar {
+  width: 5rem;
+  background-color: #0cbd57;
+  height: 100vh;
+  position: fixed;
+  justify-content: flex-start;
+  transition: 250ms ease-out; }
+  @media (max-width: 800px) {
+    .sideBar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 0px;
+      width: 100vw;
+      height: 5rem;
+      margin-top: -5.5rem !important; } }
+  .sideBar a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff; }
+  .sideBar .icon {
+    font-size: 30px;
+    color: #fff; }
+    @media (max-width: 800px) {
+      .sideBar .icon {
+        font-size: 20px; } }
+  .sideBar .current {
+    background-color: #005323; }
+  .sideBar .logo {
+    display: block;
+    color: white;
+    margin: 70px 0px; }
+    @media (max-width: 800px) {
+      .sideBar .logo {
+        display: none; } }
 
 .gettingStarted .row #controls .ActiveCircle, .gettingStarted .row #controls .Circle {
   width: 10px;
@@ -104,12 +194,27 @@ input[type="password"]:focus {
   height: 100vh;
   padding: 10px; }
   .sign .form {
+    margin-top: 15px;
     width: 30vw; }
     .sign .form a {
       text-decoration: none;
       color: white;
-      margin: 10px;
+      margin: 25px;
       font-size: 17px; }
+    .sign .form .pass {
+      width: inherit;
+      position: relative;
+      height: 3vh;
+      margin-bottom: 20px; }
+      .sign .form .pass input {
+        position: absolute; }
+      .sign .form .pass .icon {
+        position: absolute;
+        font-size: 25px;
+        right: 0;
+        cursor: pointer; }
+    .sign .form p {
+      white-space: pre; }
     .sign .form button {
       width: 20vw; }
       @media (max-width: 800px) {
@@ -118,3 +223,12 @@ input[type="password"]:focus {
     @media (max-width: 800px) {
       .sign .form {
         width: 90vw; } }
+
+.dashboard {
+  margin-left: 5.5rem !important; }
+  @media (max-width: 800px) {
+    .dashboard {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5.5rem !important; } }

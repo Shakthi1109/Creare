@@ -1,0 +1,43 @@
+%error {
+	background-color: #ff5b5bfd;
+	color: #fff;
+}
+%errorInv {
+	background-color: white;
+	color: #ff5b5bfd;
+}
+
+.toast {
+	position: fixed;
+	top: 0;
+	right: 0;
+	text-align: center;
+	width: 20vw;
+	height: max-content;
+	margin: 5px;
+	border-radius: 5px;
+	font-size: 18px;
+	@extend %error;
+	@extend %rowFlex;
+	.ico {
+		font-size: 30px;
+		width: 5vw;
+	}
+	.right {
+		@extend %rowFlex;
+		@extend %errorInv;
+		position: relative;
+		border-radius: inherit;
+		width: 15vw;
+		padding: 10px;
+		.icon {
+			@extend %error;
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 5px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	}
+}

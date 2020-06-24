@@ -8,13 +8,32 @@
 	padding: 10px;
 	@extend %columnFlex;
 	.form {
+		margin-top: 15px;
 		width: 30vw;
 		@extend %columnFlex;
 		a {
 			text-decoration: none;
 			color: white;
-			margin: 10px;
+			margin: 25px;
 			font-size: 17px;
+		}
+		.pass {
+			width: inherit;
+			position: relative;
+			height: 3vh;
+			margin-bottom: 20px;
+			input {
+				position: absolute;
+			}
+			.icon {
+				position: absolute;
+				font-size: 25px;
+				right: 0;
+				cursor: pointer;
+			}
+		}
+		p {
+			white-space: pre;
 		}
 		button {
 			width: 20vw;
