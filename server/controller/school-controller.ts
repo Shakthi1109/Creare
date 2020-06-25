@@ -48,6 +48,7 @@ export const getActiveSchoolController = async (
   const schools = await School.find({ isActive: true }).select([
     "name",
     "uniqRef",
+    "city",
   ]);
   res.status(200).send(schools);
 };
