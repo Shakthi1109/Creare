@@ -37,8 +37,20 @@ export const updateSchoolController = async (req: Request, res: Response) => {
 
 // fetch all school controller
 export const getAllSchoolController = async (req: Request, res: Response) => {
-  const existingSchool = await School.find();
-  res.status(200).send(existingSchool);
+  const schools = await School.find();
+  res.status(200).send(schools);
+};
+
+export const getActiveSchoolController = async (
+  req: Request,
+  res: Response
+) => {
+  const schools = await School.find({ isActive: true }).select([
+    "name",
+    "uniqRef",
+    "city",
+  ]);
+  res.status(200).send(schools);
 };
 
 // fetch school by id
