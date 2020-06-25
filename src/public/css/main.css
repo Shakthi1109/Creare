@@ -6,29 +6,47 @@
   border-radius: 5px;
   font-weight: bolder; }
 
+.btn-inverse {
+  color: #fff;
+  background-color: #0cbd57; }
+
+.btn, .dashboard .overlay .container {
+  color: #0cbd57;
+  background-color: #fff; }
+
+.dashboard .col .list-item {
+  background-color: #9df3c4;
+  color: #1fab89; }
+
+.dashboard .overlay {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #013510ce;
+  z-index: 2;
+  cursor: pointer;
+  transition: 250ms ease-out; }
+
 body {
   margin: 0%;
   padding: 0%;
   font-family: Helvetica; }
 
-.btn {
-  color: #0cbd57;
-  background-color: #fff; }
-
 .btn:disabled {
   opacity: 0.5; }
 
-.btn-inverse {
-  color: #fff;
-  background-color: #0cbd57; }
-
-.sideBar .current, .sideBar .option, .sideBar, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .FoF div div {
+.sideBar .current, .sideBar .option, .sideBar, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .dashboard, .dashboard .overlay, .dashboard .overlay .container, .FoF div div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.toast, .toast .right, .gettingStarted .row #controls, .dashboard, .FoF div {
+.toast, .toast .right, .gettingStarted .row #controls, .dashboard .col, .FoF div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -236,13 +254,31 @@ input[type="password"]:focus {
         width: 90vw; } }
 
 .dashboard {
-  margin-left: 6.5rem !important; }
+  margin-left: 6.5rem !important;
+  color: #1fab89; }
   @media (max-width: 800px) {
     .dashboard {
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin-top: 5.5rem !important; } }
+  .dashboard .overlay .container {
+    width: 50vw;
+    height: 50vh; }
+  .dashboard .col {
+    flex-wrap: wrap; }
+    .dashboard .col .list-item {
+      margin: 5px;
+      width: 20vw;
+      border-radius: 10px;
+      text-align: center;
+      position: relative; }
+      .dashboard .col .list-item .icon {
+        font-size: 25px;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        cursor: pointer; }
 
 .FoF {
   color: #fff;
