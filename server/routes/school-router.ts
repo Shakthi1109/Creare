@@ -23,31 +23,21 @@ router.get("/all", currentUser, requireAdminAuth, getAllSchoolController);
 router.get("/", getActiveSchoolController);
 
 // fetch school by id
-router.get(
-  "/:schoolId",
-  currentUser,
-  requireAdminAuth,
-  getSchoolByIdController
-);
+router.get("/byId", currentUser, requireAdminAuth, getSchoolByIdController);
 
 // to add new School
 router.post("/add", schoolValidator, validateRequest, addSchoolController);
 
 // To change activity of school from active to not active.
 router.put(
-  "/activity/:schoolId",
+  "/activity",
   currentUser,
   requireAdminAuth,
   schoolActivityController
 );
 
 // modify school
-router.put(
-  "/:schoolId",
-  currentUser,
-  requireAdminAuth,
-  updateSchoolController
-);
+router.put("/", currentUser, requireAdminAuth, updateSchoolController);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server school api is responding");
