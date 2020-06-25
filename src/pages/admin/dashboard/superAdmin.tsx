@@ -1,4 +1,3 @@
-import sidebar from "../../../components/sidebar"
 import Sidebar from "../../../components/sidebar"
 
 export default () => {

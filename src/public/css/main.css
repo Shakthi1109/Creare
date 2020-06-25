@@ -1,40 +1,29 @@
-.btn, .btn-inverse {
+.btn, .btn-inverse, .red-btn {
   padding: 10px;
   font-size: 18px;
   border-style: none;
   width: inherit;
   border-radius: 5px;
-  font-weight: bolder; }
+  font-weight: bolder;
+  margin: 10px; }
 
-body {
-  margin: 0%;
-  padding: 0%;
-  font-family: Helvetica; }
-
-.btn {
-  color: #0cbd57;
-  background-color: #fff; }
-
-.btn:disabled {
-  opacity: 0.5; }
-
-.btn-inverse {
+.btn-inverse, .overlay .container .icon {
   color: #fff;
   background-color: #0cbd57; }
 
-.sideBar .current, .sideBar .option, .sideBar, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .FoF div div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
+.btn, .overlay .container {
+  color: #0cbd57;
+  background-color: #fff; }
 
-.toast, .toast .right, .gettingStarted .row #controls, .dashboard, .FoF div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; }
+.dashboard .col .list-item {
+  background-color: #9df3c4;
+  color: #1fab89; }
 
-.toast, .toast .right .icon {
+.dashboard .col .list-item .icon {
+  background-color: #1fab89;
+  color: #9df3c4; }
+
+.red-btn, .toast, .toast .right .icon {
   background-color: #ff5b5bfd;
   color: #fff; }
 
@@ -42,32 +31,47 @@ body {
   background-color: white;
   color: #ff5b5bfd; }
 
-.toast {
+.overlay {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  text-align: center;
-  width: 20vw;
-  height: max-content;
-  margin: 5px;
-  border-radius: 15px;
-  font-size: 18px; }
-  .toast .ico {
-    font-size: 30px;
-    width: 5vw; }
-  .toast .right {
-    position: relative;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 15vw;
-    padding: 3px; }
-    .toast .right .icon {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      padding: 5px;
-      border-radius: 50%;
-      cursor: pointer; }
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #013510ce;
+  z-index: 2;
+  cursor: pointer;
+  transition: 250ms ease-out; }
+
+body {
+  margin: 0%;
+  padding: 0%;
+  font-family: Helvetica; }
+
+.btn:disabled {
+  opacity: 0.5; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 5px; }
+
+.sideBar .current, .sideBar .option, .sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .FoF div div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.overlay .container .row, .toast, .toast .right, .gettingStarted .row #controls, .dashboard, .dashboard .col, .FoF div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
 
 input[type="text"],
 input[type="password"] {
@@ -93,6 +97,24 @@ input[type="password"]:focus {
 ::placeholder {
   color: white;
   opacity: 0.8; }
+
+.suggest {
+  background: #ffffff23;
+  z-index: 2;
+  color: #fff;
+  font-size: 20px;
+  margin-top: -20px;
+  height: 4vh;
+  font-family: inherit;
+  outline: none !important;
+  border-style: none none solid none;
+  border-bottom-width: 2px;
+  border-bottom-color: white;
+  width: inherit; }
+
+.suggest:hover {
+  background: transparent;
+  cursor: pointer; }
 
 .sideBar .current, .sideBar .option {
   width: inherit;
@@ -135,7 +157,7 @@ input[type="password"]:focus {
     font-weight: 600; }
     @media (max-width: 800px) {
       .sideBar a {
-        font-size: 15px; } }
+        font-size: 13px; } }
   .sideBar .icon {
     font-size: 30px;
     color: #fff; }
@@ -151,6 +173,47 @@ input[type="password"]:focus {
     @media (max-width: 800px) {
       .sideBar .logo {
         display: none; } }
+
+.overlay .container {
+  width: 50vw;
+  height: 50vh;
+  position: relative;
+  border-radius: 25px; }
+  .overlay .container .icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 2em;
+    cursor: pointer; }
+
+.toast {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  text-align: center;
+  width: 20vw;
+  height: max-content;
+  margin: 5px;
+  border-radius: 15px;
+  font-size: 18px; }
+  .toast .ico {
+    font-size: 30px;
+    width: 5vw; }
+  .toast .right {
+    position: relative;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 15vw;
+    padding: 3px; }
+    .toast .right .icon {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      padding: 5px;
+      border-radius: 50%;
+      cursor: pointer; }
 
 .gettingStarted .row #controls .ActiveCircle, .gettingStarted .row #controls .Circle {
   width: 10px;
@@ -236,13 +299,36 @@ input[type="password"]:focus {
         width: 90vw; } }
 
 .dashboard {
-  margin-left: 6.5rem !important; }
+  margin-left: 6.5rem !important;
+  color: #1fab89; }
   @media (max-width: 800px) {
     .dashboard {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      margin-left: 0rem !important;
       margin-top: 5.5rem !important; } }
+  .dashboard .col {
+    flex-wrap: wrap; }
+    .dashboard .col .list-item {
+      margin: 5px;
+      width: 20vw;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      z-index: -1; }
+      @media (max-width: 800px) {
+        .dashboard .col .list-item {
+          width: 90vw; } }
+      .dashboard .col .list-item .icon {
+        font-size: 25px;
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer; }
 
 .FoF {
   color: #fff;

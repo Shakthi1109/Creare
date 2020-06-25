@@ -1,4 +1,4 @@
-import Router from "next/router"
+import Router from "next/router";
 import {
 	FaSchool,
 	FaChalkboardTeacher,
@@ -18,7 +18,7 @@ export default ({ curr }) => {
 				className={curr == "users" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/dashboard/users")}>
 				<FaUsers className='icon' />
-				<a>Users</a>
+				<a>Registered</a>
 			</div>
 			<div
 				className={curr == "school" ? "current" : "option"}
@@ -52,5 +52,5 @@ export default ({ curr }) => {
 				<a>Admin</a>
 			</div>
 		</div>
-	)
-}
+	);
+};

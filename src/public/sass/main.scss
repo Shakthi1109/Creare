@@ -2,10 +2,11 @@
 @import "abstract/variables";
 @import "abstract/mixin";
 @import "abstract/flex";
-@import "abstract/toast";
 
-@import "common/form";
-@import "common/sidebar";
+@import "components/form";
+@import "components/sidebar";
+@import "components/overlay";
+@import "components/toast";
 
 @import "page/getting-started";
 @import "page/sign";
