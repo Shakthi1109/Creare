@@ -5,7 +5,8 @@ import useRequest from "../custom-hook/use-request"
 import Loader from "../components/loader"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import Toast from "../components/toasts"
-export default () => {
+import buildClient from "../service/build-client"
+const signUpComponent = ({ resp }) => {
 	const [name, setname] = useState("")
 	const [email, setemail] = useState("")
 	const [password, setpassword] = useState("")
@@ -95,6 +96,10 @@ export default () => {
 			)
 		}
 	}, [vEmail, vPass, samepass])
+
+	useEffect(() => {
+		console.log(resp)
+	}, [])
 
 	return (
 		<div className='sign'>
@@ -190,3 +195,11 @@ export default () => {
 		</div>
 	)
 }
+
+signUpComponent.getInitialProps = async (appContext) => {
+	const { data } = await buildClient(appContext).get("/api/school/all")
+	console.log(data)
+	return { resp: data }
+}
+
+export default signUpComponent

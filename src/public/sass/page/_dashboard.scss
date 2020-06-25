@@ -1,22 +1,13 @@
 .dashboard {
 	margin-left: 6.5rem !important;
 	color: #1fab89;
-	@extend %columnFlex;
+	@extend %rowFlex;
 	@include responsive() {
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		margin-left: 0rem !important;
 		margin-top: 5.5rem !important;
-	}
-	.overlay {
-		@extend %overlay;
-		@extend %columnFlex;
-		.container {
-			width: 50vw;
-			height: 50vh;
-			@extend %columnFlex;
-			@extend %greenBG-inv;
-		}
 	}
 	.col {
 		@extend %rowFlex;
@@ -25,14 +16,22 @@
 			@extend %lightGreenBG;
 			margin: 5px;
 			width: 20vw;
+			padding: 10px;
 			border-radius: 10px;
 			text-align: center;
 			position: relative;
+			z-index: -1;
+			@include responsive() {
+				width: 90vw;
+			}
 			.icon {
+				@extend %lightGreenBG-inv;
 				font-size: 25px;
 				position: absolute;
-				bottom: 15px;
-				right: 15px;
+				bottom: 1px;
+				right: 1px;
+				padding: 5px;
+				border-radius: 10px;
 				cursor: pointer;
 			}
 		}

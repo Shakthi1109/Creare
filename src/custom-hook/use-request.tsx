@@ -11,7 +11,7 @@ export default ({
 	url: any
 	method: any
 	body?: any
-	onSuccess: any
+	onSuccess?: any
 }) => {
 	const [error, setError] = useState(null)
 

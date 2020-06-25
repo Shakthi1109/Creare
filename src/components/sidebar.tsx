@@ -1,11 +1,11 @@
-import Router from "next/router"
+import Router from "next/router";
 import {
 	FaSchool,
 	FaChalkboardTeacher,
 	FaUsers,
 	FaUserGraduate,
-	FaUsersCog,
-} from "react-icons/fa"
+	FaUsersCog
+} from "react-icons/fa";
 export default ({ curr }) => {
 	return (
 		<div className='sideBar'>
@@ -16,7 +16,7 @@ export default ({ curr }) => {
 				className={curr == "users" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/dashboard/users")}>
 				<FaUsers className='icon' />
-				<a>Users</a>
+				<a>Registered</a>
 			</div>
 			<div
 				className={curr == "school" ? "current" : "option"}
@@ -43,5 +43,5 @@ export default ({ curr }) => {
 				<a>Admins</a>
 			</div>
 		</div>
-	)
-}
+	);
+};

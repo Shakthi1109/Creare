@@ -5,6 +5,7 @@
 	width: inherit;
 	border-radius: 5px;
 	font-weight: bolder;
+	margin: 10px;
 }
 %greenBG {
 	color: #fff;
@@ -14,9 +15,25 @@
 	color: #0cbd57;
 	background-color: #fff;
 }
+
 %lightGreenBG {
 	background-color: #9df3c4;
 	color: #1fab89;
+}
+
+%lightGreenBG-inv {
+	background-color: #1fab89;
+	color: #9df3c4;
+}
+
+%redBG {
+	background-color: #ff5b5bfd;
+	color: #fff;
+}
+
+%redBG-inv {
+	background-color: white;
+	color: #ff5b5bfd;
 }
 
 %overlay {
@@ -49,4 +66,18 @@ body {
 .btn-inverse {
 	@extend %buttonBody;
 	@extend %greenBG;
+}
+
+.red-btn {
+	@extend %buttonBody;
+	@extend %redBG;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 5px;
 }
