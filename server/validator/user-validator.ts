@@ -6,7 +6,7 @@ import { UserRole } from "../util/enum/user-roles";
 
 export const signupValidator = [
   body("name").not().isEmpty().withMessage("Name is required"),
-  body("email").not().isEmail().withMessage("Valid email is required"),
+  body("email").isEmail().withMessage("Valid email is required"),
   body("password")
     .isLength({ min: 6 })
     .withMessage("password with min. of 6 chars is required"),
@@ -18,7 +18,7 @@ export const signupValidator = [
 // TODO add validations for signin
 // lookup the controller for the following and write validator for the field you get form req.body
 export const signinValidator = [
-  body("email").not().isEmail().withMessage("Valid email is required"),
+  body("email").isEmail().withMessage("Valid email is required"),
   body("password")
     .isLength({ min: 6 })
     .withMessage("valid password is required"),
