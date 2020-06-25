@@ -24,7 +24,7 @@ export const signinController = async (req: Request, res: Response) => {
   const existingUser = await User.findOne({ email });
   if (!existingUser) throw new BadRequestError("Invalid credentials");
   if (existingUser.isNotActive())
-    throw new BadRequestError("This account is currently in active");
+    throw new BadRequestError("This account is currently inactive");
   const doesPasswordMatch = await compare(password, existingUser.password);
   if (!doesPasswordMatch) throw new BadRequestError("Invalid credentials");
   const token = await jwt.sign(
