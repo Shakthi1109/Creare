@@ -6,6 +6,7 @@ import {
   signinController,
   currentUserController,
   getUsersController,
+  singoutController,
 } from "../controller/user-controller";
 
 import { validateRequest } from "../middlewares/validate-request";
@@ -19,6 +20,9 @@ router.get("/currentUser", currentUser, currentUserController);
 
 // to fetch all users
 router.get("/", currentUser, requireAdminAuth, getUsersController);
+
+// to signout user
+router.get("/signout", singoutController);
 
 // TODO once you write validators ,add the validator just before validateRequest
 // to signup new User
