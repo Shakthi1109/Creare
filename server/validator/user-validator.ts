@@ -14,7 +14,7 @@ export const signupValidator = [
     .not()
     .equals(UserRole.Admin || UserRole.Student || UserRole.Teacher)
     .withMessage("Valid role is required"),
-  body("uniqRef").not().isEmpty().withMessage("School uinqRef is required"),
+  body("uniqRef").not().isEmpty().withMessage("School is required"),
 ];
 
 // TODO add validations for signin

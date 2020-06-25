@@ -16,8 +16,9 @@ export const signoutController = async (req: Request, res: Response) => {
 };
 
 export const getUsersController = async (req: Request, res: Response) => {
-  //TODO
-  const users = await User.find();
+  const { schoolId } = req.currentUser;
+  const school = await School.findById(schoolId);
+  const users = await User.find({ school });
   res.status(200).send(users);
 };
 
