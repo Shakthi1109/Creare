@@ -5,7 +5,6 @@
 	color: #fff;
 	width: 100vw;
 	height: 100vh;
-	padding: 10px;
 	@extend %columnFlex;
 	.form {
 		margin-top: 15px;
@@ -14,7 +13,8 @@
 		a {
 			text-decoration: none;
 			color: white;
-			margin: 25px;
+			margin-top: 15px;
+			font-weight: 600;
 			font-size: 17px;
 		}
 		.pass {
@@ -29,6 +29,8 @@
 				position: absolute;
 				font-size: 25px;
 				right: 0;
+				bottom: 0;
+				padding: 2px;
 				cursor: pointer;
 			}
 		}

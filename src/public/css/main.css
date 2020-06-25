@@ -1,9 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Cantora+One&family=Sriracha&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
 body {
   margin: 0%;
   padding: 0%;
-  font-family: "Cantora One", sans-serif; }
+  font-family: Helvetica; }
 
 .btn {
   color: #0cbd57;
@@ -40,28 +38,29 @@ body {
 
 .toast {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 15px;
   text-align: center;
   width: 20vw;
   height: max-content;
   margin: 5px;
-  border-radius: 5px;
+  border-radius: 15px;
   font-size: 18px; }
   .toast .ico {
     font-size: 30px;
     width: 5vw; }
   .toast .right {
     position: relative;
-    border-radius: inherit;
+    font-weight: 600;
+    border-radius: 5px;
     width: 15vw;
-    padding: 10px; }
+    padding: 3px; }
     .toast .right .icon {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: -10px;
+      right: -10px;
       padding: 5px;
-      border-radius: 5px;
+      border-radius: 50%;
       cursor: pointer; }
 
 input[type="text"],
@@ -154,7 +153,6 @@ input[type="password"]:focus {
   height: 100vh;
   color: white;
   margin: 0px;
-  padding: 2px;
   background-color: #0db047; }
   .gettingStarted .row {
     color: white; }
@@ -191,15 +189,15 @@ input[type="password"]:focus {
   background-color: #0cbd57;
   color: #fff;
   width: 100vw;
-  height: 100vh;
-  padding: 10px; }
+  height: 100vh; }
   .sign .form {
     margin-top: 15px;
     width: 30vw; }
     .sign .form a {
       text-decoration: none;
       color: white;
-      margin: 25px;
+      margin-top: 15px;
+      font-weight: 600;
       font-size: 17px; }
     .sign .form .pass {
       width: inherit;
@@ -212,6 +210,8 @@ input[type="password"]:focus {
         position: absolute;
         font-size: 25px;
         right: 0;
+        bottom: 0;
+        padding: 2px;
         cursor: pointer; }
     .sign .form p {
       white-space: pre; }

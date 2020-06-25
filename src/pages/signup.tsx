@@ -18,6 +18,7 @@ export default () => {
 	const [samepass, setsamePass] = useState(false)
 	const [isLoading, setisLoading] = useState(false)
 	const [onErr, setonErr] = useState(false)
+	const [instruct, setinstruct] = useState("")
 	const { doRequest } = useRequest({
 		url: "/api/user/signup",
 		method: "post",
@@ -45,7 +46,11 @@ export default () => {
 	let checkEmail = () => {
 		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
 			setvEmail(true)
+			setinstruct(
+				`Valid Email.. \nNow the Password must be atleast 8 Characters.`,
+			)
 		} else {
+			if (email != "") setinstruct(`Please Provide a valid email`)
 			setvEmail(false)
 		}
 	}
@@ -53,16 +58,24 @@ export default () => {
 	let checkPassword = () => {
 		if (password.length >= 8) {
 			setvPass(true)
+			setinstruct("Retype the same password..")
 		} else {
 			setvPass(false)
+			if (password != "")
+				setinstruct(`\nPassword must be atleast 8 Characters`)
 		}
 	}
 
 	let checkConfirmPassword = () => {
-		if (password == rePass) {
+		if (password == rePass && password != "") {
 			setsamePass(true)
+			setinstruct("")
 		} else {
 			setsamePass(false)
+			if (rePass != "")
+				setinstruct(
+					"Both passwords must be matching... Please check it.",
+				)
 		}
 	}
 
@@ -159,7 +172,7 @@ export default () => {
 					<Loader isLoading={isLoading}></Loader>
 				) : (
 					<>
-						<p>{err}</p>
+						{instruct != "" ? <p>{instruct}</p> : <></>}
 						<button
 							disabled={!canLogin}
 							className='btn'
@@ -169,7 +182,7 @@ export default () => {
 					</>
 				)}
 				<br />
-				or
+				<b>or</b>
 				<Link href='/login'>
 					<a>Already Having an Account ?</a>
 				</Link>

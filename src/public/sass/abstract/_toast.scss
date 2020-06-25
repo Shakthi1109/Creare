@@ -9,13 +9,13 @@
 
 .toast {
 	position: fixed;
-	top: 0;
-	right: 0;
+	top: 15px;
+	right: 15px;
 	text-align: center;
 	width: 20vw;
 	height: max-content;
 	margin: 5px;
-	border-radius: 5px;
+	border-radius: 15px;
 	font-size: 18px;
 	@extend %error;
 	@extend %rowFlex;
@@ -27,16 +27,17 @@
 		@extend %rowFlex;
 		@extend %errorInv;
 		position: relative;
-		border-radius: inherit;
+		font-weight: 600;
+		border-radius: 5px;
 		width: 15vw;
-		padding: 10px;
+		padding: 3px;
 		.icon {
 			@extend %error;
 			position: absolute;
-			top: 0;
-			right: 0;
+			top: -10px;
+			right: -10px;
 			padding: 5px;
-			border-radius: 5px;
+			border-radius: 50%;
 			cursor: pointer;
 		}
 	}
