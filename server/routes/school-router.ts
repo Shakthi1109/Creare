@@ -16,6 +16,7 @@ import { requireAdminAuth } from "../middlewares/require-admin-auth";
 const router = express.Router();
 
 // fetch all school
+// TODO add access only to superuser
 router.get("/all", currentUser, requireAdminAuth, getAllSchoolController);
 
 // fetch all active schools
@@ -45,8 +46,6 @@ router.put(
   "/:schoolId",
   currentUser,
   requireAdminAuth,
-  schoolValidator,
-  validateRequest,
   updateSchoolController
 );
 
