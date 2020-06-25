@@ -5,7 +5,9 @@ import {
 	FaUsers,
 	FaUserGraduate,
 	FaUsersCog,
+	FaTools,
 } from "react-icons/fa"
+
 export default ({ curr }) => {
 	return (
 		<div className='sideBar'>
@@ -41,6 +43,13 @@ export default ({ curr }) => {
 				onClick={(e) => Router.push("/admin/dashboard/admins")}>
 				<FaUsersCog className='icon' />
 				<a>Admins</a>
+			</div>
+			<div
+				className={curr == "Super Admin" ? "current" : "option"}
+				onClick={(e) => Router.push("/admin/dashboard/superAdmin")}>
+				<FaTools className='icon' />
+				<a>Super</a>
+				<a>Admin</a>
 			</div>
 		</div>
 	)
