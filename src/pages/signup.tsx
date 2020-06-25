@@ -6,7 +6,7 @@ import Loader from "../components/loader"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import Toast from "../components/toasts"
 import buildClient from "../service/build-client"
-const signUpComponent = ({ resp }) => {
+const signUpComponent = ({ schools }) => {
 	const [name, setname] = useState("")
 	const [email, setemail] = useState("")
 	const [password, setpassword] = useState("")
@@ -20,6 +20,9 @@ const signUpComponent = ({ resp }) => {
 	const [isLoading, setisLoading] = useState(false)
 	const [onErr, setonErr] = useState(false)
 	const [instruct, setinstruct] = useState("")
+	const [suggest, setsuggest] = useState([])
+	const [selected, setselected] = useState(false)
+	const [school, setschool] = useState("")
 	const { doRequest } = useRequest({
 		url: "/api/user/signup",
 		method: "post",
@@ -27,9 +30,9 @@ const signUpComponent = ({ resp }) => {
 			name,
 			email,
 			password,
-			role: "student",
+			role: "student"
 		},
-		onSuccess: () => Router.push("/home"),
+		onSuccess: () => Router.push("/home")
 	})
 
 	const SignUp = async () => {
@@ -48,7 +51,7 @@ const signUpComponent = ({ resp }) => {
 		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
 			setvEmail(true)
 			setinstruct(
-				`Valid Email.. \nNow the Password must be atleast 8 Characters.`,
+				`Valid Email.. \nNow the Password must be atleast 8 Characters.`
 			)
 		} else {
 			if (email != "") setinstruct(`Please Provide a valid email`)
@@ -75,7 +78,7 @@ const signUpComponent = ({ resp }) => {
 			setsamePass(false)
 			if (rePass != "")
 				setinstruct(
-					"Both passwords must be matching... Please check it.",
+					"Both passwords must be matching... Please check it."
 				)
 		}
 	}
@@ -92,14 +95,31 @@ const signUpComponent = ({ resp }) => {
 		} else {
 			setcanLogin(false)
 			seterr(
-				`Please Provide a valid email \nPassword must be of 8 characters & matching with each.`,
+				`Please Provide a valid email \nPassword must be of 8 characters & matching with each.`
 			)
 		}
 	}, [vEmail, vPass, samepass])
 
 	useEffect(() => {
-		console.log(resp)
-	}, [])
+		console.log(suggest)
+	}, [suggest])
+
+	let search = (val) => {
+		setselected(false)
+		val = val.toLowerCase()
+		let filterd = schools.filter(({ name, uniqRef }) => {
+			name = name.toLowerCase()
+			uniqRef = uniqRef.toLowerCase()
+			if (
+				(name.substring(0, val.length) == val ||
+					uniqRef.substring(0, val.length) == val) &&
+				val.length >= 1
+			) {
+				return name
+			}
+		})
+		setsuggest([...filterd])
+	}
 
 	return (
 		<div className='sign'>
@@ -120,6 +140,30 @@ const signUpComponent = ({ resp }) => {
 					placeholder='Name'
 					onChange={(e) => setname(e.target.value)}
 				/>
+				<br />
+				<input
+					type='text'
+					placeholder="Specify your School name or School's UniqueID"
+					value={school}
+					onChange={(e) => {
+						setschool(e.target.value)
+						search(e.target.value)
+					}}
+				/>
+				{suggest.length >= 1 && !selected ? (
+					suggest.map(({ name, city }) => {
+						return (
+							<button
+								className='suggest'
+								onClick={() => {
+									setselected(true)
+									setschool(`${name}, ${city}`)
+								}}>{`${name}, ${city}`}</button>
+						)
+					})
+				) : (
+					<> </>
+				)}
 				<br />
 				<input
 					type='text'
@@ -197,9 +241,8 @@ const signUpComponent = ({ resp }) => {
 }
 
 signUpComponent.getInitialProps = async (appContext) => {
-	const { data } = await buildClient(appContext).get("/api/school/all")
-	console.log(data)
-	return { resp: data }
+	const { data } = await buildClient(appContext).get("/api/school/")
+	return { schools: data }
 }
 
 export default signUpComponent

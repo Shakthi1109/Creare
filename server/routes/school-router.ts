@@ -1,6 +1,6 @@
-import express, { Request, Response } from "express"
-import { schoolValidator } from "../validator/school-validator"
-import { validateRequest } from "../middlewares/validate-request"
+import express, { Request, Response } from "express";
+import { schoolValidator } from "../validator/school-validator";
+import { validateRequest } from "../middlewares/validate-request";
 
 import {
 	addSchoolController,
@@ -8,28 +8,37 @@ import {
 	getAllSchoolController,
 	getSchoolByIdController,
 	schoolActivityController,
-} from "../controller/school-controller"
-import { currentUser } from "../middlewares/current-user"
-import { requireAdminAuth } from "../middlewares/require-admin-auth"
+	getActiveSchoolController
+} from "../controller/school-controller";
+import { currentUser } from "../middlewares/current-user";
+import { requireAdminAuth } from "../middlewares/require-admin-auth";
 
-const router = express.Router()
+const router = express.Router();
 
 // fetch all school
-router.get("/", currentUser, requireAdminAuth, getAllSchoolController)
+router.get("/all", currentUser, requireAdminAuth, getAllSchoolController);
+
+// fetch all active schools
+router.get("/", getActiveSchoolController);
 
 // fetch school by id
-router.get("/:schoolId", currentUser, requireAdminAuth, getSchoolByIdController)
+router.get(
+	"/:schoolId",
+	currentUser,
+	requireAdminAuth,
+	getSchoolByIdController
+);
 
 // to add new School
-router.post("/add", schoolValidator, validateRequest, addSchoolController)
+router.post("/add", schoolValidator, validateRequest, addSchoolController);
 
 // To change activity of school from active to not active.
 router.put(
 	"/activity/:schoolId",
 	currentUser,
 	requireAdminAuth,
-	schoolActivityController,
-)
+	schoolActivityController
+);
 
 // modify school
 router.put(
@@ -38,11 +47,11 @@ router.put(
 	requireAdminAuth,
 	schoolValidator,
 	validateRequest,
-	updateSchoolController,
-)
+	updateSchoolController
+);
 
 router.get("/test", (req: Request, res: Response) => {
-	res.send("server school api is responding")
-})
+	res.send("server school api is responding");
+});
 
-export { router as schoolRouter }
+export { router as schoolRouter };

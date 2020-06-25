@@ -23,3 +23,22 @@ input[type="password"]:focus {
 	color: white;
 	opacity: 0.8;
 }
+
+.suggest {
+	background: #ffffff23;
+	z-index: 2;
+	color: #fff;
+	font-size: 20px;
+	margin-top: -20px;
+	height: 4vh;
+	font-family: inherit;
+	outline: none !important;
+	border-style: none none solid none;
+	border-bottom-width: 2px;
+	border-bottom-color: white;
+	width: inherit;
+}
+.suggest:hover {
+	background: transparent;
+	cursor: pointer;
+}
