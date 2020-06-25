@@ -30,7 +30,7 @@ export const signinController = async (req: Request, res: Response) => {
   const token = await jwt.sign(
     {
       id: existingUser.id,
-      email,
+      email: existingUser.email,
       role: existingUser.role,
       name: existingUser.name,
     },
