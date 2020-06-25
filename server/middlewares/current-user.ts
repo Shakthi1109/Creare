@@ -5,8 +5,9 @@ import { UserRole } from "../util/enum/user-roles";
 interface UserPayload {
   id: string;
   email: string;
-  name:string;
+  name: string;
   role: UserRole;
+  school: string;
 }
 
 declare global {

@@ -10,7 +10,7 @@ interface SchoolAttrs {
   uniqRef: string;
 }
 
-interface SchoolDoc extends mongoose.Document {
+export interface SchoolDoc extends mongoose.Document {
   name: String;
   address1: String;
   address2: String;
