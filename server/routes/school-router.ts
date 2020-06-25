@@ -8,6 +8,7 @@ import {
   getAllSchoolController,
   getSchoolByIdController,
   schoolActivityController,
+  getActiveSchoolController,
 } from "../controller/school-controller";
 import { currentUser } from "../middlewares/current-user";
 import { requireAdminAuth } from "../middlewares/require-admin-auth";
@@ -15,7 +16,10 @@ import { requireAdminAuth } from "../middlewares/require-admin-auth";
 const router = express.Router();
 
 // fetch all school
-router.get("/", currentUser, requireAdminAuth, getAllSchoolController);
+router.get("/all", currentUser, requireAdminAuth, getAllSchoolController);
+
+// fetch all active schools
+router.get("/", getActiveSchoolController);
 
 // fetch school by id
 router.get(
