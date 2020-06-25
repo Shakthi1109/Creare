@@ -1,3 +1,11 @@
+.btn, .btn-inverse {
+  padding: 10px;
+  font-size: 18px;
+  border-style: none;
+  width: inherit;
+  border-radius: 5px;
+  font-weight: bolder; }
+
 body {
   margin: 0%;
   padding: 0%;
@@ -5,24 +13,22 @@ body {
 
 .btn {
   color: #0cbd57;
-  font-weight: bolder;
-  background-color: #fff;
-  padding: 10px;
-  font-size: 18px;
-  border-style: none;
-  width: inherit;
-  border-radius: 5px; }
+  background-color: #fff; }
 
 .btn:disabled {
   opacity: 0.5; }
 
-.sideBar .current, .sideBar .option, .sideBar, .gettingStarted, .gettingStarted .row, .sign, .sign .form {
+.btn-inverse {
+  color: #fff;
+  background-color: #0cbd57; }
+
+.sideBar .current, .sideBar .option, .sideBar, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .FoF div div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.toast, .toast .right, .gettingStarted .row #controls, .dashboard {
+.toast, .toast .right, .gettingStarted .row #controls, .dashboard, .FoF div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -100,13 +106,14 @@ input[type="password"]:focus {
   border-color: #fff; }
   @media (max-width: 800px) {
     .sideBar .current, .sideBar .option {
+      border-width: 1px;
       border-style: none none none solid; } }
 
 .sideBar .current:last-child, .sideBar .option:last-child {
   border-bottom-width: 5px; }
 
 .sideBar {
-  width: 5rem;
+  width: 6rem;
   background-color: #0cbd57;
   height: 100vh;
   position: fixed;
@@ -124,19 +131,23 @@ input[type="password"]:focus {
   .sideBar a {
     font-size: 18px;
     text-decoration: none;
-    color: #fff; }
+    color: #fff;
+    font-weight: 600; }
+    @media (max-width: 800px) {
+      .sideBar a {
+        font-size: 15px; } }
   .sideBar .icon {
     font-size: 30px;
     color: #fff; }
     @media (max-width: 800px) {
       .sideBar .icon {
-        font-size: 20px; } }
+        font-size: 25px; } }
   .sideBar .current {
     background-color: #005323; }
   .sideBar .logo {
     display: block;
     color: white;
-    margin: 70px 0px; }
+    margin: 20px 0px; }
     @media (max-width: 800px) {
       .sideBar .logo {
         display: none; } }
@@ -159,7 +170,7 @@ input[type="password"]:focus {
     .gettingStarted .row #controls .ActiveCircle {
       background-color: #fff; }
     .gettingStarted .row #controls .Circle {
-      background-color: rgba(255, 255, 255, 0.349); }
+      background-color: #ffffff59; }
     .gettingStarted .row .card {
       width: 40vw;
       height: 60vh;
@@ -225,10 +236,29 @@ input[type="password"]:focus {
         width: 90vw; } }
 
 .dashboard {
-  margin-left: 5.5rem !important; }
+  margin-left: 6.5rem !important; }
   @media (max-width: 800px) {
     .dashboard {
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin-top: 5.5rem !important; } }
+
+.FoF {
+  color: #fff;
+  height: 100vh;
+  background-color: #0db047; }
+  .FoF h1 {
+    margin: 0%;
+    padding: 30px; }
+  .FoF div {
+    justify-content: space-evenly;
+    height: 60vh; }
+    .FoF div .icon {
+      font-size: 5em; }
+    .FoF div div {
+      text-align: center; }
+      .FoF div div h2 {
+        font-size: 50px;
+        margin: 0px;
+        color: #ffffffbb; }

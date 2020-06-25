@@ -42,6 +42,10 @@ export default () => {
 	// 	}, 8000)
 	// })
 
+	useEffect(() => {
+		console.log(Index)
+	}, [Index])
+
 	return (
 		<div className='gettingStarted'>
 			<div className='row'>

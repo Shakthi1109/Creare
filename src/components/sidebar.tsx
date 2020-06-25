@@ -1,5 +1,11 @@
 import Router from "next/router"
-import { FaSchool, FaChalkboardTeacher, FaUsersCog } from "react-icons/fa"
+import {
+	FaSchool,
+	FaChalkboardTeacher,
+	FaUsers,
+	FaUserGraduate,
+	FaUsersCog,
+} from "react-icons/fa"
 export default ({ curr }) => {
 	return (
 		<div className='sideBar'>
@@ -7,24 +13,34 @@ export default ({ curr }) => {
 				<h2>Creare</h2>
 			</div>
 			<div
+				className={curr == "users" ? "current" : "option"}
+				onClick={(e) => Router.push("/admin/dashboard/users")}>
+				<FaUsers className='icon' />
+				<a>Users</a>
+			</div>
+			<div
 				className={curr == "school" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/dashboard/school")}>
-				<a>Schools</a>
-
 				<FaSchool className='icon' />
+				<a>School</a>
 			</div>
 			<div
 				className={curr == "teachers" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/dashboard/teachers")}>
-				<a>Teachers</a>
 				<FaChalkboardTeacher className='icon' />
+				<a>Teachers</a>
 			</div>
-
+			<div
+				className={curr == "students" ? "current" : "option"}
+				onClick={(e) => Router.push("/admin/dashboard/students")}>
+				<FaUserGraduate className='icon' />
+				<a>Students</a>
+			</div>
 			<div
 				className={curr == "admin" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/dashboard/admins")}>
-				<a>Admins</a>
 				<FaUsersCog className='icon' />
+				<a>Admins</a>
 			</div>
 		</div>
 	)

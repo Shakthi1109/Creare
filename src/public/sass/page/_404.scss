@@ -1,0 +1,26 @@
+.FoF {
+	color: #fff;
+	height: 100vh;
+	h1 {
+		margin: 0%;
+		padding: 30px;
+	}
+	background-color: #0db047;
+	div {
+		@extend %rowFlex;
+		justify-content: space-evenly;
+		height: 60vh;
+		.icon {
+			font-size: 5em;
+		}
+		div {
+			@extend %columnFlex;
+			text-align: center;
+			h2 {
+				font-size: 50px;
+				margin: 0px;
+				color: #ffffffbb;
+			}
+		}
+	}
+}

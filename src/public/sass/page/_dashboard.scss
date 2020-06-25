@@ -1,5 +1,5 @@
 .dashboard {
-	margin-left: 5.5rem !important;
+	margin-left: 6.5rem !important;
 	@extend %rowFlex;
 	@include responsive() {
 		flex-direction: column;
