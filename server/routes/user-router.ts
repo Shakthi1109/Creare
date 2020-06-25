@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 // TODO once you write validator uncomment the below
-// import { signupValidator, signinValidator } from "../validator/user-validator";
+import { signupValidator, signinValidator } from "../validator/user-validator";
 import {
   signupController,
   signinController,
@@ -16,12 +16,14 @@ const router = express.Router();
 router.get("/currentUser", currentUser, currentUserController);
 
 // TODO once you write validators ,add the validator just before validateRequest
-// to add new User
-router.post("/signup", validateRequest, signupController);
+// to signup new User
+
+router.post("/signup", signupValidator, validateRequest, signupController);
 
 // TODO once you write validators ,add the validator just before validateRequest
 // to login new User
-router.post("/signin", validateRequest, signinController);
+
+router.post("/signin", signinValidator, validateRequest, signinController);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server user api is responding");
