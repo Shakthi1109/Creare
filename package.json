@@ -38,6 +38,7 @@
     "mongoose": "^5.9.19",
     "morgan": "^1.10.0",
     "next": "^9.4.4",
+    "random-bytes": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
