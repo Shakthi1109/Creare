@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { School } from "../model/school-model";
 import { BadRequestError } from "../errors/bad-request-error";
 import { randomBytes } from "crypto";
+import { NotAuthorizedError } from "../errors/not-authorized-error";
 
 // add school  controller
 
@@ -25,9 +26,9 @@ export const addSchoolController = async (req: Request, res: Response) => {
 };
 
 // modify school controller
-
 export const updateSchoolController = async (req: Request, res: Response) => {
   const { schoolId } = req.params;
+  if (schoolId !== req.currentUser.schoolId) throw new NotAuthorizedError();
   const existingSchool = await School.findById(schoolId);
   if (!existingSchool) throw new BadRequestError("No School found");
   existingSchool.set(req.body);
@@ -56,6 +57,7 @@ export const getActiveSchoolController = async (
 // fetch school by id
 export const getSchoolByIdController = async (req: Request, res: Response) => {
   const { schoolId } = req.params;
+  if (schoolId !== req.currentUser.schoolId) throw new NotAuthorizedError();
   const existingSchool = await School.findById(schoolId);
   if (!existingSchool) throw new BadRequestError("No School found");
   res.status(200).send(existingSchool);
@@ -64,6 +66,7 @@ export const getSchoolByIdController = async (req: Request, res: Response) => {
 // isActive controller
 export const schoolActivityController = async (req: Request, res: Response) => {
   const { schoolId } = req.params;
+  if (schoolId !== req.currentUser.schoolId) throw new NotAuthorizedError();
   const existingSchool = await School.findById(schoolId);
   if (!existingSchool) throw new BadRequestError("No School found");
   existingSchool.set({ isActive: !existingSchool.isActive });
