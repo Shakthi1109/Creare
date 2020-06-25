@@ -9,6 +9,11 @@ export const currentUserController = async (req: Request, res: Response) => {
   res.send({ currentUser: req.currentUser || null });
 };
 
+export const getUsersController = async (req: Response, res: Response) => {
+  const users = await User.find();
+  res.status(200).send(users);
+};
+
 export const signupController = async (req: Request, res: Response) => {
   const { name, email, role, password } = req.body;
   const existingUser = await User.findOne({ email });

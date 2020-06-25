@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { NotAuthorizedError } from "../errors/not-authorized-error";
 import { UserRole } from "../util/enum/user-roles";
 
-export const requireAuth = (
+export const requireAdminAuth = (
   req: Request,
   res: Response,
   next: NextFunction
