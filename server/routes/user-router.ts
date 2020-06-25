@@ -5,6 +5,7 @@ import {
   signupController,
   signinController,
   currentUserController,
+  getUsersController,
 } from "../controller/user-controller";
 
 import { validateRequest } from "../middlewares/validate-request";
