@@ -18,11 +18,10 @@ const router = express.Router();
 router.get("/currentUser", currentUser, currentUserController);
 
 // to fetch all users
-router.get("/", currentUser, requireAdminAuth,getUsersController);
+router.get("/", currentUser, requireAdminAuth, getUsersController);
 
 // TODO once you write validators ,add the validator just before validateRequest
 // to signup new User
-
 router.post("/signup", signupValidator, validateRequest, signupController);
 
 // TODO once you write validators ,add the validator just before validateRequest

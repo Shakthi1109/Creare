@@ -9,7 +9,7 @@ export const currentUserController = async (req: Request, res: Response) => {
   res.send({ currentUser: req.currentUser || null });
 };
 
-export const getUsersController = async (req: Response, res: Response) => {
+export const getUsersController = async (req: Request, res: Response) => {
   const users = await User.find();
   res.status(200).send(users);
 };
