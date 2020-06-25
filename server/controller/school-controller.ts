@@ -7,11 +7,10 @@ import { randomBytes } from "crypto";
 
 export const addSchoolController = async (req: Request, res: Response) => {
   const { name, address1, address2, city, state, pincode } = req.body;
-  const existingSchool = await School.findOne({ name });
+  const existingSchool = await School.findOne({ name, city });
   if (existingSchool) throw new BadRequestError("School already exists");
-
-  const uniqId = randomBytes(7).toString("hex").substr(0, 7);
-  const uniqRef = name.substr(0, 2) + uniqId;
+  const uniqId = randomBytes(4).toString("hex").substr(0, 4);
+  const uniqRef = name.substr(0, 3) + uniqId;
   const school = School.build({
     name,
     address1,
@@ -30,33 +29,32 @@ export const addSchoolController = async (req: Request, res: Response) => {
 export const updateSchoolController = async (req: Request, res: Response) => {
   const { schoolId } = req.params;
   const existingSchool = await School.findById(schoolId);
-  if (!existingSchool) throw new BadRequestError("No Such School Exists");
+  if (!existingSchool) throw new BadRequestError("No School found");
   existingSchool.set(req.body);
   await existingSchool.save();
-  res.status(201).send(existingSchool);
+  res.send(existingSchool);
 };
 
 // fetch all school controller
 export const getAllSchoolController = async (req: Request, res: Response) => {
   const existingSchool = await School.find();
-  if (!existingSchool) throw "No Schools Found";
-  res.status(201).send(existingSchool);
+  res.status(200).send(existingSchool);
 };
 
 // fetch school by id
 export const getSchoolByIdController = async (req: Request, res: Response) => {
   const { schoolId } = req.params;
   const existingSchool = await School.findById(schoolId);
-  if (!existingSchool) throw new BadRequestError("No Such School Exists");
-  res.status(201).send(existingSchool);
+  if (!existingSchool) throw new BadRequestError("No School found");
+  res.status(200).send(existingSchool);
 };
 
 // isActive controller
 export const schoolActivityController = async (req: Request, res: Response) => {
   const { schoolId } = req.params;
   const existingSchool = await School.findById(schoolId);
-  if (!existingSchool) throw new BadRequestError("No such School Exists");
+  if (!existingSchool) throw new BadRequestError("No School found");
   existingSchool.set({ isActive: !existingSchool.isActive });
   await existingSchool.save();
-  res.status(201).send(existingSchool);
+  res.send(existingSchool);
 };

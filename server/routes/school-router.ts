@@ -10,40 +10,40 @@ import {
   schoolActivityController,
 } from "../controller/school-controller";
 import { currentUser } from "../middlewares/current-user";
-import { requireAuth } from "../middlewares/require-admin-auth";
+import { requireAdminAuth } from "../middlewares/require-admin-auth";
 
 const router = express.Router();
+
+// fetch all school
+router.get("/", currentUser, requireAdminAuth, getAllSchoolController);
+
+// fetch school by id
+router.get(
+  "/:schoolId",
+  currentUser,
+  requireAdminAuth,
+  getSchoolByIdController
+);
 
 // to add new School
 router.post("/add", schoolValidator, validateRequest, addSchoolController);
 
+// To change activity of school from active to not active.
+router.put(
+  "/activity/:schoolId",
+  currentUser,
+  requireAdminAuth,
+  schoolActivityController
+);
+
 // modify school
 router.put(
-  "/update/:schoolId",
+  "/:schoolId",
   currentUser,
-  requireAuth,
+  requireAdminAuth,
   schoolValidator,
   validateRequest,
   updateSchoolController
-);
-
-// fetch all school
-router.get("/getAllSchool", currentUser, requireAuth, getAllSchoolController);
-
-// fetch school by id
-router.get(
-  "/getSchoolById/:schoolId",
-  currentUser,
-  requireAuth,
-  getSchoolByIdController
-);
-
-// To change activity of school from active to not active.
-router.put(
-  "/activity/update/:schoolId",
-  currentUser,
-  requireAuth,
-  schoolActivityController
 );
 
 router.get("/test", (req: Request, res: Response) => {
