@@ -6,7 +6,7 @@ import {
   signinController,
   currentUserController,
   getUsersController,
-  singoutController,
+  signoutController,
 } from "../controller/user-controller";
 
 import { validateRequest } from "../middlewares/validate-request";
@@ -18,20 +18,17 @@ const router = express.Router();
 // to fetch current user cookie info
 router.get("/currentUser", currentUser, currentUserController);
 
-// to fetch all users
-router.get("/", currentUser, requireAdminAuth, getUsersController);
-
 // to signout user
-router.get("/signout", singoutController);
+router.get("/signout", signoutController);
 
-// TODO once you write validators ,add the validator just before validateRequest
 // to signup new User
 router.post("/signup", signupValidator, validateRequest, signupController);
 
-// TODO once you write validators ,add the validator just before validateRequest
 // to login new User
-
 router.post("/signin", signinValidator, validateRequest, signinController);
+
+// to fetch all users
+router.get("/", currentUser, requireAdminAuth, getUsersController);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server user api is responding");

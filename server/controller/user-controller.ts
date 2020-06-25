@@ -9,7 +9,7 @@ export const currentUserController = async (req: Request, res: Response) => {
   res.send({ currentUser: req.currentUser || null });
 };
 
-export const singoutController = async (req: Request, res: Response) => {
+export const signoutController = async (req: Request, res: Response) => {
   req.session = null;
   res.send({});
 };
