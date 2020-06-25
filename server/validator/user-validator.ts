@@ -6,7 +6,7 @@ import { UserRole } from "../util/enum/user-roles";
 
 export const signupValidator = [
   body("name").not().isEmpty().withMessage("Name is required"),
-  body("email").isEmail().withMessage("Valid email is required"),
+  body("email").not().isEmail().withMessage("Valid email is required"),
   body("password")
     .isLength({ min: 6 })
     .withMessage("password with min. of 6 chars is required"),
