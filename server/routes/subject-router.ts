@@ -8,45 +8,44 @@ import {
   getActiveSubjectController,
   getSubjectByIdController,
   subjectActivityController,
+  getSubjectsController,
 } from "../controller/subject-controller";
 
 import { currentUser } from "../middlewares/current-user";
 import { requireAdminAuth } from "../middlewares/require-admin-auth";
+import { requireAuth } from "../middlewares/require-auth";
 
 const router = express.Router();
 
 // fetch all active subjects
-router.get("/", currentUser, requireAdminAuth, getActiveSubjectController);
+router.get("/", currentUser, requireAuth, getActiveSubjectController);
+
+// fetch all subjects
+router.get("/all", currentUser, requireAdminAuth, getSubjectsController);
 
 // fetch subject by id
-router.get("/:id", currentUser, requireAdminAuth, getSubjectByIdController);
+router.get("/:subjectId", currentUser, requireAdminAuth, getSubjectByIdController);
 
-// to add new Subject
+// to add new Subject only by admin
 router.post(
   "/add",
-  subjectValidator,
   currentUser,
   requireAdminAuth,
+  subjectValidator,
   validateRequest,
   addSubjectController
 );
 
 // To change activity of subject from active to not active.
 router.put(
-  "/activity/:id",
+  "/activity/:subjectId",
   currentUser,
   requireAdminAuth,
   subjectActivityController
 );
 
 // modify subject
-router.put(
-  "/:id",
-  subjectValidator,
-  currentUser,
-  requireAdminAuth,
-  updateSubjectController
-);
+router.put("/:subjectId", currentUser, requireAdminAuth, updateSubjectController);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server subject api is responding");

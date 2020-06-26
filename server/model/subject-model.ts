@@ -4,15 +4,14 @@ import { SchoolDoc } from "./school-model";
 interface SubjectAttrs {
   name: string;
   subjectId: string;
-  grade: string;
-  isActive: boolean;
+  grade: number;
   school: SchoolDoc;
 }
 
-export interface SubjectDoc extends mongoose.Document {
+interface SubjectDoc extends mongoose.Document {
   name: string;
   subjectId: string;
-  grade: string;
+  grade: number;
   isActive: boolean;
   school: SchoolDoc;
 }
@@ -25,8 +24,8 @@ const SubjectSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     subjectId: { type: String, required: true },
-    grade: { type: String, required: true },
-    isActive: { type: Boolean, required: true, default: false },
+    grade: { type: Number, required: true },
+    isActive: { type: Boolean, default: false },
     school: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Schools",
