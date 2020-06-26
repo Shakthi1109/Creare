@@ -1,0 +1,67 @@
+// @use "../abstract/flex";
+
+.sign {
+	@extend %lightGreenBG;
+	color: #fff;
+	width: 100vw;
+	height: 100vh;
+	@extend %columnFlex;
+	.form {
+		background-color: #0cbd57;
+		padding: 2% 3%;
+		border-radius: 10px;
+		width: 30%;
+		@extend %columnFlex;
+		@include responsive() {
+			width: 80%;
+		}
+		h1 {
+			margin-bottom: 20px;
+		}
+		a {
+			text-decoration: none;
+			color: white;
+			margin-top: 15px;
+			font-weight: 600;
+			font-size: 17px;
+		}
+		.pass {
+			width: 100%;
+			position: relative;
+			height: 3vh;
+			margin-bottom: 20px;
+			input {
+				position: absolute;
+			}
+			.icon {
+				position: absolute;
+				font-size: 25px;
+				right: 0;
+				bottom: 0;
+				padding: 2px;
+				cursor: pointer;
+			}
+		}
+		p {
+			white-space: pre;
+		}
+		#suggest {
+			width: 100%;
+			@extend %columnFlex;
+			position: relative;
+			.suggest {
+				position: absolute;
+				@extend %lightGreenBG;
+				width: inherit;
+				top: 6vh;
+				border-bottom-color: #0cbd57;
+			}
+		}
+		button {
+			width: 20vw;
+			@include responsive() {
+				width: 50vw;
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+.pages {
+	margin: 2%;
+	.row {
+		@extend %rowFlex;
+		justify-content: space-between;
+		@extend %noSelect;
+		.icon {
+			@extend %greenBG;
+			border-radius: 30%;
+			font-size: 3em;
+			cursor: pointer;
+			margin: 0% -10%;
+		}
+	}
+}

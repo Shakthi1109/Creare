@@ -1,0 +1,59 @@
+%circle {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin: 10px;
+	cursor: pointer;
+}
+.gettingStarted {
+	width: 100vw;
+	height: 100vh;
+	color: white;
+	margin: 0px;
+	@extend %columnFlex;
+	background-color: #0db047;
+	.row {
+		@extend %columnFlex;
+		color: white;
+		#controls {
+			@extend %rowFlex;
+			.ActiveCircle {
+				@extend %circle;
+				background-color: #fff;
+			}
+			.Circle {
+				@extend %circle;
+				background-color: #ffffff59;
+			}
+		}
+		.card {
+			width: 40vw;
+			height: 60vh;
+			position: relative;
+			background-color: #fff;
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 40vw;
+				height: 50vh;
+				// clip-path: polygon(0 0, 100% 0, 100% 61%, 0 100%);
+			}
+			.below {
+				background-color: white;
+				padding: 10px;
+				text-align: center;
+				color: #014931f1;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				p {
+					text-align: justify;
+				}
+			}
+			@include responsive() {
+				width: 70vw;
+			}
+		}
+	}
+}

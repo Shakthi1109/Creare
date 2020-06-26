@@ -1,0 +1,1 @@
+export default ()=> <div>render list of all admins</div>
