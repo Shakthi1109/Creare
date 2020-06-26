@@ -4,16 +4,38 @@ import jwt from "jsonwebtoken";
 
 import { User } from "../model/user-model";
 import { BadRequestError } from "../errors/bad-request-error";
+import { School } from "../model/school-model";
 
 export const currentUserController = async (req: Request, res: Response) => {
   res.send({ currentUser: req.currentUser || null });
 };
 
+export const signoutController = async (req: Request, res: Response) => {
+  req.session = null;
+  res.send({});
+};
+
+export const getUsersController = async (req: Request, res: Response) => {
+  const { schoolId } = req.currentUser;
+  const school = await School.findById(schoolId);
+  const users = await User.find({ school });
+  res.status(200).send(users);
+};
+
 export const signupController = async (req: Request, res: Response) => {
-  const { name, email, role, password } = req.body;
+  const { name, email, role, password, uniqRef } = req.body;
+  const existingSchool = await School.findOne({ uniqRef });
+  if (!existingSchool) throw new BadRequestError("No School Found");
   const existingUser = await User.findOne({ email });
   if (existingUser) throw new BadRequestError("User already exists");
-  const user = User.build({ email, name, password, role });
+
+  const user = User.build({
+    email,
+    name,
+    password,
+    role,
+    school: existingSchool,
+  });
   // TODO send account activation email
   await user.save();
   res.status(201).send(user);
@@ -24,7 +46,7 @@ export const signinController = async (req: Request, res: Response) => {
   const existingUser = await User.findOne({ email });
   if (!existingUser) throw new BadRequestError("Invalid credentials");
   if (existingUser.isNotActive())
-    throw new BadRequestError("This account is currently in active");
+    throw new BadRequestError("This account is currently inactive");
   const doesPasswordMatch = await compare(password, existingUser.password);
   if (!doesPasswordMatch) throw new BadRequestError("Invalid credentials");
   const token = await jwt.sign(
@@ -33,6 +55,7 @@ export const signinController = async (req: Request, res: Response) => {
       email,
       role: existingUser.role,
       name: existingUser.name,
+      schoolId: existingUser.school,
     },
     process.env.JWT_KEY
   );

@@ -7,11 +7,7 @@ export default ({
 	method,
 	body,
 	onSuccess,
-}: {
-	url: any
-	method: any
-	body?: any
-	onSuccess: any
+	onError
 }) => {
 	const [error, setError] = useState(null)
 
@@ -25,16 +21,11 @@ export default ({
 			return response.data
 		} catch (err) {
 			const errors = err.response.data.errors
-			setError(
-				<ul>
-					{errors.map((error) => (
-						<li key={error.message}>{error.message}</li>
-					))}
-				</ul>,
-			)
-			return errors
+			if (onError) {
+				onError(errors);
+			}
 		}
 	}
 
-	return { doRequest, error }
+	return { doRequest }
 }
