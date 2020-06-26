@@ -32,6 +32,7 @@ router.post("/add", schoolValidator, validateRequest, addSchoolController)
 router.put("/activity", currentUser, requireAdminAuth, schoolActivityController)
 
 // modify school
+
 router.put("/", currentUser, requireAdminAuth, updateSchoolController)
 
 router.get("/test", (req: Request, res: Response) => {
