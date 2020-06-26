@@ -1,13 +1,15 @@
 %tab {
-	width: inherit;
-	height: 15vh;
-	@extend %columnFlex;
+	width: 95%;
+	height: 10vh;
+	// @extend %columnFlex;
+	@extend %rowFlex;
 	justify-content: space-evenly;
 	background-color: inherit;
 	cursor: pointer;
-	border-style: solid;
 	border-width: 5px;
 	border-bottom-width: 0px;
+	margin-bottom: 5px;
+	border-style: none none none solid;
 	border-color: #fff;
 	@include responsive {
 		border-width: 1px;
@@ -18,8 +20,8 @@
 	border-bottom-width: 5px;
 }
 .sideBar {
-	// width: 10rem;
-	width: 6rem;
+	width: 10rem;
+	// width: 6rem;
 	background-color: #0cbd57;
 	height: 100vh;
 	position: fixed;
@@ -46,7 +48,7 @@
 		}
 	}
 	.icon {
-		font-size: 30px;
+		font-size: 20px;
 		color: #fff;
 		@include responsive() {
 			font-size: 25px;
@@ -62,7 +64,7 @@
 	.logo {
 		display: block;
 		color: white;
-		margin: 20px 0px;
+		margin: 50px 0px;
 		@include responsive() {
 			display: none;
 		}

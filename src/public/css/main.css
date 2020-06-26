@@ -15,14 +15,14 @@
   color: #0cbd57;
   background-color: #fff; }
 
-option, .sign, .sign .form #suggest .suggest, .dashboard .col .list-item {
+option, .sign, .sign .form #suggest .suggest, .dashboard table tr td, .dashboard table th td, .dashboard .col .list-item {
   background-color: #cef2dd;
   color: #1fab89; }
 
 option:hover,
 option:focus,
 option:active,
-option:checked, .dashboard .col .list-item .icon {
+option:checked, .dashboard .col .list-item .icon, .dashboard table th td {
   background-color: #1fab89;
   color: #9df3c4; }
 
@@ -77,13 +77,13 @@ h5,
 h6 {
   margin: 5px; }
 
-.sideBar .current, .sideBar .option, .sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest, .dashboard, .FoF div div {
+.sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest, .dashboard, .FoF div div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.overlay .container .row, .container .toast, .container .toast .right, .pages .row, .gettingStarted .row #controls, .dashboard .col, .FoF div {
+.sideBar .current, .sideBar .option, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .gettingStarted .row #controls, .dashboard .col, .FoF div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -154,14 +154,15 @@ select {
       font-size: 17px; } }
 
 .sideBar .current, .sideBar .option {
-  width: inherit;
-  height: 15vh;
+  width: 95%;
+  height: 10vh;
   justify-content: space-evenly;
   background-color: inherit;
   cursor: pointer;
-  border-style: solid;
   border-width: 5px;
   border-bottom-width: 0px;
+  margin-bottom: 5px;
+  border-style: none none none solid;
   border-color: #fff; }
   @media (max-width: 850px) {
     .sideBar .current, .sideBar .option {
@@ -172,7 +173,7 @@ select {
   border-bottom-width: 5px; }
 
 .sideBar {
-  width: 6rem;
+  width: 10rem;
   background-color: #0cbd57;
   height: 100vh;
   position: fixed;
@@ -197,7 +198,7 @@ select {
       .sideBar a {
         font-size: 13px; } }
   .sideBar .icon {
-    font-size: 30px;
+    font-size: 20px;
     color: #fff; }
     @media (max-width: 850px) {
       .sideBar .icon {
@@ -207,7 +208,7 @@ select {
   .sideBar .logo {
     display: block;
     color: white;
-    margin: 20px 0px; }
+    margin: 50px 0px; }
     @media (max-width: 850px) {
       .sideBar .logo {
         display: none; } }
@@ -369,8 +370,16 @@ select {
         .sign .form button {
           width: 50vw; } }
 
+.dashboard table tr td, .dashboard table th td {
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  z-index: 1; }
+
 .dashboard {
-  margin-left: 6.5rem !important;
+  margin-left: 10.5rem !important;
   color: #1fab89; }
   @media (max-width: 850px) {
     .dashboard {
@@ -400,11 +409,13 @@ select {
         padding: 5px;
         border-radius: 10px;
         cursor: pointer; }
+  .dashboard table th td {
+    font-weight: bold; }
 
 .FoF {
   color: #fff;
   height: 100vh;
-  background-color: #0db047; }
+  background-color: #0db046e0; }
   .FoF h1 {
     margin: 0%;
     padding: 30px; }

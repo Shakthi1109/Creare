@@ -1,10 +1,10 @@
-import Sidebar from "../../../components/sidebar";
-import Overlay from "../../../components/overlay";
-import { useState } from "react";
-import { FaPencilAlt } from "react-icons/fa";
+import Sidebar from "../../../components/sidebars/admin_Sidebar"
+import Overlay from "../../../components/overlay"
+import { useState } from "react"
+import { FaPencilAlt } from "react-icons/fa"
 export default () => {
-	let dummyData = { name: "name", type: "scl", add: "syz" };
-	const [overlay, setoverlay] = useState(false);
+	let dummyData = { name: "name", type: "scl", add: "syz" }
+	const [overlay, setoverlay] = useState(false)
 	return (
 		<>
 			<Sidebar curr={"school"} />
@@ -14,7 +14,7 @@ export default () => {
 					<Overlay
 						data={dummyData}
 						closeFunc={() => {
-							setoverlay(false);
+							setoverlay(false)
 						}}
 					/>
 				) : (
@@ -30,15 +30,15 @@ export default () => {
 									<h3>Type - {item.type}</h3>
 									<FaPencilAlt
 										onClick={() => {
-											setoverlay(true);
+											setoverlay(true)
 										}}
 										className='icon'
 									/>
 								</div>
-							);
+							)
 						})}
 				</div>
 			</div>
 		</>
-	);
-};
+	)
+}

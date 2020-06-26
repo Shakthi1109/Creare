@@ -1,5 +1,15 @@
+%tableData {
+	@extend %lightGreenBG;
+	margin: 15px;
+	// width: 20vw;
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
 .dashboard {
-	margin-left: 6.5rem !important;
+	margin-left: 10.5rem !important;
 	color: #1fab89;
 	@extend %columnFlex;
 	@include responsive() {
@@ -33,6 +43,21 @@
 				padding: 5px;
 				border-radius: 10px;
 				cursor: pointer;
+			}
+		}
+	}
+
+	table {
+		tr {
+			td {
+				@extend %tableData;
+			}
+		}
+		th {
+			td {
+				@extend %tableData;
+				@extend %lightGreenBG-inv;
+				font-weight: bold;
 			}
 		}
 	}

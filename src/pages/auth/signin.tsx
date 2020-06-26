@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Router from "next/router"
-import useRequest from "../custom-hook/use-request"
-import Loader from "../components/loader"
+import useRequest from "../../custom-hook/use-request"
+import Loader from "../../components/loader"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-import Toast from "../components/toasts/index"
+import Toast from "../../components/toasts/index"
 export default () => {
 	const [email, setemail] = useState("")
 	const [password, setpassword] = useState("")

@@ -1,8 +1,8 @@
-import Sidebar from "../../../components/sidebar"
+import Sidebar from "../../../components/sidebars/admin_Sidebar"
 import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
-import { FaEye } from "react-icons/fa"
+import { FaExternalLinkAlt } from "react-icons/fa"
 export default () => {
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
@@ -28,9 +28,6 @@ export default () => {
 		setslicedData(data.slice(ind, ind + capacity))
 	}, [index])
 
-	useEffect(() => {
-		console.log(slicedData)
-	}, [slicedData])
 	return (
 		<>
 			<Sidebar curr={"students"} />
@@ -54,7 +51,7 @@ export default () => {
 								<h2>Name - {item.name}</h2>
 								<h3>Type - {item.type}</h3>
 								{indexRef + index}
-								<FaEye
+								<FaExternalLinkAlt
 									onClick={() => {
 										setselected(index)
 										setoverlay(true)
