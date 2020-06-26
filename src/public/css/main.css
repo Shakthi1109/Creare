@@ -15,19 +15,22 @@
   color: #0cbd57;
   background-color: #fff; }
 
-.dashboard .col .list-item {
-  background-color: #9df3c4;
+option, .sign, .sign .form #suggest .suggest, .dashboard .col .list-item {
+  background-color: #cef2dd;
   color: #1fab89; }
 
-.dashboard .col .list-item .icon {
+option:hover,
+option:focus,
+option:active,
+option:checked, .dashboard .col .list-item .icon {
   background-color: #1fab89;
   color: #9df3c4; }
 
-.red-btn, .toast, .toast .right .icon {
+.red-btn, .container .toast, .container .toast .right .icon {
   background-color: #ff5b5bfd;
   color: #fff; }
 
-.toast .right {
+.container .toast .right {
   background-color: white;
   color: #ff5b5bfd; }
 
@@ -61,13 +64,13 @@ h5,
 h6 {
   margin: 5px; }
 
-.sideBar .current, .sideBar .option, .sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .FoF div div {
+.sideBar .current, .sideBar .option, .sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest, .FoF div div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.overlay .container .row, .toast, .toast .right, .gettingStarted .row #controls, .dashboard, .dashboard .col, .FoF div {
+.overlay .container .row, .container .toast, .container .toast .right, .gettingStarted .row #controls, .dashboard, .dashboard .col, .FoF div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -80,18 +83,21 @@ input[type="password"] {
   font-size: 20px;
   margin: 0px;
   margin-bottom: 20px;
+  padding-bottom: 2%;
   height: 3vh;
   font-family: inherit;
   outline: none !important;
   border-style: none none solid none;
   border-bottom-width: 2px;
-  border-bottom-color: white;
-  width: inherit; }
+  border-bottom-color: #a5fac8;
+  width: 100%; }
+  @media (max-width: 800px) {
+    input[type="text"],
+    input[type="password"] {
+      font-size: 17px; } }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-  border-style: none none solid none;
-  border-bottom-width: 5px;
   border-bottom-color: white; }
 
 ::placeholder {
@@ -100,7 +106,7 @@ input[type="password"]:focus {
 
 .suggest {
   background: #ffffff23;
-  z-index: 2;
+  z-index: 99;
   color: #fff;
   font-size: 20px;
   margin-top: -20px;
@@ -115,6 +121,24 @@ input[type="password"]:focus {
 .suggest:hover {
   background: transparent;
   cursor: pointer; }
+
+select {
+  appearance: tooltip;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding-bottom: 2%;
+  font-family: inherit;
+  outline: none !important;
+  border-style: none none solid none;
+  border-bottom-width: 2px;
+  border-bottom-color: #a5fac8;
+  width: 100%; }
+  @media (max-width: 800px) {
+    select {
+      font-size: 17px; } }
 
 .sideBar .current, .sideBar .option {
   width: inherit;
@@ -188,32 +212,44 @@ input[type="password"]:focus {
     font-size: 2em;
     cursor: pointer; }
 
-.toast {
+.container {
   position: fixed;
   top: 15px;
   right: 15px;
-  text-align: center;
-  width: 20vw;
-  height: max-content;
-  margin: 5px;
-  border-radius: 15px;
-  font-size: 18px; }
-  .toast .ico {
-    font-size: 30px;
-    width: 5vw; }
-  .toast .right {
-    position: relative;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 15vw;
-    padding: 3px; }
-    .toast .right .icon {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      padding: 5px;
-      border-radius: 50%;
-      cursor: pointer; }
+  z-index: 99; }
+  .container .toast {
+    text-align: center;
+    width: 20vw;
+    height: max-content;
+    margin: 10px;
+    z-index: 99;
+    border-radius: 15px;
+    font-size: 18px; }
+    @media (max-width: 800px) {
+      .container .toast {
+        width: 80vw; } }
+    .container .toast .ico {
+      font-size: 30px;
+      width: 5vw; }
+      @media (max-width: 800px) {
+        .container .toast .ico {
+          width: 10vw; } }
+    .container .toast .right {
+      position: relative;
+      font-weight: 600;
+      border-radius: 5px;
+      width: 15vw;
+      padding: 3px; }
+      @media (max-width: 800px) {
+        .container .toast .right {
+          width: 70vw; } }
+      .container .toast .right .icon {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 5px;
+        border-radius: 50%;
+        cursor: pointer; }
 
 .gettingStarted .row #controls .ActiveCircle, .gettingStarted .row #controls .Circle {
   width: 10px;
@@ -260,13 +296,19 @@ input[type="password"]:focus {
           width: 70vw; } }
 
 .sign {
-  background-color: #0cbd57;
   color: #fff;
   width: 100vw;
   height: 100vh; }
   .sign .form {
-    margin-top: 15px;
-    width: 30vw; }
+    background-color: #0cbd57;
+    padding: 2% 3%;
+    border-radius: 10px;
+    width: 30%; }
+    @media (max-width: 800px) {
+      .sign .form {
+        width: 80%; } }
+    .sign .form h1 {
+      margin-bottom: 20px; }
     .sign .form a {
       text-decoration: none;
       color: white;
@@ -274,7 +316,7 @@ input[type="password"]:focus {
       font-weight: 600;
       font-size: 17px; }
     .sign .form .pass {
-      width: inherit;
+      width: 100%;
       position: relative;
       height: 3vh;
       margin-bottom: 20px; }
@@ -289,14 +331,19 @@ input[type="password"]:focus {
         cursor: pointer; }
     .sign .form p {
       white-space: pre; }
+    .sign .form #suggest {
+      width: 100%;
+      position: relative; }
+      .sign .form #suggest .suggest {
+        position: absolute;
+        width: inherit;
+        top: 6vh;
+        border-bottom-color: #0cbd57; }
     .sign .form button {
       width: 20vw; }
       @media (max-width: 800px) {
         .sign .form button {
           width: 50vw; } }
-    @media (max-width: 800px) {
-      .sign .form {
-        width: 90vw; } }
 
 .dashboard {
   margin-left: 6.5rem !important;

@@ -3,12 +3,14 @@ import { genSalt, hash } from "bcrypt";
 
 import { UserRole } from "../util/enum/user-roles";
 import { UserStatus } from "../util/enum/user-status";
+import { SchoolDoc } from "./school-model";
 
 interface UserAttrs {
   name: string;
   email: string;
   role: UserRole;
   password: string;
+  school: SchoolDoc;
 }
 
 interface UserDoc extends mongoose.Document {
@@ -18,6 +20,7 @@ interface UserDoc extends mongoose.Document {
   password: string;
   activity: UserStatus;
   isNotActive(): boolean;
+  school: SchoolDoc;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -37,6 +40,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       enum: Object.values(UserStatus),
       default: UserStatus.ApprovalPending,
+    },
+    school: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Schools",
     },
   },
   {

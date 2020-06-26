@@ -1,7 +1,7 @@
 import { body } from "express-validator";
 import { UserRole } from "../util/enum/user-roles";
 
-// TODO add validations for signup
+
 // lookup the controller for the following and write validator for the field you get form req.body
 
 export const signupValidator = [
@@ -13,9 +13,9 @@ export const signupValidator = [
   body("role")
     .equals(UserRole.Admin || UserRole.Student || UserRole.Teacher)
     .withMessage("Valid role is required"),
+  body("uniqRef").not().isEmpty().withMessage("School is required"),
 ];
 
-// TODO add validations for signin
 // lookup the controller for the following and write validator for the field you get form req.body
 export const signinValidator = [
   body("email").isEmail().withMessage("Valid email is required"),
