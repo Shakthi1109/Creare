@@ -1,21 +1,21 @@
-import axios from 'axios';
+import axios from "axios"
 
 export default ({ url, method, body, onSuccess, onError }) => {
-
 	const doRequest = async () => {
 		try {
-			const response = await axios[method](url, body);
+			const response = await axios[method](url, body)
 			if (onSuccess) {
-				onSuccess(response.data);
+				onSuccess(response.data)
 			}
-			return response.data;
+			return response.data
 		} catch (err) {
-			const errors = err.response.data.errors;
+			const errors = err.response.data.errors
+			console.log(errors)
 			if (onError) {
 				onError(errors)
 			}
 		}
-	};
+	}
 
-	return { doRequest };
+	return { doRequest }
 }

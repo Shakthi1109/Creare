@@ -1,4 +1,3 @@
-
 import Sidebar from "../../../components/sidebars/admin_Sidebar"
 import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
@@ -11,13 +10,13 @@ export default () => {
 	const [slicedData, setslicedData] = useState([])
 	const [indexRef, setindexRef] = useState(0)
 	useEffect(() => {
-		let arr = Array(110).fill(dummyData)
+		let arr = Array(5).fill(dummyData)
 		setdata([...arr])
 	}, [])
 	const [index, setindex] = useState(0)
 	const [capacity, setcapacity] = useState(20)
 	const [selected, setselected] = useState(-1)
-	const [length, setlength] = useState(110)
+	const [length, setlength] = useState(5)
 
 	useEffect(() => {
 		setslicedData(data.slice(0, capacity))
@@ -28,12 +27,11 @@ export default () => {
 		setindexRef(ind)
 		setslicedData(data.slice(ind, ind + capacity))
 	}, [index])
-
 	return (
 		<>
-			<Sidebar curr={"teachers"} />
+			<Sidebar curr={"admin"} />
 			<div className='dashboard'>
-				<h1>Teachers</h1>
+				<h1>Admins</h1>
 				{overlay ? (
 					<Overlay
 						data={dummyData}
@@ -44,24 +42,31 @@ export default () => {
 				) : (
 					<></>
 				)}
-				<div className='col'>
-					{Array(20)
+				<table>
+					<th>
+						<td>Name</td>
+						<td>Type</td>
+						<td>View</td>
+					</th>
+					{Array(10)
 						.fill(dummyData)
 						.map((item) => {
 							return (
-								<div className='list-item'>
-									<h2>Name - {item.name}</h2>
-									<h3>Type - {item.type}</h3>
-									<FaExternalLinkAlt
-										onClick={() => {
-											setoverlay(true)
-										}}
-										className='icon'
-									/>
-								</div>
+								<tr>
+									<td>{item.name}</td>
+									<td>{item.type}</td>
+									<td>
+										<FaExternalLinkAlt
+											onClick={() => {
+												setoverlay(true)
+											}}
+											className='icon'
+										/>
+									</td>
+								</tr>
 							)
 						})}
-				</div>
+				</table>
 				<Paginate
 					prev={() => {
 						setindex(index - 1)
@@ -77,4 +82,3 @@ export default () => {
 		</>
 	)
 }
-

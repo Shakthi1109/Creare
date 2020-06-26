@@ -6,13 +6,13 @@ export default () => (
 		<div>
 			<IoMdHappy className='icon' />
 			<div>
-				<h2>Thankyou...</h2>
+				<h2>We are under Development....</h2>
 				<button
 					className='btn'
 					onClick={() => {
-						Router.push("/auth/signin")
+						Router.push("/index")
 					}}>
-					Wanna Sign-In Again?
+					Wanna know about us..
 				</button>
 			</div>
 		</div>
