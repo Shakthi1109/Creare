@@ -25,6 +25,7 @@
 	position: fixed;
 	@extend %columnFlex;
 	justify-content: flex-start;
+	z-index: 99;
 	transition: 250ms ease-out;
 	@include responsive() {
 		flex-direction: row;
