@@ -5,6 +5,9 @@ import jwt from "jsonwebtoken";
 import { User } from "../model/user-model";
 import { BadRequestError } from "../errors/bad-request-error";
 import { School } from "../model/school-model";
+import { randomBytes } from "crypto";
+import { userInfo } from "os";
+const mailer = require("../util/mail-activation");
 
 export const currentUserController = async (req: Request, res: Response) => {
   res.send({ currentUser: req.currentUser || null });
@@ -29,14 +32,32 @@ export const signupController = async (req: Request, res: Response) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) throw new BadRequestError("User already exists");
 
+  // TODO send account activation email
+  const active = false;
+  const activeToken = randomBytes(20).toString("hex").substr(0, 20);
+  const activeExpires = Date.now() + 24 * 3600 * 1000;
+  var link = "http://locolhost:3000/user/active/" + activeToken;
+
+  // Sending activation email
+  mailer.send({
+    to: email,
+    subject: "Welcome",
+    html:
+      'Please click <a href="' +
+      link +
+      '"> here </a> to activate your account.',
+  });
   const user = User.build({
     email,
     name,
     password,
     role,
+    active,
+    activeToken,
+    activeExpires,
     school: existingSchool,
   });
-  // TODO send account activation email
+
   await user.save();
   res.status(201).send(user);
 };
@@ -61,4 +82,16 @@ export const signinController = async (req: Request, res: Response) => {
   );
   req.session.jwt = token;
   res.send(existingUser);
+};
+
+// mail activating contoller
+export const activateMailController = async (req: Request, res: Response) => {
+  // const exisitingMail = await User.findOne({
+  //   activeToken: req.params.activeToken,
+  //   activeExpires: { $gt: Date.now().toPrecision() },
+  // });
+  // if (!exisitingMail)
+  //   throw new BadRequestError(
+  //     "Your activation mail is invalid .Register again"
+  //   );
 };

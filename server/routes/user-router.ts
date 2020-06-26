@@ -7,6 +7,7 @@ import {
   currentUserController,
   getUsersController,
   signoutController,
+  activateMailController,
 } from "../controller/user-controller";
 
 import { validateRequest } from "../middlewares/validate-request";
@@ -14,6 +15,9 @@ import { currentUser } from "../middlewares/current-user";
 import { requireAdminAuth } from "../middlewares/require-admin-auth";
 
 const router = express.Router();
+
+// mail
+router.get("/active/:activeToken", activateMailController);
 
 // to fetch current user cookie info
 router.get("/currentUser", currentUser, currentUserController);

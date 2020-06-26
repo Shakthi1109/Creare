@@ -10,7 +10,10 @@ interface UserAttrs {
   email: string;
   role: UserRole;
   password: string;
+  active: boolean;
   school: SchoolDoc;
+  activeToken: string;
+  activeExpires: Number;
 }
 
 interface UserDoc extends mongoose.Document {
@@ -19,6 +22,9 @@ interface UserDoc extends mongoose.Document {
   role: UserRole;
   password: string;
   activity: UserStatus;
+  active: boolean;
+  activeToken: string;
+  activeExpires: Number;
   isNotActive(): boolean;
   school: SchoolDoc;
 }
@@ -41,6 +47,9 @@ const UserSchema = new mongoose.Schema(
       enum: Object.values(UserStatus),
       default: UserStatus.ApprovalPending,
     },
+    active: { type: Boolean, default: false },
+    activeToken: { type: String },
+    activeExpires: { type: Number },
     school: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Schools",
