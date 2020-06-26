@@ -10,13 +10,13 @@
 	height: 100vh;
 	color: white;
 	margin: 0px;
-	@extend %columnFlex;
+	@extend %flex-col-center;
 	background-color: #0db047;
 	.row {
-		@extend %columnFlex;
+		@extend %flex-col-center;
 		color: white;
 		#controls {
-			@extend %rowFlex;
+			@extend %flex-row-center;
 			.ActiveCircle {
 				@extend %circle;
 				background-color: #fff;
@@ -51,7 +51,7 @@
 					text-align: justify;
 				}
 			}
-			@include responsive() {
+			@include respond(tab-port) {
 				width: 70vw;
 			}
 		}

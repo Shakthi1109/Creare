@@ -1,0 +1,22 @@
+.btn {
+  padding: 1rem;
+  font-size: 1.8rem;
+  border-style: none;
+  width: inherit;
+  border-radius: 0.5rem;
+  font-weight: 900;
+
+  &--green {
+    @include bg-green;
+  }
+  &--green-inv {
+    @include bg-green-inv;
+  }
+  &--red {
+    @include bg-red;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}

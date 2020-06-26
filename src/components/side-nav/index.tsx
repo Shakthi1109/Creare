@@ -7,44 +7,44 @@ import {
 	FaUsersCog,
 	FaBookReader
 } from "react-icons/fa"
-export default ({ curr }) => {
+export default ({ route }) => {
 	return (
 		<div className='sideBar'>
 			<div className='logo'>
 				<h2>Creare</h2>
 			</div>
 			<div
-				className={curr == "users" ? "current" : "option"}
+				className={route == "users" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/requests")}>
 				<a>Requests</a>
 				<FaUsers className='icon' />
 			</div>
 			<div
-				className={curr == "school" ? "current" : "option"}
+				className={route == "school" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/school")}>
 				<a>School</a>
 				<FaSchool className='icon' />
 			</div>
 			<div
-				className={curr == "teachers" ? "current" : "option"}
+				className={route == "teachers" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/teachers")}>
 				<a>Teachers</a>
 				<FaChalkboardTeacher className='icon' />
 			</div>
 			<div
-				className={curr == "students" ? "current" : "option"}
+				className={route == "students" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/students")}>
 				<a>Students</a>
 				<FaUserGraduate className='icon' />
 			</div>
 			<div
-				className={curr == "admin" ? "current" : "option"}
+				className={route == "admin" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/admins")}>
 				<a>Admins</a>
 				<FaUsersCog className='icon' />
 			</div>
 			<div
-				className={curr == "subjects" ? "current" : "option"}
+				className={route == "subjects" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/subjects")}>
 				<a>Subjects</a>
 				<FaBookReader className='icon' />

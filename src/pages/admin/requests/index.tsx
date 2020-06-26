@@ -1,5 +1,5 @@
 
-import Sidebar from "../../../components/sidebars/admin_Sidebar"
+import Sidebar from "../../../components/side-nav"
 import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
@@ -32,7 +32,7 @@ const userComponent = ({ resp }) => {
 	}, [index])
 	return (
 		<>
-			<Sidebar curr={"users"} />
+			<Sidebar route={"users"} />
 			<div className='dashboard'>
 				<h1>Users</h1>
 				{overlay ? (

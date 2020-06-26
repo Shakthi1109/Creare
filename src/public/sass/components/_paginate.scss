@@ -1,11 +1,10 @@
 .pages {
 	margin: 2%;
 	.row {
-		@extend %rowFlex;
+		@extend %flex-row-center;
 		justify-content: space-between;
-		@extend %noSelect;
 		.icon {
-			@extend %greenBG;
+			@extend %bg-green;
 			border-radius: 30%;
 			font-size: 3em;
 			cursor: pointer;

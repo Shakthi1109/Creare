@@ -1,5 +1,5 @@
 
-import Sidebar from "../../../components/sidebars/admin_Sidebar"
+import Sidebar from "../../../components/side-nav"
 import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
@@ -30,7 +30,7 @@ export default () => {
 	}, [index])
 	return (
 		<>
-			<Sidebar curr={"subjects"} />
+			<Sidebar route={"subjects"} />
 			<div className='dashboard'>
 				<h1>subjects</h1>
 				{overlay ? (

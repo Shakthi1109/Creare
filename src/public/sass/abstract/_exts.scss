@@ -1,0 +1,88 @@
+// style each page
+%body-page {
+  max-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+%body-page-padded {
+  max-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 20vh;
+  @include respond(tab-port) {
+    padding-top: 15vh;
+  }
+}
+
+// flex center in parent
+%flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+// background colors
+%bg-green {
+  color: $color-white;
+  background-color: $color-primary;
+}
+
+%bg-green-inv {
+  color: $color-primary;
+  background-color: $color-white;
+}
+
+%bg-green-l-inv {
+  background-color: $color-primary;
+  color: $color-primary-l;
+}
+
+%bg-green-l {
+  background-color: $color-primary-l;
+  color: $color-primary;
+}
+
+%bg-red {
+  background-color: $color-red;
+  color: $color-white;
+}
+
+%bg-red-inv {
+  background-color: $color-white;
+  color: $color-red;
+}
+
+// page layer
+
+%overlay {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: $color-primary;
+  z-index: 100;
+  cursor: pointer;
+  transition: 250ms ease-out;
+}
+
+%dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  max-width: 40rem;
+  width: 100%;
+  min-height: 40rem;
+  transform: translate(-50%, -50%);
+}

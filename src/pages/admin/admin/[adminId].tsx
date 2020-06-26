@@ -1,1 +1,0 @@
-export default ()=> <div>get single admin details</div>

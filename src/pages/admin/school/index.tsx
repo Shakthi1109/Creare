@@ -1,4 +1,4 @@
-import Sidebar from "../../../components/sidebars/admin_Sidebar"
+import Sidebar from "../../../components/side-nav"
 import Overlay from "../../../components/overlay"
 import { useState } from "react"
 import { FaPencilAlt } from "react-icons/fa"
@@ -7,7 +7,7 @@ export default () => {
 	const [overlay, setoverlay] = useState(false)
 	return (
 		<>
-			<Sidebar curr={"school"} />
+			<Sidebar route={"school"} />
 			<div className='dashboard'>
 				<h1>Schools</h1>
 				{overlay ? (

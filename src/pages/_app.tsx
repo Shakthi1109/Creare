@@ -1,13 +1,21 @@
 import React from "react"
+import Head from 'next/head';
+
+import { getRouteTitle } from '../title-hook'
+
 import "../public/css/main.css"
 
 import { checkAuthRoutes } from "../service/auth-route"
 import buildClient from "../service/build-client"
 
-const AppComponent = ({ Component, pageProps, currentUser }) => {
+const AppComponent = ({ Component, pageProps, currentUser, router }) => {
 	return (
 		<>
-			<Component {...pageProps} current={currentUser} />
+			<Head>
+				<meta name="description" content="Creare." />
+				<title>{getRouteTitle(router.route)}</title>
+			</Head>
+			<Component {...pageProps} current={currentUser} route={router.route} />
 		</>
 	)
 }
