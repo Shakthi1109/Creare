@@ -37,7 +37,13 @@ router.put(
 );
 
 // modify school
-router.put("/", currentUser, requireAdminAuth, updateSchoolController);
+router.put(
+  "/",
+  currentUser,
+  requireAdminAuth,
+  schoolValidator,
+  updateSchoolController
+);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server school api is responding");
