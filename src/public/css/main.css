@@ -348,3 +348,9 @@ input[type="password"]:focus {
         font-size: 50px;
         margin: 0px;
         color: #ffffffbb; }
+
+.superAdmin {
+  background-color: #e5ff00; }
+
+form {
+  color: 255; }
