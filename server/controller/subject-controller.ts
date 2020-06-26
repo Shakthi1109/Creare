@@ -67,7 +67,7 @@ export const subjectActivityController = async (
   req: Request,
   res: Response
 ) => {
-  const existingSubject = await Subject.findById(req.params.id);
+  const existingSubject = await Subject.findById(req.params.subjectId);
   if (!existingSubject) throw new BadRequestError("No Subject found");
   existingSubject.set({ isActive: !existingSubject.isActive });
   await existingSubject.save();
