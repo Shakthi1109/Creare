@@ -42,10 +42,15 @@ h5,
 h6 {
   margin: 5px; }
 
-.gettingStarted, .sign, .FoF {
+.gettingStarted, .FoF {
   height: 100vh;
   width: 100vw;
   overflow: hidden; }
+
+.sign {
+  height: 100vh;
+  width: 100%;
+  padding: 4%; }
 
 .sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest-capsule, .dashboard, .FoF div div {
   display: flex;
@@ -303,8 +308,7 @@ select:focus {
         width: 70vw; } }
 
 .sign {
-  justify-content: unset;
-  margin-top: 10rem; }
+  justify-content: unset; }
   .sign .form {
     padding: 1rem 3rem;
     border: 0.25rem solid #f06e3c;
@@ -322,7 +326,7 @@ select:focus {
       margin-bottom: 3rem;
       font-size: 2.5rem;
       color: #f06e3c; }
-    .sign .form h3 {
+    .sign .form__or {
       font-size: 1.6rem;
       color: #f06e3c; }
     .sign .form a {

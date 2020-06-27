@@ -124,8 +124,8 @@ const signUpComponent = ({ schools }) => {
 							})}
 						</div>
 					) : (
-						<> </>
-					)}
+							<> </>
+						)}
 				</div>
 				<br />
 				<input
@@ -148,13 +148,13 @@ const signUpComponent = ({ schools }) => {
 							}}
 						/>
 					) : (
-						<FaEye
-							className='icon'
-							onClick={() => {
-								setvisiblePass(true)
-							}}
-						/>
-					)}
+							<FaEye
+								className='icon'
+								onClick={() => {
+									setvisiblePass(true)
+								}}
+							/>
+						)}
 				</div>
 
 				<div className='pass'>
@@ -171,29 +171,28 @@ const signUpComponent = ({ schools }) => {
 							}}
 						/>
 					) : (
-						<FaEye
-							className='icon'
-							onClick={() => {
-								setvisiblePass(true)
-							}}
-						/>
-					)}
+							<FaEye
+								className='icon'
+								onClick={() => {
+									setvisiblePass(true)
+								}}
+							/>
+						)}
 				</div>
 				<br />
 				{isLoading ? (
 					<Loader isLoading={isLoading}></Loader>
 				) : (
-					<button
-						id='button'
-						className='btn--blue'
-						onClick={() => {
-							SignUp()
-						}}>
-						Sign Up
-					</button>
-				)}
-				<br />
-				<h3>or</h3>
+						<button
+							id='button'
+							className='btn--blue'
+							onClick={() => {
+								SignUp()
+							}}>
+							Sign Up
+						</button>
+					)}
+				<div className="form__or">or</div>
 				<Link href='/auth/signin'>
 					<a>Already Having an Account ?</a>
 				</Link>
