@@ -1,5 +1,5 @@
 import Sidebars from "../side-nav"
-export default ({ children, route }) => (
+export default ({ children, route, currentUser }) => (
 	<>
 		<Sidebars route={route} />
 		{children}

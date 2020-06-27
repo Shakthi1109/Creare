@@ -43,6 +43,7 @@ const signUpComponent = ({ schools }) => {
 	}, [schools])
 
 	const SignUp = async () => {
+		alert(role)
 		setisLoading(true)
 		if (password == rePass) {
 			const resp = await doRequest()
@@ -91,9 +92,7 @@ const signUpComponent = ({ schools }) => {
 					onChange={(e) => {
 						setrole(e.target.value)
 					}}>
-					<option selected value='student'>
-						Student
-					</option>
+					<option value='student'>Student</option>
 					<option value='teacher'>Teacher</option>
 					<option value='admin'>Admin</option>
 				</select>

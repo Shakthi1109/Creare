@@ -10,8 +10,7 @@
 	border-bottom-width: 5px;
 }
 .sideBar {
-	width: 15rem;
-	// width: 6rem;
+	width: 7rem;
 	@extend %bg-blue;
 	height: 100vh;
 	position: fixed;
@@ -20,14 +19,13 @@
 	z-index: 99;
 	transition: 250ms ease-out;
 	a {
-		font-size: 2rem;
+		display: none;
+		font-size: 1.5rem;
 		text-decoration: none;
-		// color: #fff;
 		font-weight: 600;
 	}
 	.icon {
-		font-size: 2rem;
-		// color: #fff;
+		font-size: 3rem;
 	}
 	.current {
 		@extend %tab;
@@ -45,6 +43,19 @@
 		display: block;
 		color: inherit;
 		margin: 5rem 0rem;
-		font-size: 2.5rem;
+		font-size: 1.25rem;
+	}
+
+	&:hover {
+		width: 13rem;
+		a {
+			display: block;
+		}
+		.icon {
+			font-size: 2rem;
+		}
+		.logo {
+			font-size: 2rem;
+		}
 	}
 }

@@ -43,41 +43,45 @@ export default () => {
 					<></>
 				)}
 				<table>
-					<tr>
-						<th>
-							Id
-							<input type='text' placeholder='search' />
-						</th>
-						<th>
-							Name
-							<input type='text' placeholder='search' />
-						</th>
-						<th>
-							Type
-							<input type='text' placeholder='search' />
-						</th>
-						<th id='view'>
-							View
-							{/* <input type='text' placeholder='search' /> */}
-						</th>
-					</tr>
-					{slicedData.map((item, index) => {
-						return (
-							<tr>
-								<td>{index}</td>
-								<td>{item.name}</td>
-								<td>{item.type}</td>
-								<td id='view'>
-									<FaExternalLinkAlt
-										onClick={() => {
-											setoverlay(true)
-										}}
-										className='icon'
-									/>
-								</td>
-							</tr>
-						)
-					})}
+					<thead>
+						<tr>
+							<th>
+								Id
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								Name
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								Type
+								<input type='text' placeholder='search' />
+							</th>
+							<th id='view'>
+								View
+								{/* <input type='text' placeholder='search' /> */}
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{slicedData.map((item, index) => {
+							return (
+								<tr>
+									<td>{index}</td>
+									<td>{item.name}</td>
+									<td>{item.type}</td>
+									<td id='view'>
+										<FaExternalLinkAlt
+											onClick={() => {
+												setoverlay(true)
+											}}
+											className='icon'
+										/>
+									</td>
+								</tr>
+							)
+						})}
+					</tbody>
 				</table>
 				<Paginate
 					prev={() => {

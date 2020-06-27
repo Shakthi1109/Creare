@@ -1,6 +1,6 @@
 import { IoMdHappy } from "react-icons/io"
 import Router from "next/router"
-export default () => (
+export default ({ currentUser }) => (
 	<div className='FoF'>
 		<h1>Creare</h1>
 		<div>
@@ -10,7 +10,7 @@ export default () => (
 				<button
 					className='btn'
 					onClick={() => {
-						Router.push("/index")
+						console.log(currentUser)
 					}}>
 					Wanna know about us..
 				</button>

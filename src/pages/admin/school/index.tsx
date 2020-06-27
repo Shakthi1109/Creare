@@ -1,8 +1,14 @@
 import Sidebar from "../../../components/side-nav"
 import Overlay from "../../../components/overlay"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FaPencilAlt } from "react-icons/fa"
-export default () => {
+import buildClient from "../../../service/build-client"
+
+const schoolComponent = ({ currentUser, resp }) => {
+	useEffect(() => {
+		console.log(currentUser)
+	}, [currentUser])
+
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
 	return (
@@ -42,3 +48,11 @@ export default () => {
 		</>
 	)
 }
+
+schoolComponent.getInitialProps = async (appContext) => {
+	// const { data } = await buildClient(appContext).get("/api/school/byId")
+	// console.log(data)
+	// return { resp: data }
+}
+
+export default schoolComponent

@@ -179,18 +179,19 @@ select:focus {
   border-bottom-width: 5px; }
 
 .sideBar {
-  width: 15rem;
+  width: 7rem;
   height: 100vh;
   position: fixed;
   justify-content: flex-start;
   z-index: 99;
   transition: 250ms ease-out; }
   .sideBar a {
-    font-size: 2rem;
+    display: none;
+    font-size: 1.5rem;
     text-decoration: none;
     font-weight: 600; }
   .sideBar .icon {
-    font-size: 2rem; }
+    font-size: 3rem; }
   .sideBar .current {
     background-color: #1f202060;
     border-width: 5px;
@@ -202,7 +203,15 @@ select:focus {
     display: block;
     color: inherit;
     margin: 5rem 0rem;
-    font-size: 2.5rem; }
+    font-size: 1.25rem; }
+  .sideBar:hover {
+    width: 13rem; }
+    .sideBar:hover a {
+      display: block; }
+    .sideBar:hover .icon {
+      font-size: 2rem; }
+    .sideBar:hover .logo {
+      font-size: 2rem; }
 
 .overlay .container {
   width: 50vw;
@@ -378,7 +387,7 @@ select:focus {
   text-align: center; }
 
 .dashboard {
-  margin-left: 16.5rem !important;
+  margin-left: 10rem !important;
   color: #0c3d54; }
   .dashboard table {
     width: 95%; }
