@@ -1,66 +1,51 @@
 %tableData {
-  @extend %bg-green-l;
-  margin: 15px;
-  // width: 20vw;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
+	// @extend %bg-orange;
+	margin: 1rem;
+	width: inherit;
+	padding: 1rem;
+	border-radius: 0.55rem;
+	z-index: 1;
+	font-size: 2rem;
+	text-align: center;
 }
 .dashboard {
-  margin-left: 10.5rem !important;
-  color: #1fab89;
-  @extend %flex-col-center;
-  @include respond(tab-port) {
-    & {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-left: 0rem !important;
-      margin-top: 5.5rem !important;
-    }
-  }
-  .col {
-    @extend %flex-row-center;
-    flex-wrap: wrap;
-    .list-item {
-      @extend %bg-green-l;
-      margin: 5px;
-      width: 20vw;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      @include respond(tab-port) {
-        width: 90vw;
-      }
-      .icon {
-        @extend %bg-green-l-inv;
-        font-size: 25px;
-        position: absolute;
-        bottom: 1px;
-        right: 1px;
-        padding: 5px;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-    }
-  }
+	margin-left: 16.5rem !important;
+	color: $color-primary;
+	@extend %flex-col-center;
 
-  table {
-    tr {
-      td {
-        @extend %tableData;
-      }
-    }
-    th {
-      td {
-        @extend %tableData;
-        @extend %bg-green-l-inv;
-        font-weight: bold;
-      }
-    }
-  }
+	table {
+		width: 95%;
+		tr {
+			#view {
+				width: 5%;
+				text-align: center;
+			}
+			td {
+				@extend %tableData;
+				font-weight: 600;
+				border-radius: 0.55rem;
+			}
+			th {
+				@extend %tableData;
+				background-color: $color-primary;
+				color: $color-white;
+				font-weight: bolder;
+				text-align: left;
+				input {
+					margin: 2rem 0rem;
+				}
+			}
+
+			&:nth-child(odd) {
+				color: $color-primary;
+				background-color: #fd906565;
+			}
+			&:nth-child(even) {
+				color: $color-primary;
+				background-color: #fd90659c;
+			}
+		}
+
+		// tr: nth($list: , $n: );
+	}
 }

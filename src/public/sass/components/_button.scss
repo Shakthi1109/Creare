@@ -1,22 +1,19 @@
-.btn {
-  padding: 1rem;
-  font-size: 1.8rem;
-  border-style: none;
-  width: inherit;
-  border-radius: 0.5rem;
-  font-weight: 900;
+.btn--red {
+	@extend %button;
+	@extend %bg-red;
+}
 
-  &--green {
-    @include bg-green;
-  }
-  &--green-inv {
-    @include bg-green-inv;
-  }
-  &--red {
-    @include bg-red;
-  }
+.btn--blue {
+	@extend %button;
+	@extend %bg-blue;
+}
 
-  &:disabled {
-    opacity: 0.5;
-  }
+.btn,
+.btn--blue-inv {
+	@extend %button;
+	@extend %bg-blue-inv;
+}
+
+.btn:disabled {
+	opacity: 0.5;
 }

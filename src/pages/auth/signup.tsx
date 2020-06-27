@@ -38,10 +38,19 @@ const signUpComponent = ({ schools }) => {
 		}
 	})
 
+	useEffect(() => {
+		console.log(schools)
+	}, [schools])
+
 	const SignUp = async () => {
 		setisLoading(true)
-		alert(role)
-		const resp = await doRequest()
+		if (password == rePass) {
+			const resp = await doRequest()
+		} else {
+			setonErr(true)
+			seterr([{ message: "Passwords must be matching" }])
+			setisLoading(false)
+		}
 	}
 
 	useEffect(() => {
@@ -52,14 +61,16 @@ const signUpComponent = ({ schools }) => {
 		setselected(false)
 		val = val.toLowerCase()
 		let filterd = schools.filter(({ name, uniqRef }) => {
-			name = name.toLowerCase()
-			uniqRef = uniqRef.toLowerCase()
-			if (
-				(name.substring(0, val.length) == val ||
-					uniqRef.substring(0, val.length) == val) &&
-				val.length >= 1
-			) {
-				return name
+			if (name != undefined && uniqRef != undefined) {
+				name = name.toLowerCase()
+				uniqRef = uniqRef.toLowerCase()
+				if (
+					(name.substring(0, val.length) == val ||
+						uniqRef.substring(0, val.length) == val) &&
+					val.length >= 1
+				) {
+					return name
+				}
 			}
 		})
 		setsuggest([...filterd])
@@ -87,7 +98,7 @@ const signUpComponent = ({ schools }) => {
 					<option value='admin'>Admin</option>
 				</select>
 				<br />
-				<div id='suggest'>
+				<div id='suggest-capsule'>
 					<input
 						type='text'
 						placeholder="Specify your School name or School's UniqueID"
@@ -98,17 +109,20 @@ const signUpComponent = ({ schools }) => {
 						}}
 					/>
 					{suggest.length >= 1 && !selected ? (
-						suggest.map(({ name, city, uniqRef }) => {
-							return (
-								<button
-									className='suggest'
-									onClick={() => {
-										setuniqRef(uniqRef)
-										setselected(true)
-										setschool(`${name}, ${city}`)
-									}}>{`${name}, ${city}`}</button>
-							)
-						})
+						<div className='suggestions'>
+							{suggest.map(({ name, city, uniqRef }) => {
+								return (
+									<button
+										key={uniqRef}
+										className='suggest'
+										onClick={() => {
+											setuniqRef(uniqRef)
+											setselected(true)
+											setschool(`${name}, ${city}`)
+										}}>{`${name}, ${city}`}</button>
+								)
+							})}
+						</div>
 					) : (
 						<> </>
 					)}
@@ -142,7 +156,7 @@ const signUpComponent = ({ schools }) => {
 						/>
 					)}
 				</div>
-				<br /> <br />
+
 				<div className='pass'>
 					<input
 						type={visiblePass ? "text" : "password"}
@@ -169,15 +183,18 @@ const signUpComponent = ({ schools }) => {
 				{isLoading ? (
 					<Loader isLoading={isLoading}></Loader>
 				) : (
-					<>
-						<button className='btn' onClick={() => SignUp()}>
-							Sign Up
-						</button>
-					</>
+					<button
+						id='button'
+						className='btn--blue'
+						onClick={() => {
+							SignUp()
+						}}>
+						Sign Up
+					</button>
 				)}
 				<br />
-				<b>or</b>
-				<Link href='/login'>
+				<h3>or</h3>
+				<Link href='/auth/signin'>
 					<a>Already Having an Account ?</a>
 				</Link>
 			</div>
