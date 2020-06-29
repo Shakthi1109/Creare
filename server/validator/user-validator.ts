@@ -24,8 +24,8 @@ export const signupValidator = [
 
 // sigin validator
 export const signinValidator = [
-  body("email").isEmail().withMessage("Valid email is required"),
-  body("password")
-    .isLength({ min: 6 })
-    .withMessage("valid password is required"),
-];
+	body("email").isEmail().withMessage("Valid email is required"),
+	body("password")
+		.isLength({ min: 6 })
+		.withMessage("valid password is required")
+]

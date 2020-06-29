@@ -1,26 +1,28 @@
 .FoF {
-  color: #fff;
-  height: 100vh;
-  h1 {
-    margin: 0%;
-    padding: 30px;
-  }
-  background-color: #0db046e0;
-  div {
-    @extend %flex-row-center;
-    justify-content: space-evenly;
-    height: 60vh;
-    .icon {
-      font-size: 5em;
-    }
-    div {
-      @extend %flex-col-center;
-      text-align: center;
-      h2 {
-        font-size: 50px;
-        margin: 0px;
-        color: #ffffffbb;
-      }
-    }
-  }
+	@extend %bg-blue;
+	@extend %body-page;
+	// @extend %flex-row-center;
+	font-size: 2rem;
+	h1 {
+		margin: 0%;
+		font-size: 3rem;
+		padding: 3rem;
+	}
+	div {
+		@extend %flex-row-center;
+		justify-content: space-evenly;
+		height: 60vh;
+		.icon {
+			font-size: 6em;
+		}
+		div {
+			@extend %flex-col-center;
+			text-align: center;
+			h2 {
+				font-size: 50px;
+				margin: 0px;
+				color: #ffffffbb;
+			}
+		}
+	}
 }

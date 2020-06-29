@@ -1,4 +1,3 @@
-
 import Sidebar from "../../../components/side-nav"
 import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
@@ -45,24 +44,47 @@ export default () => {
 				) : (
 					<></>
 				)}
-				<div className='col'>
-					{slicedData.map((item, index) => {
-						return (
-							<div className='list-item'>
-								<h2>Name - {item.name}</h2>
-								<h3>Type - {item.type}</h3>
-								{indexRef + index}
-								<FaExternalLinkAlt
-									onClick={() => {
-										setselected(index)
-										setoverlay(true)
-									}}
-									className='icon'
-								/>
-							</div>
-						)
-					})}
-				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Id
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								Name
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								Type
+								<input type='text' placeholder='search' />
+							</th>
+							<th id='view'>
+								View
+								{/* <input type='text' placeholder='search' /> */}
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{slicedData.map((item, index) => {
+							return (
+								<tr>
+									<td>{index}</td>
+									<td>{item.name}</td>
+									<td>{item.type}</td>
+									<td id='view'>
+										<FaExternalLinkAlt
+											onClick={() => {
+												setoverlay(true)
+											}}
+											className='icon'
+										/>
+									</td>
+								</tr>
+							)
+						})}
+					</tbody>
+				</table>
 				<Paginate
 					prev={() => {
 						setindex(index - 1)
@@ -78,4 +100,3 @@ export default () => {
 		</>
 	)
 }
-

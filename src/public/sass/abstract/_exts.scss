@@ -1,88 +1,116 @@
 // style each page
 %body-page {
-  max-height: 100vh;
-  width: 100%;
-  overflow: hidden;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 }
 
 %body-page-padded {
-  max-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  padding-top: 20vh;
-  @include respond(tab-port) {
-    padding-top: 15vh;
-  }
+	height: 100vh;
+	width: 100%;
+	// overflow: hidden;
+	// padding-top: 20vh;
+	padding: 4%;
 }
 
 // flex center in parent
 %flex-col-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 %flex-row-center {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 // background colors
 %bg-green {
-  color: $color-white;
-  background-color: $color-primary;
+	color: $color-white;
+	background-color: $color-primary;
 }
 
 %bg-green-inv {
-  color: $color-primary;
-  background-color: $color-white;
+	color: $color-primary;
+	background-color: $color-white;
 }
 
 %bg-green-l-inv {
-  background-color: $color-primary;
-  color: $color-primary-l;
+	background-color: $color-primary;
+	color: $color-primary-l;
 }
 
 %bg-green-l {
-  background-color: $color-primary-l;
-  color: $color-primary;
+	background-color: $color-primary-l;
+	color: $color-primary;
 }
 
 %bg-red {
-  background-color: $color-red;
-  color: $color-white;
+	background-color: $color-red;
+	color: $color-white;
 }
 
 %bg-red-inv {
-  background-color: $color-white;
-  color: $color-red;
+	background-color: #ffebee;
+	color: $color-red;
 }
 
+%bg-blue {
+	background-color: $color-primary;
+	color: $color-white;
+}
+
+%bg-blue-inv {
+	color: $color-primary;
+	background-color: $color-white;
+}
+
+%bg-orange {
+	background-color: $color-secondary;
+	color: $color-primary;
+}
+
+%bg-orange-inv {
+	color: $color-secondary;
+	background-color: $color-white;
+}
 // page layer
 
 %overlay {
-  position: fixed;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: $color-primary;
-  z-index: 100;
-  cursor: pointer;
-  transition: 250ms ease-out;
+	position: fixed;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: $color-primary;
+	z-index: 100;
+	cursor: pointer;
+	transition: 250ms ease-out;
 }
 
 %dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 50;
-  max-width: 40rem;
-  width: 100%;
-  min-height: 40rem;
-  transform: translate(-50%, -50%);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 50;
+	max-width: 40rem;
+	width: 100%;
+	min-height: 40rem;
+	transform: translate(-50%, -50%);
+}
+
+%button {
+	display: block;
+	padding: 1rem;
+	font-size: 1.75rem;
+	border-style: none;
+	width: inherit;
+	border-radius: 0.5rem;
+	font-weight: 900;
+	margin: 2rem;
 }

@@ -1,77 +1,63 @@
 %tab {
-  width: 95%;
-  height: 10vh;
-  @extend %flex-row-center;
-  justify-content: space-evenly;
-  background-color: inherit;
-  cursor: pointer;
-  border-width: 5px;
-  border-bottom-width: 0px;
-  margin-bottom: 5px;
-  border-style: none none none solid;
-  border-color: #fff;
-  @include respond(tab-port) {
-    border-width: 1px;
-    border-style: none none none solid;
-  }
+	width: inherit;
+	height: 10rem;
+	@extend %flex-row-center;
+	background: transparent;
+	justify-content: space-evenly;
+	cursor: pointer;
 }
 %tab:last-child {
-  border-bottom-width: 5px;
+	border-bottom-width: 5px;
 }
 .sideBar {
-  width: 10rem;
-  // width: 6rem;
-  background-color: #0cbd57;
-  height: 100vh;
-  position: fixed;
-  @extend %flex-col-center;
-  justify-content: flex-start;
-  z-index: 99;
-  transition: 250ms ease-out;
-  @include respond(tab-port) {
-    & {
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      padding: 0px;
-      width: 100vw;
-      height: 5rem;
-      margin-top: -5.5rem !important;
-    }
-  }
-  a {
-    font-size: 18px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    @include respond(tab-port) {
-      & {
-        font-size: 13px;
-      }
-    }
-  }
-  .icon {
-    font-size: 20px;
-    color: #fff;
-    @include respond(tab-port) {
-      & {
-        font-size: 25px;
-      }
-    }
-  }
-  .current {
-    background-color: #005323;
-  }
-  .option {
-  }
-  .logo {
-    display: block;
-    color: white;
-    margin: 50px 0px;
-    @include respond(tab-port) {
-      & {
-        display: none;
-      }
-    }
-  }
+	width: 7rem;
+	@extend %bg-blue;
+	height: 100vh;
+	position: fixed;
+	@extend %flex-col-center;
+	justify-content: flex-start;
+	z-index: 99;
+	transition: 400ms ease-out;
+	a {
+		display: none;
+		font-size: 1.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		transition: 400ms ease-out;
+	}
+	.icon {
+		font-size: 3rem;
+		transition: 600ms ease-out;
+	}
+	.current {
+		@extend %tab;
+		background-color: #1f202060;
+		border-width: 5px;
+		border-bottom-width: 0px;
+		margin-bottom: 5px;
+		border-style: none none none solid;
+		border-color: inherit;
+	}
+	.option {
+		@extend %tab;
+	}
+	.logo {
+		display: block;
+		color: inherit;
+		margin: 5rem 0rem;
+		font-size: 1.25rem;
+	}
+
+	&:hover {
+		width: 13rem;
+		a {
+			display: block;
+		}
+		.icon {
+			font-size: 2rem;
+		}
+		.logo {
+			font-size: 2.5rem;
+		}
+	}
 }
