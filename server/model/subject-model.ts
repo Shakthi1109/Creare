@@ -8,7 +8,7 @@ interface SubjectAttrs {
   school: SchoolDoc;
 }
 
-interface SubjectDoc extends mongoose.Document {
+export interface SubjectDoc extends mongoose.Document {
   name: string;
   subjectId: string;
   grade: number;
