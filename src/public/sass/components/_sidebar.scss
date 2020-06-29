@@ -17,15 +17,17 @@
 	@extend %flex-col-center;
 	justify-content: flex-start;
 	z-index: 99;
-	transition: 250ms ease-out;
+	transition: 400ms ease-out;
 	a {
 		display: none;
 		font-size: 1.5rem;
 		text-decoration: none;
 		font-weight: 600;
+		transition: 400ms ease-out;
 	}
 	.icon {
 		font-size: 3rem;
+		transition: 600ms ease-out;
 	}
 	.current {
 		@extend %tab;
@@ -55,7 +57,7 @@
 			font-size: 2rem;
 		}
 		.logo {
-			font-size: 2rem;
+			font-size: 2.5rem;
 		}
 	}
 }

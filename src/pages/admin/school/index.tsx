@@ -11,11 +11,17 @@ const schoolComponent = ({ currentUser, resp }) => {
 
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
+	const [name, setname] = useState("school Name")
+	const [address, setaddress] = useState("school Add")
+	const [address2, setaddress2] = useState("Address Cont..")
+	const [city, setcity] = useState("XYZ")
+	const [state, setstate] = useState("ABC")
+	const [pinCode, setpinCode] = useState("School Phone-No")
+	const [canEdit, setcanEdit] = useState(false)
 	return (
 		<>
 			<Sidebar route={"school"} />
 			<div className='dashboard'>
-				<h1>Schools</h1>
 				{overlay ? (
 					<Overlay
 						data={dummyData}
@@ -27,23 +33,86 @@ const schoolComponent = ({ currentUser, resp }) => {
 					<></>
 				)}
 				<div className='col'>
-					{Array(1)
-						.fill(dummyData)
-						.map((item) => {
-							return (
-								<div className='list-item'>
-									<h2>Name - {item.name}</h2>
-									<h3>Type - {item.type}</h3>
-									<FaPencilAlt
-										onClick={() => {
-											setoverlay(true)
-										}}
-										className='icon'
-									/>
-								</div>
-							)
-						})}
+					<h1>Schools Info</h1>
+					<br />
+					<br />
+					<h2>Name</h2>
+					<input
+						type='text'
+						value={name}
+						disabled={!canEdit}
+						onChange={(e) => {
+							setname(e.target.value)
+						}}
+					/>
+
+					<h2>Address: Line 1</h2>
+					<input
+						type='text'
+						value={address}
+						disabled={!canEdit}
+						onChange={(e) => {
+							setaddress(e.target.value)
+						}}
+					/>
+
+					<h2>Address - Line 2</h2>
+					<input
+						type='text'
+						value={address2}
+						disabled={!canEdit}
+						onChange={(e) => {
+							setaddress2(e.target.value)
+						}}
+					/>
+
+					<h2>City</h2>
+					<input
+						type='text'
+						value={city}
+						disabled={!canEdit}
+						onChange={(e) => {
+							setcity(e.target.value)
+						}}
+					/>
+
+					<h2>State</h2>
+					<input
+						type='text'
+						value={state}
+						disabled={!canEdit}
+						onChange={(e) => {
+							setstate(e.target.value)
+						}}
+					/>
+
+					<h2>PinCode</h2>
+					<input
+						type='text'
+						value={pinCode}
+						disabled={!canEdit}
+						onChange={(e) => {
+							setpinCode(e.target.value)
+						}}
+					/>
 				</div>
+				{canEdit ? (
+					<button
+						className='btn--blue'
+						onClick={() => {
+							setcanEdit(false)
+						}}>
+						Confirm Changes
+					</button>
+				) : (
+					<button
+						className='btn--blue'
+						onClick={() => {
+							setcanEdit(true)
+						}}>
+						Click here to Edit
+					</button>
+				)}
 			</div>
 		</>
 	)

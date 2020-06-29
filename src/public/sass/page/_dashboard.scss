@@ -12,7 +12,12 @@
 	margin-left: 10rem !important;
 	color: $color-primary;
 	@extend %flex-col-center;
-
+	.col {
+		// margin-top: 10vh;
+		@extend %flex-col-center;
+		width: 70%;
+		height: 70vh;
+	}
 	table {
 		width: 95%;
 		tr {
@@ -45,7 +50,5 @@
 				background-color: #fd90659c;
 			}
 		}
-
-		// tr: nth($list: , $n: );
 	}
 }
