@@ -88,7 +88,6 @@ UserSchema.methods.getProfile = async function () {
       profile = await TeacherProfile.findById(this.id).populate("subjects");
       break;
     case UserRole.Student:
-
     case UserRole.Admin:
     default:
       profile = false;

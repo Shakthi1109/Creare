@@ -20,12 +20,7 @@ interface TeacherAttrs {
   teacherApproval: TeacherApprovalInfo;
 }
 
-<<<<<<< HEAD
 export interface TeacherDoc extends mongoose.Document {
-  user: UserDoc;
-=======
-interface TeacherDoc extends mongoose.Document {
->>>>>>> develop
   gender: UserGender;
   subjects: Array<SubjectDoc>;
   education: Array<Education>;

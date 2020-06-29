@@ -2,12 +2,11 @@ import express, { Request, Response } from "express";
 import { userRouter } from "./user-router";
 import { schoolRouter } from "./school-router";
 import { subjectRouter } from "./subject-router";
-<<<<<<< HEAD
+
 import { teacherRouter } from "./teacher-router";
 import { classroomRouter } from "./classroom-router";
-=======
+
 import { teacherProfileRouter } from "./teacher-profile-router";
->>>>>>> develop
 
 const router = express.Router();
 
