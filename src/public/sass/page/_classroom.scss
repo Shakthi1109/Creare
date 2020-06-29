@@ -1,0 +1,62 @@
+.classRoom {
+	@extend %body-page;
+	@extend %flex-col-center;
+	align-items: flex-start;
+	position: relative;
+	font-size: 2rem;
+	.activeVideo {
+		width: 90%;
+		height: 80%;
+	}
+	.video {
+		width: 70%;
+		height: 80%;
+	}
+	.controls {
+		@extend %flex-row-center;
+		.circle {
+			@extend %flex-row-center;
+			width: min-content;
+			height: min-content;
+			border-radius: 50%;
+			font-size: 3rem;
+		}
+	}
+	.sideOptions {
+		@extend %flex-row-center;
+		justify-content: space-between;
+		margin: 0rem;
+		position: fixed;
+		bottom: 20rem;
+		transform: rotate(-90deg);
+		right: -10rem;
+	}
+	.rightBar {
+		@extend %bg-blue;
+		height: 100%;
+		width: 29.5%;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		padding: 1rem;
+		.btn {
+			width: 100%;
+			margin: 0rem;
+			@extend %flex-row-center;
+			justify-content: space-between;
+			@include respond(tab-port) {
+				font-size: 1rem;
+				padding: 0.5rem;
+			}
+		}
+		.content {
+			height: 80%;
+		}
+	}
+	@media screen and (orientation: portrait) {
+		display: none;
+		background-image: url("https://i0.wp.com/www.cosect.net/wp-content/uploads/2019/07/rotate_screen_icon.gif?resize=300%2C250&ssl=1");
+	}
+	@media screen and (orientation: landscape) {
+	}
+}

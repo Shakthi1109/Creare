@@ -1,84 +1,84 @@
 // @use "../abstract/flex";
 
 .sign {
-  // @extend %bg-blue;
-  @extend %body-page-padded;
-  @extend %flex-col-center;
-  justify-content: unset;
-  .form {
-    // @extend %bg-orange;
-    padding: 1rem 3rem;
-    border: 0.25rem solid #f06e3c;
-    border-radius: 10px;
-    width: 35%;
-    height: max-content;
-    color: #0c3d54;
-    @extend %flex-col-center;
-    @include respond(tab-port) {
-      width: 60%;
-    }
-    @include respond(phone) {
-      width: 95%;
-    }
-    h1 {
-      margin-bottom: 3rem;
-      font-size: $font-title;
-      color: #f06e3c;
-    }
-    &__or {
-      font-size: $font-b;
-      color: #f06e3c;
-    }
-    a {
-      text-decoration: none;
-      color: #f06e3c;
-      margin-top: 15px;
-      font-weight: 600;
-      font-size: 17px;
-    }
-    .pass {
-      width: 100%;
-      position: relative;
-      margin: 2rem;
-      height: 2rem;
-      input {
-        margin: 0;
-        padding: 0;
-        position: absolute;
-      }
-      .icon {
-        position: absolute;
-        font-size: 3rem;
-        right: 5px;
-        bottom: 5px;
-        padding: 2px;
-        cursor: pointer;
-      }
-    }
-    #suggest-capsule {
-      width: 100%;
-      @extend %flex-col-center;
-      position: relative;
-      .suggestions {
-        z-index: 99;
-        position: absolute;
-        width: 100%;
-        top: 3.5rem;
-        .suggest {
-          margin: 0rem;
-          font-weight: 600;
-          width: 100%;
-          height: 2rem;
-          color: inherit;
-          background-color: #dddddd;
-          border-style: none none solid none;
-          border-bottom-color: #59c3f5;
-          cursor: pointer;
-          &:hover {
-            background-color: #fff;
-          }
-        }
-      }
-    }
-  }
+	// @extend %bg-blue;
+	@extend %body-page-padded;
+	@extend %flex-col-center;
+	justify-content: unset;
+	.form {
+		// @extend %bg-orange;
+		padding: 1rem 3rem;
+		border: 0.25rem solid #f06e3c;
+		border-radius: 10px;
+		width: 35%;
+		height: max-content;
+		color: #0c3d54;
+		@extend %flex-col-center;
+		@include respond(tab-port) {
+			width: 60%;
+		}
+		@include respond(phone) {
+			width: 95%;
+		}
+		h1 {
+			margin-bottom: 3rem;
+			font-size: $font-title;
+			color: #f06e3c;
+		}
+		&__or {
+			font-size: $font-b;
+			color: #f06e3c;
+		}
+		a {
+			text-decoration: none;
+			color: #f06e3c;
+			margin-top: 15px;
+			font-weight: 600;
+			font-size: 17px;
+		}
+		.pass {
+			width: 100%;
+			position: relative;
+			margin: 2rem;
+			height: 2rem;
+			input {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+			}
+			.icon {
+				position: absolute;
+				font-size: 3rem;
+				right: 5px;
+				bottom: 5px;
+				padding: 2px;
+				cursor: pointer;
+			}
+		}
+		#suggest-capsule {
+			width: 100%;
+			@extend %flex-col-center;
+			position: relative;
+			.suggestions {
+				z-index: 99;
+				position: absolute;
+				width: 100%;
+				top: 3.5rem;
+				.suggest {
+					margin: 0rem;
+					font-weight: 600;
+					width: 100%;
+					height: 2rem;
+					color: inherit;
+					background-color: #dddddd;
+					border-style: none none solid none;
+					border-bottom-color: #59c3f5;
+					cursor: pointer;
+					&:hover {
+						background-color: #fff;
+					}
+				}
+			}
+		}
+	}
 }
