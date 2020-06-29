@@ -42,7 +42,7 @@ h5,
 h6 {
   margin: 5px; }
 
-.gettingStarted, .FoF {
+.gettingStarted, .FoF, .classRoom {
   height: 100vh;
   width: 100vw;
   overflow: hidden; }
@@ -52,13 +52,13 @@ h6 {
   width: 100%;
   padding: 4%; }
 
-.sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest-capsule, .dashboard, .dashboard .col, .FoF div div {
+.sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest-capsule, .dashboard, .dashboard .col, .FoF div div, .classRoom {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.sideBar .current, .sideBar .option, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .gettingStarted .row #controls, .FoF div {
+.sideBar .current, .sideBar .option, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .chat .send, .gettingStarted .row #controls, .FoF div, .classRoom .controls, .classRoom .controls .circle, .classRoom .sideOptions, .classRoom .rightBar .btn {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -80,7 +80,7 @@ h6 {
   background-color: #ffebee;
   color: #f44336; }
 
-option, .sideBar, .btn--blue, .gettingStarted, .FoF {
+option, .sideBar, .btn--blue, .gettingStarted, .FoF, .classRoom .rightBar {
   background-color: #0c3d54;
   color: #fafafa; }
 
@@ -280,6 +280,35 @@ select:focus {
 .btn:disabled {
   opacity: 0.5; }
 
+.chat {
+  width: 100%;
+  height: 100%; }
+  .chat .chatWindow {
+    background: #fff;
+    width: 100%;
+    height: 65vh;
+    overflow-y: scroll;
+    border-radius: 1rem;
+    margin: 0.5rem 0rem; }
+  .chat .send {
+    width: 100%;
+    position: relative;
+    margin: 3rem 0rem;
+    height: 2rem; }
+    .chat .send input {
+      margin: 0;
+      padding: 0;
+      position: absolute; }
+      .chat .send input:focus {
+        border-bottom-color: #fff; }
+    .chat .send .icon {
+      font-size: 3.5rem;
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      padding: 2px;
+      cursor: pointer; }
+
 .gettingStarted .row #controls .ActiveCircle, .gettingStarted .row #controls .Circle {
   width: 10px;
   height: 10px;
@@ -397,7 +426,9 @@ select:focus {
   color: #0c3d54; }
   .dashboard .col {
     width: 70%;
-    height: 70vh; }
+    height: 100vh; }
+    .dashboard .col .btn--blue {
+      width: fit-content; }
   .dashboard table {
     width: 95%; }
     .dashboard table tr #view {
@@ -437,3 +468,54 @@ select:focus {
         font-size: 50px;
         margin: 0px;
         color: #ffffffbb; }
+
+.classRoom {
+  align-items: flex-start;
+  position: relative;
+  font-size: 2rem; }
+  .classRoom .activeVideo {
+    width: 90%;
+    height: 80%; }
+  .classRoom .video {
+    width: 70%;
+    height: 80%; }
+  .classRoom .controls .circle {
+    width: min-content;
+    height: min-content;
+    border-radius: 50%;
+    font-size: 3rem; }
+    @media (max-width: 37.5em) and (orientation: landscape) {
+      .classRoom .controls .circle {
+        font-size: 2rem;
+        padding: 0.5rem; } }
+  .classRoom .sideOptions {
+    justify-content: space-between;
+    margin: 0rem;
+    position: fixed;
+    bottom: 20rem;
+    transform: rotate(-90deg);
+    right: -10rem; }
+  .classRoom .rightBar {
+    height: 100%;
+    width: 29.5%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem; }
+    .classRoom .rightBar .btn {
+      width: 100%;
+      margin: 2rem 0rem;
+      justify-content: space-between; }
+      @media (max-width: 37.5em) and (orientation: landscape) {
+        .classRoom .rightBar .btn {
+          font-size: 1rem;
+          padding: 0.5rem; } }
+    .classRoom .rightBar .content {
+      height: 80%; }
+      @media (max-width: 37.5em) and (orientation: landscape) {
+        .classRoom .rightBar .content {
+          height: 50%; } }
+  @media (max-height: 37.5em) and (orientation: portrait) {
+    .classRoom {
+      display: none;
+      background-image: url("https://i0.wp.com/www.cosect.net/wp-content/uploads/2019/07/rotate_screen_icon.gif?resize=300%2C250&ssl=1"); } }

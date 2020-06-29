@@ -16,7 +16,10 @@
 		// margin-top: 10vh;
 		@extend %flex-col-center;
 		width: 70%;
-		height: 70vh;
+		height: 100vh;
+		.btn--blue {
+			width: fit-content;
+		}
 	}
 	table {
 		width: 95%;

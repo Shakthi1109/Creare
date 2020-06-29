@@ -9,7 +9,6 @@ export const signupValidator = [
 		.isLength({ min: 6 })
 		.withMessage("password with min. of 6 chars is required"),
 	body("role")
-		// .not()
 		.equals(UserRole.Admin || UserRole.Student || UserRole.Teacher)
 		.withMessage("Valid role is required"),
 	body("uniqRef").not().isEmpty().withMessage("School is required")
