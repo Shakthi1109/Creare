@@ -20,6 +20,10 @@
 			height: min-content;
 			border-radius: 50%;
 			font-size: 3rem;
+			@include respond(land) {
+				font-size: 2rem;
+				padding: 0.5rem;
+			}
 		}
 	}
 	.sideOptions {
@@ -41,22 +45,23 @@
 		padding: 1rem;
 		.btn {
 			width: 100%;
-			margin: 0rem;
+			margin: 2rem 0rem;
 			@extend %flex-row-center;
 			justify-content: space-between;
-			@include respond(tab-port) {
+			@include respond(land) {
 				font-size: 1rem;
 				padding: 0.5rem;
 			}
 		}
 		.content {
 			height: 80%;
+			@include respond(land) {
+				height: 50%;
+			}
 		}
 	}
-	@media screen and (orientation: portrait) {
+	@include respond(port) {
 		display: none;
 		background-image: url("https://i0.wp.com/www.cosect.net/wp-content/uploads/2019/07/rotate_screen_icon.gif?resize=300%2C250&ssl=1");
-	}
-	@media screen and (orientation: landscape) {
 	}
 }

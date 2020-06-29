@@ -6,8 +6,8 @@ import buildClient from "../../../service/build-client"
 
 const schoolComponent = ({ currentUser, school }) => {
 	useEffect(() => {
-		console.log(currentUser)
-	}, [currentUser])
+		console.log(school)
+	}, [school])
 
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
@@ -30,8 +30,8 @@ const schoolComponent = ({ currentUser, school }) => {
 						}}
 					/>
 				) : (
-						<></>
-					)}
+					<></>
+				)}
 				<div className='col'>
 					<h1>Schools Info</h1>
 					<br />
@@ -95,16 +95,15 @@ const schoolComponent = ({ currentUser, school }) => {
 							setpinCode(e.target.value)
 						}}
 					/>
-				</div>
-				{canEdit ? (
-					<button
-						className='btn--blue'
-						onClick={() => {
-							setcanEdit(false)
-						}}>
-						Confirm Changes
-					</button>
-				) : (
+					{canEdit ? (
+						<button
+							className='btn--blue'
+							onClick={() => {
+								setcanEdit(false)
+							}}>
+							Confirm Changes
+						</button>
+					) : (
 						<button
 							className='btn--blue'
 							onClick={() => {
@@ -113,14 +112,15 @@ const schoolComponent = ({ currentUser, school }) => {
 							Click here to Edit
 						</button>
 					)}
+				</div>
 			</div>
 		</>
 	)
 }
 
 schoolComponent.getInitialProps = async (appContext) => {
-
 	const { data } = await buildClient(appContext).get("/api/school/byId")
+	console.log(data)
 	return { school: data }
 }
 

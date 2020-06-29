@@ -44,7 +44,7 @@ export default () => {
 								<FaChevronDown />
 							</button>
 						)}
-						<br />
+
 						<div className='content'>
 							{QA ? (
 								<div>
@@ -68,7 +68,7 @@ export default () => {
 								</div>
 							)}
 						</div>
-						<br />
+
 						<button
 							className='btn'
 							onClick={() => setsideOptions(!sideOptions)}>
@@ -94,17 +94,6 @@ export default () => {
 					</div>
 				)}
 			</div>
-			{/* {sideOptions ? (
-				<div className='rightBar'>
-					{Array(10)
-						.fill(dummyData)
-						.map((item) => {
-							return <h2>item.name</h2>
-						})}
-				</div>
-			) : (
-				<></>
-			)} */}
 		</div>
 	)
 }
