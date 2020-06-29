@@ -433,11 +433,27 @@ select:focus {
         margin: 0px;
         color: #ffffffbb; }
 
-.teacherBody {
-  background-color: #12c402be; }
+.header {
+  background-color: #1ABE5D;
+  height: 70px;
+  padding-top: 1px; }
+
+#teacherMenuicon {
+  float: left;
+  width: 70px;
+  height: 30px;
+  margin-top: 20px; }
+
+#logoImg {
+  float: left;
+  width: 100px;
+  height: 50px;
+  margin: 10px; }
 
 #teacherHeading {
-  color: white;
+  position: relative;
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: larger; }
+  top: 5px;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-size: xx-large;
+  color: white; }
