@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 import { validateRequest } from "../middlewares/validate-request";
 
 import {
- =
   getTeacherByIdController,
   addTeacherController,
   updateTeacherController,
