@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { FaPencilAlt } from "react-icons/fa"
 import buildClient from "../../../service/build-client"
 
-const schoolComponent = ({ currentUser, resp }) => {
+const schoolComponent = ({ currentUser, school }) => {
 	useEffect(() => {
 		console.log(currentUser)
 	}, [currentUser])
@@ -30,8 +30,8 @@ const schoolComponent = ({ currentUser, resp }) => {
 						}}
 					/>
 				) : (
-					<></>
-				)}
+						<></>
+					)}
 				<div className='col'>
 					<h1>Schools Info</h1>
 					<br />
@@ -105,23 +105,23 @@ const schoolComponent = ({ currentUser, resp }) => {
 						Confirm Changes
 					</button>
 				) : (
-					<button
-						className='btn--blue'
-						onClick={() => {
-							setcanEdit(true)
-						}}>
-						Click here to Edit
-					</button>
-				)}
+						<button
+							className='btn--blue'
+							onClick={() => {
+								setcanEdit(true)
+							}}>
+							Click here to Edit
+						</button>
+					)}
 			</div>
 		</>
 	)
 }
 
 schoolComponent.getInitialProps = async (appContext) => {
-	// const { data } = await buildClient(appContext).get("/api/school/byId")
-	// console.log(data)
-	// return { resp: data }
+
+	const { data } = await buildClient(appContext).get("/api/school/byId")
+	return { school: data }
 }
 
 export default schoolComponent
