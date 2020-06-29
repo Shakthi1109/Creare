@@ -5,20 +5,20 @@ interface SchoolAttrs {
   name: string;
   address1: string;
   address2: string;
-  pincode: Number;
+  pincode: string;
   city: string;
   state: string;
   uniqRef: string;
 }
 
 export interface SchoolDoc extends mongoose.Document {
-  name: String;
-  address1: String;
-  address2: String;
-  pincode: Number;
-  city: String;
-  state: String;
-  uniqRef: String;
+  name: string;
+  address1: string;
+  address2: string;
+  pincode: string;
+  city: string;
+  state: string;
+  uniqRef: string;
   isActive: Boolean;
   getUsers(): Array<UserDoc>;
 }
@@ -32,7 +32,7 @@ const SchoolSchema = new mongoose.Schema(
     name: { type: String, required: true },
     address1: { type: String, required: true },
     address2: { type: String },
-    pincode: { type: Number, required: true },
+    pincode: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
     isActive: { type: Boolean, default: false },
