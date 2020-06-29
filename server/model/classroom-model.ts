@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { SubjectDoc, Subject } from "../model/subject-model";
-import { TeacherDoc } from "../model/profile/teacher-model";
+
 import { UserDoc } from "./user-model";
 
 interface ClassroomAttrs {

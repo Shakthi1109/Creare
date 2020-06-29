@@ -3,7 +3,6 @@ import { Classroom } from "../model/classroom-model";
 import { BadRequestError } from "../errors/bad-request-error";
 import { Subject } from "../model/subject-model";
 import { User } from "../model/user-model";
-import { randomBytes } from "crypto";
 
 // add class controller
 export const addClassController = async (req: Request, res: Response) => {
@@ -17,8 +16,14 @@ export const addClassController = async (req: Request, res: Response) => {
     endTime,
   } = req.body;
 
-  const existingTeacher = await User.findById(teacher);
-  const exisitingSubject = await Subject.findById(subject);
+  const existingTeacher = await User.findById(teacher).populate(
+    "teacher",
+    "name ,role, id"
+  );
+  const exisitingSubject = await Subject.findById(subject).populate(
+    "subject",
+    "name ,subjectId , grade"
+  );
 
   if (!exisitingSubject) throw new BadRequestError("No subject exists");
   if (!existingTeacher) throw new BadRequestError("No Teacher exists");
@@ -36,11 +41,19 @@ export const addClassController = async (req: Request, res: Response) => {
   res.status(201).send(classroom);
 };
 
-// join  class controller for students
-// export const joinClassController = async (req: Request, res: Response){
-//   const exisitingClass = await Classroom.findById(req.params.classId);
-//   if (!exisitingClass) throw new BadRequestError("No class found");
-//   // const exisitingStudent = await User.findById(req.currentUser.id);
-//   // if (!exisitingStudent) throw new BadRequestError("You are not registered ");
+export const updateClassController = async (req: Request,res: Response){
+  const existingClass = await Classroom.findById(req.params.classId);
+  if (!existingClass) throw new BadRequestError("No Class found");
+  existingClass.set(req.body);
+  await existingClass.save();
+  res.send(existingClass);
+}
 
-// }
+export const endClassController = async(req: Request, res: Response){
+  
+}
+
+// join  class controller for students
+export const joinClassController = async (req: Request, res: Response){
+  
+}
