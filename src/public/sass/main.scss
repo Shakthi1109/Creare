@@ -7,9 +7,11 @@
 @import "components/sidebar";
 @import "components/overlay";
 @import "components/toast";
+@import "components/paginate";
 
 @import "page/getting-started";
 @import "page/sign";
 @import "page/dashboard";
 @import "page/404";
 @import "page/admin/dashboard/superAdmin"
+@import "page/admin/dashboard/listitems"

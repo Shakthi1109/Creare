@@ -7,7 +7,7 @@
   font-weight: bolder;
   margin: 10px; }
 
-.btn-inverse, .overlay .container .icon {
+.btn-inverse, .overlay .container .icon, .pages .row .icon {
   color: #fff;
   background-color: #0cbd57; }
 
@@ -15,19 +15,22 @@
   color: #0cbd57;
   background-color: #fff; }
 
-.dashboard .col .list-item {
-  background-color: #9df3c4;
+option, .sign, .sign .form #suggest .suggest, .dashboard table tr td, .dashboard table th td, .dashboard .col .list-item {
+  background-color: #cef2dd;
   color: #1fab89; }
 
-.dashboard .col .list-item .icon {
+option:hover,
+option:focus,
+option:active,
+option:checked, .dashboard .col .list-item .icon, .dashboard table th td {
   background-color: #1fab89;
   color: #9df3c4; }
 
-.red-btn, .toast, .toast .right .icon {
+.red-btn, .container .toast, .container .toast .right .icon {
   background-color: #ff5b5bfd;
   color: #fff; }
 
-.toast .right {
+.container .toast .right {
   background-color: white;
   color: #ff5b5bfd; }
 
@@ -45,6 +48,19 @@
   cursor: pointer;
   transition: 250ms ease-out; }
 
+.pages .row {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none; }
+
 body {
   margin: 0%;
   padding: 0%;
@@ -61,13 +77,13 @@ h5,
 h6 {
   margin: 5px; }
 
-.sideBar .current, .sideBar .option, .sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .FoF div div {
+.sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest, .dashboard, .FoF div div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.overlay .container .row, .toast, .toast .right, .gettingStarted .row #controls, .dashboard, .dashboard .col, .FoF div {
+.sideBar .current, .sideBar .option, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .gettingStarted .row #controls, .dashboard .col, .FoF div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -80,18 +96,21 @@ input[type="password"] {
   font-size: 20px;
   margin: 0px;
   margin-bottom: 20px;
+  padding-bottom: 2%;
   height: 3vh;
   font-family: inherit;
   outline: none !important;
   border-style: none none solid none;
   border-bottom-width: 2px;
-  border-bottom-color: white;
-  width: inherit; }
+  border-bottom-color: #a5fac8;
+  width: 100%; }
+  @media (max-width: 850px) {
+    input[type="text"],
+    input[type="password"] {
+      font-size: 17px; } }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-  border-style: none none solid none;
-  border-bottom-width: 5px;
   border-bottom-color: white; }
 
 ::placeholder {
@@ -100,7 +119,7 @@ input[type="password"]:focus {
 
 .suggest {
   background: #ffffff23;
-  z-index: 2;
+  z-index: 99;
   color: #fff;
   font-size: 20px;
   margin-top: -20px;
@@ -116,17 +135,36 @@ input[type="password"]:focus {
   background: transparent;
   cursor: pointer; }
 
+select {
+  appearance: tooltip;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding-bottom: 2%;
+  font-family: inherit;
+  outline: none !important;
+  border-style: none none solid none;
+  border-bottom-width: 2px;
+  border-bottom-color: #a5fac8;
+  width: 100%; }
+  @media (max-width: 850px) {
+    select {
+      font-size: 17px; } }
+
 .sideBar .current, .sideBar .option {
-  width: inherit;
-  height: 15vh;
+  width: 95%;
+  height: 10vh;
   justify-content: space-evenly;
   background-color: inherit;
   cursor: pointer;
-  border-style: solid;
   border-width: 5px;
   border-bottom-width: 0px;
+  margin-bottom: 5px;
+  border-style: none none none solid;
   border-color: #fff; }
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .sideBar .current, .sideBar .option {
       border-width: 1px;
       border-style: none none none solid; } }
@@ -135,13 +173,14 @@ input[type="password"]:focus {
   border-bottom-width: 5px; }
 
 .sideBar {
-  width: 6rem;
+  width: 10rem;
   background-color: #0cbd57;
   height: 100vh;
   position: fixed;
   justify-content: flex-start;
+  z-index: 99;
   transition: 250ms ease-out; }
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .sideBar {
       flex-direction: row;
       align-items: center;
@@ -155,13 +194,13 @@ input[type="password"]:focus {
     text-decoration: none;
     color: #fff;
     font-weight: 600; }
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
       .sideBar a {
         font-size: 13px; } }
   .sideBar .icon {
-    font-size: 30px;
+    font-size: 20px;
     color: #fff; }
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
       .sideBar .icon {
         font-size: 25px; } }
   .sideBar .current {
@@ -169,8 +208,8 @@ input[type="password"]:focus {
   .sideBar .logo {
     display: block;
     color: white;
-    margin: 20px 0px; }
-    @media (max-width: 800px) {
+    margin: 50px 0px; }
+    @media (max-width: 850px) {
       .sideBar .logo {
         display: none; } }
 
@@ -188,32 +227,54 @@ input[type="password"]:focus {
     font-size: 2em;
     cursor: pointer; }
 
-.toast {
+.container {
   position: fixed;
   top: 15px;
   right: 15px;
-  text-align: center;
-  width: 20vw;
-  height: max-content;
-  margin: 5px;
-  border-radius: 15px;
-  font-size: 18px; }
-  .toast .ico {
-    font-size: 30px;
-    width: 5vw; }
-  .toast .right {
-    position: relative;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 15vw;
-    padding: 3px; }
-    .toast .right .icon {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      padding: 5px;
-      border-radius: 50%;
-      cursor: pointer; }
+  z-index: 99; }
+  .container .toast {
+    text-align: center;
+    width: 20vw;
+    height: max-content;
+    margin: 10px;
+    z-index: 99;
+    border-radius: 15px;
+    font-size: 18px; }
+    @media (max-width: 850px) {
+      .container .toast {
+        width: 80vw; } }
+    .container .toast .ico {
+      font-size: 30px;
+      width: 5vw; }
+      @media (max-width: 850px) {
+        .container .toast .ico {
+          width: 10vw; } }
+    .container .toast .right {
+      position: relative;
+      font-weight: 600;
+      border-radius: 5px;
+      width: 15vw;
+      padding: 3px; }
+      @media (max-width: 850px) {
+        .container .toast .right {
+          width: 70vw; } }
+      .container .toast .right .icon {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 5px;
+        border-radius: 50%;
+        cursor: pointer; }
+
+.pages {
+  margin: 2%; }
+  .pages .row {
+    justify-content: space-between; }
+    .pages .row .icon {
+      border-radius: 30%;
+      font-size: 3em;
+      cursor: pointer;
+      margin: 0% -10%; }
 
 .gettingStarted .row #controls .ActiveCircle, .gettingStarted .row #controls .Circle {
   width: 10px;
@@ -255,18 +316,24 @@ input[type="password"]:focus {
         left: 0; }
         .gettingStarted .row .card .below p {
           text-align: justify; }
-      @media (max-width: 800px) {
+      @media (max-width: 850px) {
         .gettingStarted .row .card {
           width: 70vw; } }
 
 .sign {
-  background-color: #0cbd57;
   color: #fff;
   width: 100vw;
   height: 100vh; }
   .sign .form {
-    margin-top: 15px;
-    width: 30vw; }
+    background-color: #0cbd57;
+    padding: 2% 3%;
+    border-radius: 10px;
+    width: 30%; }
+    @media (max-width: 850px) {
+      .sign .form {
+        width: 80%; } }
+    .sign .form h1 {
+      margin-bottom: 20px; }
     .sign .form a {
       text-decoration: none;
       color: white;
@@ -274,7 +341,7 @@ input[type="password"]:focus {
       font-weight: 600;
       font-size: 17px; }
     .sign .form .pass {
-      width: inherit;
+      width: 100%;
       position: relative;
       height: 3vh;
       margin-bottom: 20px; }
@@ -289,19 +356,32 @@ input[type="password"]:focus {
         cursor: pointer; }
     .sign .form p {
       white-space: pre; }
+    .sign .form #suggest {
+      width: 100%;
+      position: relative; }
+      .sign .form #suggest .suggest {
+        position: absolute;
+        width: inherit;
+        top: 6vh;
+        border-bottom-color: #0cbd57; }
     .sign .form button {
       width: 20vw; }
-      @media (max-width: 800px) {
+      @media (max-width: 850px) {
         .sign .form button {
           width: 50vw; } }
-    @media (max-width: 800px) {
-      .sign .form {
-        width: 90vw; } }
+
+.dashboard table tr td, .dashboard table th td {
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  z-index: 1; }
 
 .dashboard {
-  margin-left: 6.5rem !important;
+  margin-left: 10.5rem !important;
   color: #1fab89; }
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     .dashboard {
       flex-direction: column;
       align-items: center;
@@ -317,8 +397,8 @@ input[type="password"]:focus {
       border-radius: 10px;
       text-align: center;
       position: relative;
-      z-index: -1; }
-      @media (max-width: 800px) {
+      z-index: 1; }
+      @media (max-width: 850px) {
         .dashboard .col .list-item {
           width: 90vw; } }
       .dashboard .col .list-item .icon {
@@ -329,11 +409,13 @@ input[type="password"]:focus {
         padding: 5px;
         border-radius: 10px;
         cursor: pointer; }
+  .dashboard table th td {
+    font-weight: bold; }
 
 .FoF {
   color: #fff;
   height: 100vh;
-  background-color: #0db047; }
+  background-color: #0db046e0; }
   .FoF h1 {
     margin: 0%;
     padding: 30px; }
@@ -350,7 +432,28 @@ input[type="password"]:focus {
         color: #ffffffbb; }
 
 .superAdmin {
-  background-color: #e5ff00; }
+  background-color: #9266ff;
+  min-height: 500px;
+  width: 400px;
+  margin: 40px auto; }
 
-form {
-  color: 255; }
+#superAdmin-form input {
+  background-color: #1b7089;
+  border: 0;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin: 20px;
+  font-size: 18px;
+  border-radius: 50px;
+  color: #fff; }
+
+#superAdmin-form button {
+  height: 50px;
+  width: 80px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #ff9c18;
+  cursor: pointer;
+  font-weight: bolder;
+  color: #fff; }

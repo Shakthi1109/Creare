@@ -27,7 +27,7 @@ router.post("/signup", signupValidator, validateRequest, signupController);
 // to login new User
 router.post("/signin", signinValidator, validateRequest, signinController);
 
-// to fetch all users
+// to fetch all users that belong to particular school
 router.get("/", currentUser, requireAdminAuth, getUsersController);
 
 router.get("/test", (req: Request, res: Response) => {

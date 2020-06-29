@@ -1,28 +1,25 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Router from "next/router"
-import useRequest from "../custom-hook/use-request"
-import Loader from "../components/loader"
+import useRequest from "../../custom-hook/use-request"
+import Loader from "../../components/loader"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-import Toast from "../components/toasts"
-import buildClient from "../service/build-client"
+import Toast from "../../components/toasts/index"
+import buildClient from "../../service/build-client"
 const signUpComponent = ({ schools }) => {
 	const [name, setname] = useState("")
 	const [email, setemail] = useState("")
 	const [password, setpassword] = useState("")
 	const [rePass, setrePass] = useState("")
-	const [err, seterr] = useState("")
-	const [vEmail, setvEmail] = useState(false)
-	const [vPass, setvPass] = useState(false)
-	const [canLogin, setcanLogin] = useState(false)
+	const [err, seterr] = useState([])
 	const [visiblePass, setvisiblePass] = useState(false)
-	const [samepass, setsamePass] = useState(false)
 	const [isLoading, setisLoading] = useState(false)
 	const [onErr, setonErr] = useState(false)
-	const [instruct, setinstruct] = useState("")
 	const [suggest, setsuggest] = useState([])
 	const [selected, setselected] = useState(false)
 	const [school, setschool] = useState("")
+	const [uniqRef, setuniqRef] = useState("")
+	const [role, setrole] = useState("student")
 	const { doRequest } = useRequest({
 		url: "/api/user/signup",
 		method: "post",
@@ -30,75 +27,22 @@ const signUpComponent = ({ schools }) => {
 			name,
 			email,
 			password,
-			role: "student"
+			role,
+			uniqRef
 		},
-		onSuccess: () => Router.push("/home")
+		onSuccess: () => Router.push("/home"),
+		onError: (error) => {
+			setonErr(true)
+			seterr(error)
+			setisLoading(false)
+		}
 	})
 
 	const SignUp = async () => {
-		if (email != "" && password != "" && password == rePass && name != "") {
-			setisLoading(true)
-			const resp = await doRequest()
-			if (resp[0].message) {
-				setonErr(true)
-				seterr(resp[0].message)
-				setisLoading(false)
-			}
-		}
+		setisLoading(true)
+		alert(role)
+		const resp = await doRequest()
 	}
-
-	let checkEmail = () => {
-		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-			setvEmail(true)
-			setinstruct(
-				`Valid Email.. \nNow the Password must be atleast 8 Characters.`
-			)
-		} else {
-			if (email != "") setinstruct(`Please Provide a valid email`)
-			setvEmail(false)
-		}
-	}
-
-	let checkPassword = () => {
-		if (password.length >= 8) {
-			setvPass(true)
-			setinstruct("Retype the same password..")
-		} else {
-			setvPass(false)
-			if (password != "")
-				setinstruct(`\nPassword must be atleast 8 Characters`)
-		}
-	}
-
-	let checkConfirmPassword = () => {
-		if (password == rePass && password != "") {
-			setsamePass(true)
-			setinstruct("")
-		} else {
-			setsamePass(false)
-			if (rePass != "")
-				setinstruct(
-					"Both passwords must be matching... Please check it."
-				)
-		}
-	}
-
-	useEffect(() => {
-		checkEmail()
-		checkPassword()
-		checkConfirmPassword()
-	}, [email, password, rePass])
-
-	useEffect(() => {
-		if (vEmail && vPass && samepass && name != "") {
-			setcanLogin(true)
-		} else {
-			setcanLogin(false)
-			seterr(
-				`Please Provide a valid email \nPassword must be of 8 characters & matching with each.`
-			)
-		}
-	}, [vEmail, vPass, samepass])
 
 	useEffect(() => {
 		console.log(suggest)
@@ -123,47 +67,52 @@ const signUpComponent = ({ schools }) => {
 
 	return (
 		<div className='sign'>
-			<h1>Creare</h1>
-			{onErr ? (
-				<Toast
-					data={err}
-					closeErr={() => {
-						setonErr(false)
-					}}
-				/>
-			) : (
-				<> </>
-			)}
+			{onErr ? <Toast data={err} /> : <> </>}
 			<div className='form'>
+				<h1>Creare</h1>
 				<input
 					type='text'
 					placeholder='Name'
 					onChange={(e) => setname(e.target.value)}
 				/>
 				<br />
-				<input
-					type='text'
-					placeholder="Specify your School name or School's UniqueID"
-					value={school}
+				<select
 					onChange={(e) => {
-						setschool(e.target.value)
-						search(e.target.value)
-					}}
-				/>
-				{suggest.length >= 1 && !selected ? (
-					suggest.map(({ name, city }) => {
-						return (
-							<button
-								className='suggest'
-								onClick={() => {
-									setselected(true)
-									setschool(`${name}, ${city}`)
-								}}>{`${name}, ${city}`}</button>
-						)
-					})
-				) : (
-					<> </>
-				)}
+						setrole(e.target.value)
+					}}>
+					<option selected value='student'>
+						Student
+					</option>
+					<option value='teacher'>Teacher</option>
+					<option value='admin'>Admin</option>
+				</select>
+				<br />
+				<div id='suggest'>
+					<input
+						type='text'
+						placeholder="Specify your School name or School's UniqueID"
+						value={school}
+						onChange={(e) => {
+							setschool(e.target.value)
+							search(e.target.value)
+						}}
+					/>
+					{suggest.length >= 1 && !selected ? (
+						suggest.map(({ name, city, uniqRef }) => {
+							return (
+								<button
+									className='suggest'
+									onClick={() => {
+										setuniqRef(uniqRef)
+										setselected(true)
+										setschool(`${name}, ${city}`)
+									}}>{`${name}, ${city}`}</button>
+							)
+						})
+					) : (
+						<> </>
+					)}
+				</div>
 				<br />
 				<input
 					type='text'
@@ -193,7 +142,7 @@ const signUpComponent = ({ schools }) => {
 						/>
 					)}
 				</div>
-				<br />
+				<br /> <br />
 				<div className='pass'>
 					<input
 						type={visiblePass ? "text" : "password"}
@@ -221,11 +170,7 @@ const signUpComponent = ({ schools }) => {
 					<Loader isLoading={isLoading}></Loader>
 				) : (
 					<>
-						{instruct != "" ? <p>{instruct}</p> : <></>}
-						<button
-							disabled={!canLogin}
-							className='btn'
-							onClick={() => SignUp()}>
+						<button className='btn' onClick={() => SignUp()}>
 							Sign Up
 						</button>
 					</>

@@ -1,10 +1,10 @@
 import { MdError, MdClose, MdCheck } from "react-icons/md"
 
-export default ({ data, type = "error", closeErr }) => (
+export default ({ type, closeErr, message }) => (
 	<div className='toast'>
 		<div className='ico'>{type == "error" ? <MdError /> : <MdCheck />}</div>
 		<div className='right'>
-			<p>{data}</p>
+			<p>{message}</p>
 			<MdClose onClick={() => closeErr()} className='icon' />
 		</div>
 	</div>
