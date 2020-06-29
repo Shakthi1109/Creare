@@ -1,20 +1,32 @@
-import React from 'react';
-import logo from './logo.png';
+import React from 'react'; 
 
 function teacherLanding() {
     return (
+        //code by kriti
         <body className="teacherBody">
-
-            <div id="logo">
-                <img src={logo} alt="Logo" />
-            </div>
-
+            <div className="header"></div>
+            <input type="checkbox" id="openSidebarMenu"></input>
+            <label for="openSidebarMenu" className="sidebarIconToggle">
+                <div className="spinner top"></div>
+                <div className="spinner middle"></div>
+                <div className="spinner bottom"></div>
+            </label>
+                <div id="sidebarMenu1">
+                    <ul className="menu">
+                        <li><a href="#">Tech Corner</a></li>
+                        <li><a href="#">Tutorial Videos</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Exam Results</a></li>
+                        <li><a href="#">Discover Yourself</a></li>
+                        <li><a href="#">Knowledge Centre</a></li>
+                        <li><a href="#">Chats</a></li>
+                        <li><a href="#">Languages</a></li>
+                    </ul>
+                </div>
             <div id="teacherHeading">
-                <h1>Teacher Workspace</h1>
+                <h1>Teacher workspace</h1>
             </div>
-
         </body>
     )
   }
-
   export default teacherLanding;
