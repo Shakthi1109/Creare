@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { User, UserDoc } from "./user-model";
 
 interface SchoolAttrs {
   name: string;
@@ -19,6 +20,7 @@ export interface SchoolDoc extends mongoose.Document {
   state: String;
   uniqRef: String;
   isActive: Boolean;
+  getUsers(): Array<UserDoc>;
 }
 
 interface SchoolModel extends mongoose.Model<SchoolDoc> {
@@ -33,7 +35,7 @@ const SchoolSchema = new mongoose.Schema(
     pincode: { type: Number, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
-    isActive: { type: Boolean, required: true, default: false },
+    isActive: { type: Boolean, default: false },
     uniqRef: { type: String, required: true },
   },
   {
@@ -49,6 +51,11 @@ const SchoolSchema = new mongoose.Schema(
 
 SchoolSchema.statics.build = (attrs: SchoolAttrs) => {
   return new School(attrs);
+};
+
+SchoolSchema.methods.getUsers = async function () {
+  const users = await User.find({ school: this });
+  return users;
 };
 
 const School = mongoose.model<SchoolDoc, SchoolModel>("Schools", SchoolSchema);
