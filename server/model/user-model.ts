@@ -85,9 +85,7 @@ UserSchema.methods.getProfile = async function () {
   let profile;
   switch (this.role) {
     case UserRole.Teacher:
-      profile = await TeacherProfile.findOne({ user: this }).populate(
-        "subjects"
-      );
+      profile = await TeacherProfile.findById(this.id).populate("subjects");
       break;
     case UserRole.Student:
     case UserRole.Admin:

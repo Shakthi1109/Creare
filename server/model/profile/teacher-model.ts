@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { UserDoc } from "../user-model";
 import { UserGender } from "../../util/enum/user-gender";
 import { SubjectDoc } from "../subject-model";
 import { UserProof } from "../../util/enum/user-proof";
@@ -12,7 +11,6 @@ import {
 } from "./interface";
 
 interface TeacherAttrs {
-  user: UserDoc;
   gender: UserGender;
   subjects: Array<SubjectDoc>;
   education: Array<Education>;
@@ -23,7 +21,6 @@ interface TeacherAttrs {
 }
 
 interface TeacherDoc extends mongoose.Document {
-  user: UserDoc;
   gender: UserGender;
   subjects: Array<SubjectDoc>;
   education: Array<Education>;
@@ -39,10 +36,6 @@ interface TeacherModel extends mongoose.Model<TeacherDoc> {
 
 const TeacherProfileSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
-    },
     gender: {
       type: String,
       enum: Object.values(UserGender),
