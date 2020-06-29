@@ -3,7 +3,9 @@ import { genSalt, hash } from "bcrypt";
 
 import { UserRole } from "../util/enum/user-roles";
 import { UserStatus } from "../util/enum/user-status";
-import { SchoolDoc } from "./school-model";
+import { SchoolDoc, School } from "./school-model";
+import { BadRequestError } from "../errors/bad-request-error";
+import { TeacherProfile } from "./profile/teacher-model";
 
 interface UserAttrs {
   name: string;
@@ -13,7 +15,7 @@ interface UserAttrs {
   school: SchoolDoc;
 }
 
-interface UserDoc extends mongoose.Document {
+export interface UserDoc extends mongoose.Document {
   name: string;
   email: string;
   role: UserRole;
@@ -21,6 +23,8 @@ interface UserDoc extends mongoose.Document {
   activity: UserStatus;
   isNotActive(): boolean;
   school: SchoolDoc;
+  getSchool(): SchoolDoc;
+  getProfile(): any;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -69,6 +73,26 @@ UserSchema.pre("save", async function (done) {
 
 UserSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
+};
+
+UserSchema.methods.getSchool = async function () {
+  const school = await School.findById(this.school);
+  if (!school) throw new BadRequestError("User School not found");
+  return school;
+};
+
+UserSchema.methods.getProfile = async function () {
+  let profile;
+  switch (this.role) {
+    case UserRole.Teacher:
+      profile = await TeacherProfile.findById(this.id).populate("subjects");
+      break;
+    case UserRole.Student:
+    case UserRole.Admin:
+    default:
+      profile = false;
+  }
+  return profile;
 };
 
 UserSchema.methods.isNotActive = function () {

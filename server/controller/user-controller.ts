@@ -18,13 +18,13 @@ export const signoutController = async (req: Request, res: Response) => {
 export const getUsersController = async (req: Request, res: Response) => {
   const { schoolId } = req.currentUser;
   const school = await School.findById(schoolId);
-  const users = await User.find({ school });
+  const users = await school.getUsers();
   res.status(200).send(users);
 };
 
 export const signupController = async (req: Request, res: Response) => {
   const { name, email, role, password, uniqRef } = req.body;
-  const existingSchool = await School.findOne({ uniqRef });
+  const existingSchool = await School.findOne({ uniqRef, isActive: true });
   if (!existingSchool) throw new BadRequestError("No School Found");
   const existingUser = await User.findOne({ email });
   if (existingUser) throw new BadRequestError("User already exists");
@@ -38,7 +38,7 @@ export const signupController = async (req: Request, res: Response) => {
   });
   // TODO send account activation email
   await user.save();
-  res.status(201).send(user);
+  res.status(201).send(user.role);
 };
 
 export const signinController = async (req: Request, res: Response) => {
@@ -49,6 +49,7 @@ export const signinController = async (req: Request, res: Response) => {
     throw new BadRequestError("This account is currently inactive");
   const doesPasswordMatch = await compare(password, existingUser.password);
   if (!doesPasswordMatch) throw new BadRequestError("Invalid credentials");
+  // TODO redirect user to complete profile if user has no profile
   const token = await jwt.sign(
     {
       id: existingUser.id,
@@ -60,5 +61,5 @@ export const signinController = async (req: Request, res: Response) => {
     process.env.JWT_KEY
   );
   req.session.jwt = token;
-  res.send(existingUser);
+  res.send(existingUser.role);
 };

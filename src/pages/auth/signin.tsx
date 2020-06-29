@@ -34,9 +34,13 @@ export default () => {
 
 	return (
 		<div className='sign'>
+			<img
+				className='logo'
+				src={require("../../public/assets/logo.png")}
+				alt=''
+			/>
 			{onErr ? <Toast data={err} /> : <> </>}
 			<div className='form'>
-				<h1>Creare</h1>
 				<br />
 				<input
 					type='text'

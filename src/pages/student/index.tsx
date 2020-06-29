@@ -1,0 +1,1 @@
+export default ()=> <div>Student Welcome Page</div>

@@ -119,9 +119,9 @@ const schoolComponent = ({ currentUser, school }) => {
 }
 
 schoolComponent.getInitialProps = async (appContext) => {
-	const { data } = await buildClient(appContext).get("/api/school/byId")
-	console.log(data)
-	return { school: data }
+	// const { data } = await buildClient(appContext).get("/api/school/details")
+	// console.log(data)
+	// return { school: data }
 }
 
 export default schoolComponent

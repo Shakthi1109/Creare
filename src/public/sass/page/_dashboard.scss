@@ -15,6 +15,12 @@
 	.col {
 		// margin-top: 10vh;
 		@extend %flex-col-center;
+		h1 {
+			font-size: 3rem;
+		}
+		p {
+			text-align: left;
+		}
 		width: 70%;
 		height: 100vh;
 		.btn--blue {
@@ -41,6 +47,9 @@
 				text-align: left;
 				input {
 					margin: 2rem 0rem;
+					&:focus {
+						border-bottom-color: #fff;
+					}
 				}
 			}
 

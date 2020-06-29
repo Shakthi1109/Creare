@@ -10,9 +10,12 @@ import {
 export default ({ route }) => {
 	return (
 		<div className='sideBar'>
-			<div className='logo'>
-				<h2>Creare</h2>
-			</div>
+			<img
+				className='logo'
+				src={require("../../public/assets/logo.png")}
+				alt=''
+			/>
+
 			<div
 				className={route == "users" ? "current" : "option"}
 				onClick={(e) => Router.push("/admin/requests")}>
