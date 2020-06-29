@@ -1,0 +1,1 @@
+export default ()=> <div>get single super admin request</div>
