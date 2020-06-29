@@ -28,7 +28,7 @@ router.post("/signup", signupValidator, validateRequest, signupController);
 router.post("/signin", signinValidator, validateRequest, signinController);
 
 // to fetch all users that belong to particular school
-router.get("/", currentUser, requireAdminAuth, getUsersController);
+router.get("/all", currentUser, requireAdminAuth, getUsersController);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server user api is responding");
