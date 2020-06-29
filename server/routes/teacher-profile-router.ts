@@ -7,7 +7,7 @@ import {
   addTeacherProfileController,
   updateTeacherProfileController,
   updateTeacherProfileAdminController,
-} from "../controller/teacher-controller";
+} from "../controller/teacher-profile-controller";
 
 import { currentUser } from "../middlewares/current-user";
 import { requireAdminAuth } from "../middlewares/require-admin-auth";
