@@ -3,20 +3,23 @@ import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
 import { FaExternalLinkAlt } from "react-icons/fa"
-export default () => {
+import buildClient from "../../../service/build-client"
+
+const subjectComponent = ({ subjects }) => {
+	useEffect(() => {
+		console.log(subjects)
+	}, [subjects])
+
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
-	const [data, setdata] = useState([])
+	const [data, setdata] = useState([...subjects])
 	const [slicedData, setslicedData] = useState([])
 	const [indexRef, setindexRef] = useState(0)
-	useEffect(() => {
-		let arr = Array(5).fill(dummyData)
-		setdata([...arr])
-	}, [])
+
 	const [index, setindex] = useState(0)
-	const [capacity, setcapacity] = useState(20)
+	const [capacity, setcapacity] = useState(10)
 	const [selected, setselected] = useState(-1)
-	const [length, setlength] = useState(5)
+	const [length, setlength] = useState(subjects.length)
 
 	useEffect(() => {
 		setslicedData(data.slice(0, capacity))
@@ -46,7 +49,7 @@ export default () => {
 					<thead>
 						<tr>
 							<th>
-								Id
+								Subject Id
 								<input type='text' placeholder='search' />
 							</th>
 							<th>
@@ -54,7 +57,7 @@ export default () => {
 								<input type='text' placeholder='search' />
 							</th>
 							<th>
-								Type
+								Grade
 								<input type='text' placeholder='search' />
 							</th>
 							<th id='view'>
@@ -64,12 +67,12 @@ export default () => {
 						</tr>
 					</thead>
 					<tbody>
-						{slicedData.map((item, index) => {
+						{slicedData.map(({ name, grade, subjectId }, index) => {
 							return (
-								<tr>
-									<td>{index}</td>
-									<td>{item.name}</td>
-									<td>{item.type}</td>
+								<tr key={index}>
+									<td>{subjectId}</td>
+									<td>{name}</td>
+									<td>{grade}</td>
 									<td id='view'>
 										<FaExternalLinkAlt
 											onClick={() => {
@@ -98,3 +101,11 @@ export default () => {
 		</>
 	)
 }
+
+subjectComponent.getInitialProps = async (appContext) => {
+	const { data } = await buildClient(appContext).get("/api/subject/all")
+	console.log(data)
+	return { subjects: data }
+}
+
+export default subjectComponent

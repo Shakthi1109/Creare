@@ -3,7 +3,13 @@ import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
 import { FaExternalLinkAlt } from "react-icons/fa"
-export default () => {
+import buildClient from "../../../service/build-client"
+
+const studentComponent = ({ students }) => {
+	useEffect(() => {
+		console.log(students)
+	}, [students])
+
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
 	const [data, setdata] = useState([])
@@ -100,3 +106,11 @@ export default () => {
 		</>
 	)
 }
+
+studentComponent.getInitialProps = async (appContext) => {
+	// const { data } = await buildClient(appContext).get("/api/student/all")
+	// console.log(data)
+	// return { school: data }
+}
+
+export default studentComponent
