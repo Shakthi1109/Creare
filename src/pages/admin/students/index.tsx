@@ -106,7 +106,6 @@ const studentComponent = ({ students }) => {
 		</>
 	)
 }
-<<<<<<< HEAD
 
 studentComponent.getInitialProps = async (appContext) => {
 	// const { data } = await buildClient(appContext).get("/api/student/all")
@@ -115,5 +114,3 @@ studentComponent.getInitialProps = async (appContext) => {
 }
 
 export default studentComponent
-=======
->>>>>>> develop
