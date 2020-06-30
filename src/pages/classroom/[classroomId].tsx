@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 import Chat from "../../components/chat"
 import { socketEvent } from '../../service/socket-client'
 import { StudentAdd } from '../../../server/util/interface/student-add'
+import { UserRole } from '../../../server/util/enum/user-roles'
 const Classroom = ({ classroomId, currentUser }) => {
 	// states
 	const [sideOptions, setsideOptions] = useState(false)
@@ -17,12 +18,14 @@ const Classroom = ({ classroomId, currentUser }) => {
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	// effects
 	useEffect(() => {
-		socketEvent.joinClassroom({ id: currentUser.id, name: currentUser.name, room: classroomId });
-		socketEvent.addToClassroom(addStudentToClassroom)
+		if (currentUser.role === UserRole.Student) {
+			socketEvent.joinClassroom({ id: currentUser.id, name: currentUser.name, room: classroomId });
+			socketEvent.addToClassroom(addStudentToClassroom)
+		}
 	}, [])
 	// method 
 	const addStudentToClassroom = (data: StudentAdd) => {
-		alert(JSON.stringify(data));
+		// alert(JSON.stringify(data));
 	}
 
 	// render
