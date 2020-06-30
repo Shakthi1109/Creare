@@ -434,26 +434,35 @@ select:focus {
         color: #ffffffbb; }
 
 .header {
-  background-color: #1ABE5D;
+  background-color: #1abe5d;
   height: 70px;
   padding-top: 1px; }
-
-#teacherMenuicon {
-  float: left;
-  width: 70px;
-  height: 30px;
-  margin-top: 20px; }
-
-#logoImg {
-  float: left;
-  width: 100px;
-  height: 50px;
-  margin: 10px; }
-
-#teacherHeading {
-  position: relative;
-  text-align: center;
-  top: 5px;
-  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-  font-size: xx-large;
-  color: white; }
+  .header #teacherMenuicon {
+    float: left;
+    width: 70px;
+    height: 30px;
+    margin-top: 20px; }
+  .header #logoImg {
+    float: left;
+    width: 100px;
+    height: 50px;
+    margin: 10px; }
+  .header #teacherHeading {
+    position: relative;
+    text-align: center;
+    top: 5px;
+    font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+    font-size: xx-large;
+    color: white; }
+  .header #floatLeft {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    font-size: 3rem;
+    cursor: pointer; }
+    .header #floatLeft .options {
+      display: none;
+      position: fixed;
+      right: 8rem; }
+    .header #floatLeft:hover .options {
+      display: block; }
