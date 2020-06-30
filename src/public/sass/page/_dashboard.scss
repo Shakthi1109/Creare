@@ -12,6 +12,7 @@
 	margin-left: 10rem !important;
 	color: $color-primary;
 	@extend %flex-col-center;
+<<<<<<< HEAD
 	.cbtn {
 		position: fixed;
 		bottom: 5rem;
@@ -26,18 +27,26 @@
 		p {
 			text-align: left;
 		}
+=======
+	.col {
+		// margin-top: 10vh;
+		@extend %flex-col-center;
+>>>>>>> develop
 		width: 70%;
 		height: 100vh;
 		.btn--blue {
 			width: fit-content;
 		}
 	}
+<<<<<<< HEAD
 	.row {
 		@extend %flex-row-center;
 		.column {
 			@extend %flex-col-center;
 		}
 	}
+=======
+>>>>>>> develop
 	table {
 		width: 95%;
 		tr {
@@ -58,9 +67,12 @@
 				text-align: left;
 				input {
 					margin: 2rem 0rem;
+<<<<<<< HEAD
 					&:focus {
 						border-bottom-color: #fff;
 					}
+=======
+>>>>>>> develop
 				}
 			}
 

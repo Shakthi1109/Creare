@@ -3,6 +3,7 @@ import Overlay from "../../../components/overlay"
 import { useState, useEffect } from "react"
 import { FaPencilAlt } from "react-icons/fa"
 import buildClient from "../../../service/build-client"
+import { redirectClient } from "../../../service/redirect-client"
 
 const schoolComponent = ({ currentUser, school }) => {
 	useEffect(() => {
@@ -119,9 +120,13 @@ const schoolComponent = ({ currentUser, school }) => {
 }
 
 schoolComponent.getInitialProps = async (appContext) => {
-	const { data } = await buildClient(appContext).get("/api/school/detail")
-	console.log(data)
-	return { school: data }
+	try {
+		const { data } = await buildClient(appContext).get("/api/school/detail")
+		if (!data) throw new Error("no school found")
+		return { school: data }
+	} catch (error) {
+		redirectClient(appContext)
+	}
 }
 
 export default schoolComponent

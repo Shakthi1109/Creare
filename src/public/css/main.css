@@ -42,6 +42,7 @@ h5,
 h6 {
   margin: 5px; }
 
+<<<<<<< HEAD
 /* width */
 ::-webkit-scrollbar {
   width: 5px; }
@@ -65,29 +66,55 @@ h6 {
   height: 100vh;
   width: 100vw;
   overflow: auto; }
+=======
+.gettingStarted, .FoF, .classRoom {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; }
+>>>>>>> develop
 
 .sign {
   height: 100vh;
   width: 100%;
   padding: 4%; }
 
+<<<<<<< HEAD
 .sideBar, .overlay, .overlay .container, .overlay .container .form, .cbtn, .gettingStarted, .gettingStarted .row, .sign .form, .sign .form #suggest-capsule, .dashboard, .dashboard .col, .dashboard .row .column, .FoF div div, .classRoom {
+=======
+.sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest-capsule, .dashboard, .dashboard .col, .FoF div div, .classRoom {
+>>>>>>> develop
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
+<<<<<<< HEAD
 .sideBar .current, .sideBar .option, .overlay .container .form span, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .chat .send, .gettingStarted .row #controls, .sign, .dashboard .row, .FoF div, .classRoom .controls, .classRoom .controls .circle, .classRoom .sideOptions, .classRoom .rightBar .btn, #dashboard #row {
+=======
+.sideBar .current, .sideBar .option, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .chat .send, .gettingStarted .row #controls, .FoF div, .classRoom .controls, .classRoom .controls .circle, .classRoom .sideOptions, .classRoom .rightBar .btn {
+>>>>>>> develop
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center; }
 
+<<<<<<< HEAD
 .pages .row .icon {
   color: #fafafa;
   background-color: #0c3d54; }
 
 .container .toast, .container .toast .right .icon {
+=======
+.overlay .container .icon, .pages .row .icon {
+  color: #fafafa;
+  background-color: #0c3d54; }
+
+.overlay .container {
+  color: #0c3d54;
+  background-color: #fafafa; }
+
+.container .toast, .container .toast .right .icon, .btn--red {
+>>>>>>> develop
   background-color: #f44336;
   color: #fafafa; }
 
@@ -95,11 +122,19 @@ h6 {
   background-color: #ffebee;
   color: #f44336; }
 
+<<<<<<< HEAD
 option, .sideBar, .btn--blue, .cbtn, .gettingStarted, .FoF, .classRoom .rightBar {
   background-color: #0c3d54;
   color: #fafafa; }
 
 .overlay .container, .btn,
+=======
+option, .sideBar, .btn--blue, .gettingStarted, .FoF, .classRoom .rightBar {
+  background-color: #0c3d54;
+  color: #fafafa; }
+
+.btn,
+>>>>>>> develop
 .btn--blue-inv {
   color: #0c3d54;
   background-color: #fafafa; }
@@ -107,7 +142,11 @@ option, .sideBar, .btn--blue, .cbtn, .gettingStarted, .FoF, .classRoom .rightBar
 option:hover,
 option:focus,
 option:active,
+<<<<<<< HEAD
 option:checked, .overlay .container .icon, .btn--orange {
+=======
+option:checked {
+>>>>>>> develop
   background-color: #fd9065;
   color: #0c3d54; }
 
@@ -123,8 +162,13 @@ option:checked, .overlay .container .icon, .btn--orange {
   cursor: pointer;
   transition: 250ms ease-out; }
 
+<<<<<<< HEAD
 .btn--orange, .btn--blue, .btn,
 .btn--blue-inv, .cbtn {
+=======
+.btn--red, .btn--blue, .btn,
+.btn--blue-inv {
+>>>>>>> develop
   display: block;
   padding: 1rem;
   font-size: 1.75rem;
@@ -222,8 +266,15 @@ select:focus {
     border-style: none none none solid;
     border-color: inherit; }
   .sideBar .logo {
+<<<<<<< HEAD
     width: 90%;
     margin: 5rem 0rem; }
+=======
+    display: block;
+    color: inherit;
+    margin: 5rem 0rem;
+    font-size: 1.25rem; }
+>>>>>>> develop
   .sideBar:hover {
     width: 13rem; }
     .sideBar:hover a {
@@ -296,6 +347,7 @@ select:focus {
       cursor: pointer;
       margin: 0% -10%; }
 
+<<<<<<< HEAD
 .btn--orange {
   color: #fff; }
 
@@ -309,6 +361,11 @@ select:focus {
   font-size: 3rem;
   cursor: pointer; }
 
+=======
+.btn:disabled {
+  opacity: 0.5; }
+
+>>>>>>> develop
 .chat {
   width: 100%;
   height: 100%; }
@@ -316,7 +373,11 @@ select:focus {
     background: #fff;
     width: 100%;
     height: 65vh;
+<<<<<<< HEAD
     overflow-y: auto;
+=======
+    overflow-y: scroll;
+>>>>>>> develop
     border-radius: 1rem;
     margin: 0.5rem 0rem; }
   .chat .send {
@@ -377,6 +438,7 @@ select:focus {
         width: 70vw; } }
 
 .sign {
+<<<<<<< HEAD
   justify-content: space-around; }
   @media (max-width: 37.5em) {
     .sign {
@@ -384,6 +446,9 @@ select:focus {
       justify-content: unset; } }
   .sign .logo {
     width: 20%; }
+=======
+  justify-content: unset; }
+>>>>>>> develop
   .sign .form {
     padding: 1rem 3rem;
     border: 0.25rem solid #f06e3c;
@@ -459,6 +524,7 @@ select:focus {
 .dashboard {
   margin-left: 10rem !important;
   color: #0c3d54; }
+<<<<<<< HEAD
   .dashboard .cbtn {
     position: fixed;
     bottom: 5rem;
@@ -470,6 +536,11 @@ select:focus {
       font-size: 3rem; }
     .dashboard .col p {
       text-align: left; }
+=======
+  .dashboard .col {
+    width: 70%;
+    height: 100vh; }
+>>>>>>> develop
     .dashboard .col .btn--blue {
       width: fit-content; }
   .dashboard table {
@@ -487,8 +558,11 @@ select:focus {
       text-align: left; }
       .dashboard table tr th input {
         margin: 2rem 0rem; }
+<<<<<<< HEAD
         .dashboard table tr th input:focus {
           border-bottom-color: #fff; }
+=======
+>>>>>>> develop
     .dashboard table tr:nth-child(odd) {
       color: #0c3d54;
       background-color: #fd906565; }
@@ -564,8 +638,11 @@ select:focus {
     .classRoom {
       display: none;
       background-image: url("https://i0.wp.com/www.cosect.net/wp-content/uploads/2019/07/rotate_screen_icon.gif?resize=300%2C250&ssl=1"); } }
+<<<<<<< HEAD
 
 #dashboard .cbtn {
   position: fixed;
   bottom: 5rem;
   right: 5rem; }
+=======
+>>>>>>> develop
