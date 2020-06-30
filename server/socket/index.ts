@@ -1,15 +1,16 @@
-import SocketIo, { Server, Socket } from "socket.io";
+import SocketIo from "socket.io";
 
-export class Io {
-  socketConnection: Server = null;
+import { MessageEvent } from "./event";
 
-  connect(server) {
-    this.socketConnection = SocketIo(server);
-  }
-
-  listen() {
-    if (!this.socketConnection)
-      throw new Error("Cannot listen before connection");
-    this.socketConnection.on("connection", (socket: Socket) => {});
-  }
-}
+export const socketServer = (server) => {
+  const io = SocketIo(server);
+  io.on("connection", async (socket) => {
+    socket.on(MessageEvent.Joined, (data) => {
+      console.log({ socket: data });
+    });
+    socket.on(MessageEvent.Sent, (data) => {
+      console.log({ socket: data });
+      // socket.to()
+    });
+  });
+};

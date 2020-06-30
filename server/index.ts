@@ -7,7 +7,7 @@ import { router } from "./routes";
 import { app, handler, nextApp } from "./app";
 import { errorHandler } from "./middlewares/error-handler";
 import { envCheck } from "./util/env-check";
-import { io } from "./socket";
+import { socketServer } from "./socket";
 
 const start = async () => {
   try {
@@ -26,9 +26,10 @@ const start = async () => {
     app.all("*", (req: Request, res: Response) => handler(req, res));
     // server start listening here
     console.log("Mongo db is connected");
-    app.listen(process.env.PORT, () => {
+    const server = app.listen(process.env.PORT, () => {
       console.log(`Creare ready on port ${process.env.PORT} !!!`);
     });
+    socketServer(server);
   } catch (error) {
     console.log(error.message);
     process.exit(0);
