@@ -9,7 +9,6 @@ import { ClassroomStatus } from "../util/enum/classroom-status";
 
 // add class -> except students add everything else and schedule class
 // get all classes only for admin
-// cancel class -> cancel class schedule , update status and cancelledBy
 
 // fetch class by id -> populate all here;
 // ** NOTE: .populate("students").populate("teacher").populate("subject")
@@ -38,6 +37,30 @@ import { ClassroomStatus } from "../util/enum/classroom-status";
 // in db i saw that repeated job were getting initialized each 10 seconnds...add console.log   in jobs and see if they were being diplayed in console
 // classroom is the one with user reference you should populate classroom
 
+export const fetchAllClassroomController = async (
+  req: Request,
+  res: Response
+) => {
+  const classrooms = await Classroom.find()
+    .populate("teacher", "name id")
+    .populate("students", "name id")
+    .populate("subject", "id name grade");
+
+  res.status(200).send(classrooms);
+};
+
+export const fetchClassroomByIdController = async (
+  req: Request,
+  res: Response
+) => {
+  const classrooms = await Classroom.findById(req.params.classId)
+    .populate("teacher", "name id")
+    .populate("students", "name id")
+    .populate("subject", "id name grade");
+
+  res.status(200).send(classrooms);
+};
+
 export const addClassController = async (req: Request, res: Response) => {
   const {
     topic,
@@ -48,6 +71,12 @@ export const addClassController = async (req: Request, res: Response) => {
     endDateTime,
   } = req.body;
 
+  const exisitingClassroom = await Classroom.findOne({
+    topic,
+    status: ClassroomStatus.Scheduled || ClassroomStatus.InProgress,
+  });
+  if (exisitingClassroom)
+    throw new BadRequestError("A classroom already exists");
   const existingTeacher = await User.findById(teacher);
   const exisitingSubject = await Subject.findById(subject);
 
@@ -83,13 +112,33 @@ export const updateClassroomController = async (
   res.send(existingClassroom);
 };
 
+// end class
 export const endClassroomController = async (req: Request, res: Response) => {
   // end class -> status update and endDateTime update (use Date.now())
   const existingClassroom = await Classroom.findById(req.params.classId);
   if (!existingClassroom) throw new BadRequestError("No such classroom exists");
   // const status = existingClassroom.status;
-  existingClassroom.set({ status: ClassroomStatus.Cancelled });
+  const isStudent = req.currentUser.role === UserRole.Student;
+  if (isStudent)
+    throw new BadRequestError("only teacher or admin is allowed to end ");
+  existingClassroom.set({ status: ClassroomStatus.Completed });
   existingClassroom.set({ endDateTime: Date.now() });
+  existingClassroom.save();
+  res.send(existingClassroom);
+};
+
+// cancel class
+export const cancelClassController = async (req: Request, res: Response) => {
+  // cancel class -> cancel class schedule , update status and cancelledBy
+  const existingClassroom = await Classroom.findById(req.params.classId);
+  if (!existingClassroom) throw new BadRequestError("No such classroom exists");
+  // const status = existingClassroom.status;
+  const isStudent = req.currentUser.role === UserRole.Student;
+  if (isStudent)
+    throw new BadRequestError("only teacher or admin is allowed to cancel");
+  existingClassroom.set({ status: ClassroomStatus.Cancelled });
+  existingClassroom.set({ cancelledBy: req.currentUser.id });
+  existingClassroom.save();
   res.send(existingClassroom);
 };
 
@@ -98,8 +147,12 @@ export const joinClassroomController = async (req: Request, res: Response) => {
   const existingClassroom = await Classroom.findById(
     req.params.classId
   ).populate("students", "name id");
-  if (!existingClassroom) throw new BadRequestError("No class found");
+  if (!existingClassroom) throw new BadRequestError("No classroom found");
 
+  if (existingClassroom.status === ClassroomStatus.Completed)
+    throw new BadRequestError("Class is completed");
+  if (existingClassroom.status === ClassroomStatus.Cancelled)
+    throw new BadRequestError("Class is cancelled");
   if (req.currentUser.role !== UserRole.Student)
     return res.send(existingClassroom);
 
