@@ -149,10 +149,11 @@ export const joinClassroomController = async (req: Request, res: Response) => {
   ).populate("students", "name id");
   if (!existingClassroom) throw new BadRequestError("No classroom found");
 
-  if (existingClassroom.status === ClassroomStatus.Completed)
-    throw new BadRequestError("Class is completed");
-  if (existingClassroom.status === ClassroomStatus.Cancelled)
-    throw new BadRequestError("Class is cancelled");
+  if (
+    existingClassroom.status === ClassroomStatus.Completed ||
+    existingClassroom.status === ClassroomStatus.Cancelled
+  )
+    throw new BadRequestError("Class is unavailable");
   if (req.currentUser.role !== UserRole.Student)
     return res.send(existingClassroom);
 
