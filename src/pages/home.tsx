@@ -1,20 +1,29 @@
 import { IoMdHappy } from "react-icons/io"
 import Router from "next/router"
-export default () => (
-	<div className='FoF'>
-		<h1>Creare</h1>
-		<div>
-			<IoMdHappy className='icon' />
+import { useEffect } from "react"
+export default ({ currentUser }) => {
+<<<<<<< HEAD
+	useEffect(() => {
+		console.log(currentUser)
+	}, [currentUser])
+=======
+>>>>>>> develop
+	return (
+		<div className='FoF'>
+			<h1>Creare</h1>
 			<div>
-				<h2>We are under Development....</h2>
-				<button
-					className='btn'
-					onClick={() => {
-						Router.push("/index")
-					}}>
-					Wanna know about us..
-				</button>
+				<IoMdHappy className='icon' />
+				<div>
+					<h2>We are under Development....</h2>
+					<button
+						className='btn'
+						onClick={() => {
+							console.log(currentUser)
+						}}>
+						Wanna know about us..
+					</button>
+				</div>
 			</div>
 		</div>
-	</div>
-)
+	)
+}

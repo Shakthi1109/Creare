@@ -10,13 +10,13 @@ export default () => {
 	const [slicedData, setslicedData] = useState([])
 	const [indexRef, setindexRef] = useState(0)
 	useEffect(() => {
-		let arr = Array(5).fill(dummyData)
+		let arr = Array(50).fill(dummyData)
 		setdata([...arr])
 	}, [])
 	const [index, setindex] = useState(0)
-	const [capacity, setcapacity] = useState(20)
+	const [capacity, setcapacity] = useState(10)
 	const [selected, setselected] = useState(-1)
-	const [length, setlength] = useState(5)
+	const [length, setlength] = useState(50)
 
 	useEffect(() => {
 		setslicedData(data.slice(0, capacity))
@@ -43,19 +43,34 @@ export default () => {
 					<></>
 				)}
 				<table>
-					<th>
-						<td>Name</td>
-						<td>Type</td>
-						<td>View</td>
-					</th>
-					{Array(10)
-						.fill(dummyData)
-						.map((item) => {
+					<thead>
+						<tr>
+							<th>
+								Id
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								Name
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								Type
+								<input type='text' placeholder='search' />
+							</th>
+							<th id='view'>
+								View
+								{/* <input type='text' placeholder='search' /> */}
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{slicedData.map((item, index) => {
 							return (
-								<tr>
+								<tr key={index}>
+									<td>{index}</td>
 									<td>{item.name}</td>
 									<td>{item.type}</td>
-									<td>
+									<td id='view'>
 										<FaExternalLinkAlt
 											onClick={() => {
 												setoverlay(true)
@@ -66,6 +81,7 @@ export default () => {
 								</tr>
 							)
 						})}
+					</tbody>
 				</table>
 				<Paginate
 					prev={() => {

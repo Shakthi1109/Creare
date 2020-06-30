@@ -16,6 +16,7 @@ export default ({ data, type = "error" }) => {
 			{errs.map(({ message }, index) => {
 				return (
 					<Toast
+						key={index}
 						message={message}
 						type={type}
 						closeErr={() => {
