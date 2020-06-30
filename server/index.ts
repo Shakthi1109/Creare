@@ -7,6 +7,7 @@ import { router } from "./routes";
 import { app, handler, nextApp } from "./app";
 import { errorHandler } from "./middlewares/error-handler";
 import { envCheck } from "./util/env-check";
+import { io } from "./socket";
 
 const start = async () => {
   try {
