@@ -2,12 +2,9 @@ import { IoMdHappy } from "react-icons/io"
 import Router from "next/router"
 import { useEffect } from "react"
 export default ({ currentUser }) => {
-<<<<<<< HEAD
 	useEffect(() => {
 		console.log(currentUser)
 	}, [currentUser])
-=======
->>>>>>> develop
 	return (
 		<div className='FoF'>
 			<h1>Creare</h1>

@@ -1,16 +1,17 @@
 import SocketIo from "socket.io";
 
-import { MessageEvent } from "./event";
+import { MessageEvent } from "../util/enum/message-event";
+import { ClassroomEvent } from "../util/enum/classroom-event";
 
-export const socketServer = (server) => {
+import { StudentJoined } from "../util/interface/student-joined";
+
+export const socketServer = (server: any) => {
   const io = SocketIo(server);
   io.on("connection", async (socket) => {
-    socket.on(MessageEvent.Joined, (data) => {
-      console.log({ socket: data });
-    });
-    socket.on(MessageEvent.Sent, (data) => {
-      console.log({ socket: data });
-      // socket.to()
+    console.log("socket connected");
+    socket.on(ClassroomEvent.StudentJoined, (data: StudentJoined) => {
+      socket.join(data.room);
+      io.to(data.room).emit(ClassroomEvent.StudentAdd, data);
     });
   });
 };
