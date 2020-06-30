@@ -6,7 +6,7 @@ function teacherLanding() {
         <body className="teacherBody">
             <div className="header"></div>
             <input type="checkbox" id="openSidebarMenu"></input>
-            <label for="openSidebarMenu" className="sidebarIconToggle">
+            <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
                 <div className="spinner top"></div>
                 <div className="spinner middle"></div>
                 <div className="spinner bottom"></div>
