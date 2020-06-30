@@ -1,6 +1,7 @@
-.btn--red {
+.btn--orange {
 	@extend %button;
-	@extend %bg-red;
+	@extend %bg-orange;
+	color: #fff;
 }
 
 .btn--blue {
@@ -16,4 +17,15 @@
 
 .btn:disabled {
 	opacity: 0.5;
+}
+
+.cbtn {
+	@extend %button;
+	@extend %bg-blue;
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	@extend %flex-col-center;
+	font-size: 3rem;
+	cursor: pointer;
 }

@@ -7,6 +7,8 @@ import {
 	FaUsersCog,
 	FaBookReader
 } from "react-icons/fa"
+import { MdClass } from "react-icons/md"
+
 export default ({ route }) => {
 	return (
 		<div className='sideBar'>
@@ -51,6 +53,12 @@ export default ({ route }) => {
 				onClick={(e) => Router.push("/admin/subjects")}>
 				<FaBookReader className='icon' />
 				<a>Subjects</a>
+			</div>
+			<div
+				className={route == "class" ? "current" : "option"}
+				onClick={(e) => Router.push("/admin/classes")}>
+				<MdClass className='icon' />
+				<a>Classes</a>
 			</div>
 		</div>
 	)
