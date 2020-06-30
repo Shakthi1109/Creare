@@ -1,8 +1,15 @@
 import React from "react"
 import logoImg from "../../public/static/logo1.png"
 import { FaBars, FaUserAlt } from "react-icons/fa"
+import styled from 'styled-components';
 
-const avatarStyle = {}
+
+function clickMe(){
+alert('clicked');
+}
+
+
+
 function teacherLanding() {
 	return (
 		<div className='header'>
@@ -21,7 +28,24 @@ function teacherLanding() {
 
 				</div>
 			</span>
+
+            <body>
+                <div className="btnContainer">
+                    <button className="teacherCards" onClick={clickMe}>
+                        Classes
+                    </button>
+
+                    <button className="teacherCards" onClick={clickMe}>
+                        Classes
+                    </button>
+
+                    <button className="teacherCards" onClick={clickMe}>
+                        Classes
+                    </button>
+                </div>
+            </body>
 		</div>
+        
 	)
 }
 

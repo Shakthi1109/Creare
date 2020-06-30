@@ -478,3 +478,33 @@ select:focus {
     .header #floatLeft:hover .options {
       display: block;
       z-index: 100; }
+  .header .btnContainer {
+    text-align: center;
+    margin-top: 280px; }
+    .header .btnContainer .teacherCards {
+      border: 1px solid #1abe5d;
+      background: none;
+      padding: 100px 150px;
+      font-size: 3rem;
+      font-family: "montserrat";
+      cursor: pointer;
+      margin: 20px;
+      color: #1abe5d;
+      transition: 0.8s;
+      position: relative;
+      overflow: hidden; }
+    .header .btnContainer .teacherCards:hover {
+      color: #fff; }
+    .header .btnContainer .teacherCards::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: #1abe5d;
+      z-index: -1;
+      transition: 0.8s;
+      bottom: 0;
+      border-radius: 50% 50% 0 0; }
+    .header .btnContainer .teacherCards:hover::before {
+      height: 180%; }
