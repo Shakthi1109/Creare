@@ -3,6 +3,7 @@ import { SubjectDoc, Subject } from "../model/subject-model";
 
 import { UserDoc } from "./user-model";
 import { UserRole } from "../util/enum/user-roles";
+import { ClassroomStatus } from "../util/enum/classroom-status";
 
 // TODO add addedBy (admin or teacher) - UserDoc
 interface ClassroomAttrs {
@@ -27,6 +28,7 @@ export interface ClassroomDoc extends mongoose.Document {
   endDateTime: Date;
   addedBy: UserDoc;
   cancelledBy: UserDoc;
+  status: ClassroomStatus;
 }
 
 interface ClassroomModel extends mongoose.Model<ClassroomDoc> {
@@ -67,6 +69,12 @@ const ClassroomSchema = new mongoose.Schema(
     duration: { type: Number, required: true },
     startDateTime: { type: mongoose.Schema.Types.Date, required: true },
     endDateTime: { type: mongoose.Schema.Types.Date, required: true },
+
+    status: {
+      type: String,
+      enum: Object.values(ClassroomStatus),
+      default: ClassroomStatus.Scheduled,
+    },
   },
   {
     toJSON: {

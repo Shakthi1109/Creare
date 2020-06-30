@@ -4,11 +4,13 @@ import { BadRequestError } from "../errors/bad-request-error";
 import { Subject } from "../model/subject-model";
 import { User } from "../model/user-model";
 import { UserRole } from "../util/enum/user-roles";
+import { stat } from "fs";
+import { ClassroomStatus } from "../util/enum/classroom-status";
 
 // add class -> except students add everything else and schedule class
 
 // cancel class -> cancel class schedule , update status and cancelledBy
-// end class -> status update and endDateTime update (use Date.now())
+
 // fetch class by id -> populate all here;
 // ** NOTE: .populate("students").populate("teacher").populate("subject")
 // ** in users only name and id
@@ -81,7 +83,15 @@ export const updateClassroomController = async (
   res.send(existingClassroom);
 };
 
-export const endClassroomController = async (req: Request, res: Response) => {};
+export const endClassroomController = async (req: Request, res: Response) => {
+  // end class -> status update and endDateTime update (use Date.now())
+  const existingClassroom = await Classroom.findById(req.params.classId);
+  if (!existingClassroom) throw new BadRequestError("No such classroom exists");
+  // const status = existingClassroom.status;
+  existingClassroom.set({ status: ClassroomStatus.Cancelled });
+  existingClassroom.set({ endDateTime: Date.now() });
+  res.send(existingClassroom);
+};
 
 // join  Classroom controller for students
 // this is put method
