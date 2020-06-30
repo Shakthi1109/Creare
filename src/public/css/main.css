@@ -438,6 +438,7 @@ select:focus {
   height: 70px;
   padding-top: 1px; }
   .header #teacherMenuicon {
+    color: white;
     float: left;
     width: 70px;
     height: 30px;
@@ -461,8 +462,19 @@ select:focus {
     font-size: 3rem;
     cursor: pointer; }
     .header #floatLeft .options {
+      top: 5.4rem;
+      right: 1rem;
       display: none;
       position: fixed;
-      right: 8rem; }
+      background-color: #f1f1f1;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      min-width: 150px;
+      z-index: 1; }
+      .header #floatLeft .options ul {
+        font-size: large;
+        margin: 2rem;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     .header #floatLeft:hover .options {
-      display: block; }
+      display: block;
+      z-index: 100; }
