@@ -3,8 +3,16 @@
 .sign {
 	// @extend %bg-blue;
 	@extend %body-page-padded;
-	@extend %flex-col-center;
-	justify-content: unset;
+	@extend %flex-row-center;
+	justify-content: space-around;
+	// justify-content: unset;
+	@include respond(phone) {
+		flex-direction: column;
+		justify-content: unset;
+	}
+	.logo {
+		width: 20%;
+	}
 	.form {
 		// @extend %bg-orange;
 		padding: 1rem 3rem;

@@ -31,8 +31,8 @@ const schoolComponent = ({ currentUser, school }) => {
 						}}
 					/>
 				) : (
-						<></>
-					)}
+					<></>
+				)}
 				<div className='col'>
 					<h1>Schools Info</h1>
 					<br />
@@ -105,14 +105,14 @@ const schoolComponent = ({ currentUser, school }) => {
 							Confirm Changes
 						</button>
 					) : (
-							<button
-								className='btn--blue'
-								onClick={() => {
-									setcanEdit(true)
-								}}>
-								Click here to Edit
-							</button>
-						)}
+						<button
+							className='btn--blue'
+							onClick={() => {
+								setcanEdit(true)
+							}}>
+							Click here to Edit
+						</button>
+					)}
 				</div>
 			</div>
 		</>
@@ -122,10 +122,10 @@ const schoolComponent = ({ currentUser, school }) => {
 schoolComponent.getInitialProps = async (appContext) => {
 	try {
 		const { data } = await buildClient(appContext).get("/api/school/detail")
-		if (!data) throw new Error("no school found");
+		if (!data) throw new Error("no school found")
 		return { school: data }
 	} catch (error) {
-		redirectClient(appContext);
+		redirectClient(appContext)
 	}
 }
 

@@ -43,3 +43,27 @@ h5,
 h6 {
 	margin: 5px;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 7px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #206063;
+
+	background-image: linear-gradient(to top, #0c3d54, #0c3d54b0);
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background-image: linear-gradient(to bottom, #0c3d54, #0c3d54);
+}

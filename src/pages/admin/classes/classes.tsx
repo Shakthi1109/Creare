@@ -1,28 +1,23 @@
-import Sidebar from "../../../components/side-nav"
-import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
 import { FaExternalLinkAlt } from "react-icons/fa"
-import buildClient from "../../../service/build-client"
-
-const studentComponent = ({ students }) => {
-	useEffect(() => {
-		console.log(students)
-	}, [students])
-
+export default ({ status }) => {
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
 	const [data, setdata] = useState([])
 	const [slicedData, setslicedData] = useState([])
 	const [indexRef, setindexRef] = useState(0)
 	useEffect(() => {
-		let arr = Array(110).fill(dummyData)
+		let arr = Array(50).fill(dummyData)
 		setdata([...arr])
 	}, [])
+	useEffect(() => {
+		console.log(status)
+	}, [status])
 	const [index, setindex] = useState(0)
-	const [capacity, setcapacity] = useState(20)
+	const [capacity, setcapacity] = useState(10)
 	const [selected, setselected] = useState(-1)
-	const [length, setlength] = useState(110)
+	const [length, setlength] = useState(50)
 
 	useEffect(() => {
 		setslicedData(data.slice(0, capacity))
@@ -33,23 +28,9 @@ const studentComponent = ({ students }) => {
 		setindexRef(ind)
 		setslicedData(data.slice(ind, ind + capacity))
 	}, [index])
-
 	return (
 		<>
-			<Sidebar route={"students"} />
 			<div className='dashboard'>
-				<h1>Students</h1>
-				<br />
-				{overlay ? (
-					<Overlay
-						data={data[selected]}
-						closeFunc={() => {
-							setoverlay(false)
-						}}
-					/>
-				) : (
-					<></>
-				)}
 				<table>
 					<thead>
 						<tr>
@@ -62,22 +43,24 @@ const studentComponent = ({ students }) => {
 								<input type='text' placeholder='search' />
 							</th>
 							<th>
-								Type
+								Teacher
 								<input type='text' placeholder='search' />
 							</th>
-							<th id='view'>
-								View
-								{/* <input type='text' placeholder='search' /> */}
+							<th>
+								Date
+								<input type='text' placeholder='search' />
 							</th>
+							<th id='view'>View</th>
 						</tr>
 					</thead>
 					<tbody>
-						{slicedData.map((item, index) => {
+						{slicedData.map((item, ind) => {
 							return (
-								<tr>
-									<td>{index}</td>
+								<tr key={indexRef + ind}>
+									<td>{indexRef + ind}</td>
 									<td>{item.name}</td>
 									<td>{item.type}</td>
+									<td>{item.add}</td>
 									<td id='view'>
 										<FaExternalLinkAlt
 											onClick={() => {
@@ -91,6 +74,7 @@ const studentComponent = ({ students }) => {
 						})}
 					</tbody>
 				</table>
+
 				<Paginate
 					prev={() => {
 						setindex(index - 1)
@@ -106,11 +90,3 @@ const studentComponent = ({ students }) => {
 		</>
 	)
 }
-
-studentComponent.getInitialProps = async (appContext) => {
-	// const { data } = await buildClient(appContext).get("/api/student/all")
-	// console.log(data)
-	// return { school: data }
-}
-
-export default studentComponent

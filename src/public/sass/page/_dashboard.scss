@@ -12,13 +12,30 @@
 	margin-left: 10rem !important;
 	color: $color-primary;
 	@extend %flex-col-center;
+	.cbtn {
+		position: fixed;
+		bottom: 5rem;
+		right: 5rem;
+	}
 	.col {
 		// margin-top: 10vh;
 		@extend %flex-col-center;
+		h1 {
+			font-size: 3rem;
+		}
+		p {
+			text-align: left;
+		}
 		width: 70%;
 		height: 100vh;
 		.btn--blue {
 			width: fit-content;
+		}
+	}
+	.row {
+		@extend %flex-row-center;
+		.column {
+			@extend %flex-col-center;
 		}
 	}
 	table {
@@ -41,6 +58,9 @@
 				text-align: left;
 				input {
 					margin: 2rem 0rem;
+					&:focus {
+						border-bottom-color: #fff;
+					}
 				}
 			}
 

@@ -42,37 +42,52 @@ h5,
 h6 {
   margin: 5px; }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 7px; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #206063;
+  background-image: linear-gradient(to top, #0c3d54, #0c3d54b0);
+  border-radius: 10px; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(to bottom, #0c3d54, #0c3d54); }
+
 .gettingStarted, .FoF, .classRoom {
   height: 100vh;
   width: 100vw;
-  overflow: hidden; }
+  overflow: auto; }
 
 .sign {
   height: 100vh;
   width: 100%;
   padding: 4%; }
 
-.sideBar, .overlay, .overlay .container, .gettingStarted, .gettingStarted .row, .sign, .sign .form, .sign .form #suggest-capsule, .dashboard, .dashboard .col, .FoF div div, .classRoom {
+.sideBar, .overlay, .overlay .container, .overlay .container .form, .cbtn, .gettingStarted, .gettingStarted .row, .sign .form, .sign .form #suggest-capsule, .dashboard, .dashboard .col, .dashboard .row .column, .FoF div div, .classRoom {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; }
 
-.sideBar .current, .sideBar .option, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .chat .send, .gettingStarted .row #controls, .FoF div, .classRoom .controls, .classRoom .controls .circle, .classRoom .sideOptions, .classRoom .rightBar .btn {
+.sideBar .current, .sideBar .option, .overlay .container .form span, .overlay .container .row, .container .toast, .container .toast .right, .pages .row, .chat .send, .gettingStarted .row #controls, .sign, .dashboard .row, .FoF div, .classRoom .controls, .classRoom .controls .circle, .classRoom .sideOptions, .classRoom .rightBar .btn, #dashboard #row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center; }
 
-.overlay .container .icon, .pages .row .icon {
+.pages .row .icon {
   color: #fafafa;
   background-color: #0c3d54; }
 
-.overlay .container {
-  color: #0c3d54;
-  background-color: #fafafa; }
-
-.container .toast, .container .toast .right .icon, .btn--red {
+.container .toast, .container .toast .right .icon {
   background-color: #f44336;
   color: #fafafa; }
 
@@ -80,11 +95,11 @@ h6 {
   background-color: #ffebee;
   color: #f44336; }
 
-option, .sideBar, .btn--blue, .gettingStarted, .FoF, .classRoom .rightBar {
+option, .sideBar, .btn--blue, .cbtn, .gettingStarted, .FoF, .classRoom .rightBar {
   background-color: #0c3d54;
   color: #fafafa; }
 
-.btn,
+.overlay .container, .btn,
 .btn--blue-inv {
   color: #0c3d54;
   background-color: #fafafa; }
@@ -92,7 +107,7 @@ option, .sideBar, .btn--blue, .gettingStarted, .FoF, .classRoom .rightBar {
 option:hover,
 option:focus,
 option:active,
-option:checked {
+option:checked, .overlay .container .icon, .btn--orange {
   background-color: #fd9065;
   color: #0c3d54; }
 
@@ -108,8 +123,8 @@ option:checked {
   cursor: pointer;
   transition: 250ms ease-out; }
 
-.btn--red, .btn--blue, .btn,
-.btn--blue-inv {
+.btn--orange, .btn--blue, .btn,
+.btn--blue-inv, .cbtn {
   display: block;
   padding: 1rem;
   font-size: 1.75rem;
@@ -207,10 +222,8 @@ select:focus {
     border-style: none none none solid;
     border-color: inherit; }
   .sideBar .logo {
-    display: block;
-    color: inherit;
-    margin: 5rem 0rem;
-    font-size: 1.25rem; }
+    width: 90%;
+    margin: 5rem 0rem; }
   .sideBar:hover {
     width: 13rem; }
     .sideBar:hover a {
@@ -225,13 +238,19 @@ select:focus {
   height: 50vh;
   position: relative;
   border-radius: 25px; }
+  .overlay .container .form {
+    width: 90%; }
+    .overlay .container .form span {
+      justify-content: flex-start; }
+    .overlay .container .form button {
+      width: 50%; }
   .overlay .container .icon {
     position: absolute;
     top: -10px;
     right: -10px;
     padding: 5px;
     border-radius: 50%;
-    font-size: 2em;
+    font-size: 5rem;
     cursor: pointer; }
 
 .container {
@@ -277,8 +296,18 @@ select:focus {
       cursor: pointer;
       margin: 0% -10%; }
 
+.btn--orange {
+  color: #fff; }
+
 .btn:disabled {
   opacity: 0.5; }
+
+.cbtn {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  font-size: 3rem;
+  cursor: pointer; }
 
 .chat {
   width: 100%;
@@ -287,7 +316,7 @@ select:focus {
     background: #fff;
     width: 100%;
     height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 1rem;
     margin: 0.5rem 0rem; }
   .chat .send {
@@ -348,7 +377,13 @@ select:focus {
         width: 70vw; } }
 
 .sign {
-  justify-content: unset; }
+  justify-content: space-around; }
+  @media (max-width: 37.5em) {
+    .sign {
+      flex-direction: column;
+      justify-content: unset; } }
+  .sign .logo {
+    width: 20%; }
   .sign .form {
     padding: 1rem 3rem;
     border: 0.25rem solid #f06e3c;
@@ -424,9 +459,17 @@ select:focus {
 .dashboard {
   margin-left: 10rem !important;
   color: #0c3d54; }
+  .dashboard .cbtn {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem; }
   .dashboard .col {
     width: 70%;
     height: 100vh; }
+    .dashboard .col h1 {
+      font-size: 3rem; }
+    .dashboard .col p {
+      text-align: left; }
     .dashboard .col .btn--blue {
       width: fit-content; }
   .dashboard table {
@@ -444,6 +487,8 @@ select:focus {
       text-align: left; }
       .dashboard table tr th input {
         margin: 2rem 0rem; }
+        .dashboard table tr th input:focus {
+          border-bottom-color: #fff; }
     .dashboard table tr:nth-child(odd) {
       color: #0c3d54;
       background-color: #fd906565; }
@@ -519,3 +564,8 @@ select:focus {
     .classRoom {
       display: none;
       background-image: url("https://i0.wp.com/www.cosect.net/wp-content/uploads/2019/07/rotate_screen_icon.gif?resize=300%2C250&ssl=1"); } }
+
+#dashboard .cbtn {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem; }

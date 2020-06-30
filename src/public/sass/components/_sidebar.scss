@@ -42,10 +42,8 @@
 		@extend %tab;
 	}
 	.logo {
-		display: block;
-		color: inherit;
+		width: 90%;
 		margin: 5rem 0rem;
-		font-size: 1.25rem;
 	}
 
 	&:hover {
