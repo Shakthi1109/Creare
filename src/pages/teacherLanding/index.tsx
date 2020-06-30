@@ -3,17 +3,13 @@ import logoImg from "../../public/static/logo1.png"
 import { FaBars, FaUserAlt } from "react-icons/fa"
 import styled from 'styled-components';
 
-
 function clickMe(){
 alert('clicked');
 }
 
-
-
 function teacherLanding() {
 	return (
 		<div className='header'>
-			<FaBars id='teacherMenuicon' color='white' />
 
 			<img src={logoImg} alt='logo' id='logoImg' />
 
@@ -29,7 +25,26 @@ function teacherLanding() {
 				</div>
 			</span>
 
-            <body>
+            <body className="teacherBody">
+                <input type="checkbox" id="openSidebarMenu"></input>
+                <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
+                    <div className="spinner top"></div>
+                    <div className="spinner middle"></div>
+                    <div className="spinner bottom"></div>
+                </label>
+                    <div id="sidebarMenu1">
+                        <ul className="menu">
+                            <li><a href="#">Tech Corner</a></li>
+                            <li><a href="#">Tutorial Videos</a></li>
+                            <li><a href="#">Sports</a></li>
+                            <li><a href="#">Exam Results</a></li>
+                            <li><a href="#">Discover Yourself</a></li>
+                            <li><a href="#">Knowledge Centre</a></li>
+                            <li><a href="#">Chats</a></li>
+                            <li><a href="#">Languages</a></li>
+                        </ul>
+                    </div>
+
                 <div className="btnContainer">
                     <button className="teacherCards" onClick={clickMe}>
                         Classes

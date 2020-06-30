@@ -20,7 +20,7 @@
 
 .header {
 	background-color: #1abe5d;
-	height: 70px;
+	height: 60px;
 	padding-top: 1px;
 
 	#teacherMenuicon {
@@ -35,13 +35,14 @@
 		float: left;
 		width: 100px;
 		height: 50px;
-		margin: 10px;
+		margin: 4px;
+		margin-left: 70px;
 	}
 
 	#teacherHeading {
 		position: relative;
 		text-align: center;
-		top: 5px;
+		top: 0px;
 		font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
 		font-size: xx-large;
 		color: white;
@@ -50,7 +51,7 @@
 	#floatLeft {
 		position: fixed;
 		right: 2rem;
-		top: 2rem;
+		top: 1.5rem;
 		font-size: 3rem;
 		.options {	
 			top: 5.4rem;
@@ -104,9 +105,7 @@
 		.teacherCards:hover{
 			color:#fff;
 		}
-
 		
-
 			.teacherCards::before{
 				content: "";
 				position: absolute;
@@ -125,22 +124,87 @@
 				
 			}
 
-
-
-			// background-color: #1abe5d;
-			// color: white;
-			// font-size: 3rem;
-			// font-weight: bolder;
-			// border-radius:  5px;
-			// outline: 0;
-			// box-shadow:0px 2px 2px lightgray;
-			//  cursor: pointer;
-			// transition: ease background-color 250ms;
-			// height: 250px;
-			// width: 250px;
-
-
-			
-
 		}
 	}
+
+//Side sliding menu bar
+
+  #sidebarMenu1
+  {
+
+    height: 100%;
+    position: fixed;
+    left:0;
+    top:0;
+    width: 300px;
+    margin-top:60px;
+    background: rgba(236, 236, 236, 0.904);
+    transform: translateX(-300px);
+    transition: transform 300ms ease-in-out
+  }
+
+  .menu
+  {
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+  }
+
+  .menu li{
+    color: #12c402be;
+  }
+
+  .menu li a{
+    color: #12c402be;
+    display:block;
+    text-decoration: none;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+
+  #openSidebarMenu:checked ~ #sidebarMenu1
+  {
+    transform: translateX(0px);
+  }
+  .sidebarIconToggle
+  {
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    z-index: 20;
+    top:22px;
+    left: 15px;
+    cursor: pointer;
+  }
+
+  .spinner
+  {
+    height: 3px;
+    background: #fff;
+    transition: all 0.3s;
+  }
+
+  .spinner.middle,
+  .spinner.bottom
+  {
+    margin-top: 3px;
+  }
+
+  #openSidebarMenu:checked ~ .sidebarIconToggle > .spinner.middle{
+    opacity: 0;
+  }
+  #openSidebarMenu:checked ~ .sidebarIconToggle > .spinner.top{
+    transform : rotate(135deg);
+    margin-top: 8px;
+  }
+  #openSidebarMenu:checked ~ .sidebarIconToggle > .spinner.bottom{
+    transform : rotate(-135deg);
+    margin-top: -9px;
+  }
+
+  input
+  {
+    visibility: hidden;
+  }
