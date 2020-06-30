@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 .btn--orange {
 	@extend %button;
 	@extend %bg-orange;
 	color: #fff;
-=======
-.btn--red {
-	@extend %button;
-	@extend %bg-red;
->>>>>>> develop
 }
 
 .btn--blue {
@@ -20,7 +14,6 @@
 	@extend %button;
 	@extend %bg-blue-inv;
 }
-<<<<<<< HEAD
 
 .btn:disabled {
 	opacity: 0.5;
@@ -35,9 +28,4 @@
 	@extend %flex-col-center;
 	font-size: 3rem;
 	cursor: pointer;
-=======
-
-.btn:disabled {
-	opacity: 0.5;
->>>>>>> develop
 }

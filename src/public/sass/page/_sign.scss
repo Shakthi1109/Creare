@@ -3,7 +3,6 @@
 .sign {
 	// @extend %bg-blue;
 	@extend %body-page-padded;
-<<<<<<< HEAD
 	@extend %flex-row-center;
 	justify-content: space-around;
 	// justify-content: unset;
@@ -14,10 +13,6 @@
 	.logo {
 		width: 20%;
 	}
-=======
-	@extend %flex-col-center;
-	justify-content: unset;
->>>>>>> develop
 	.form {
 		// @extend %bg-orange;
 		padding: 1rem 3rem;
