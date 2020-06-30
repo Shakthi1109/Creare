@@ -1,25 +1,37 @@
 .overlay {
-  @extend %overlay;
-  @extend %flex-col-center;
-  .container {
-    width: 50vw;
-    height: 50vh;
-    @extend %flex-col-center;
-    @extend %bg-green-inv;
-    position: relative;
-    border-radius: 25px;
-    .row {
-      @extend %flex-row-center;
-    }
-    .icon {
-      @extend %bg-green;
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      padding: 5px;
-      border-radius: 50%;
-      font-size: 2em;
-      cursor: pointer;
-    }
-  }
+	@extend %overlay;
+	@extend %flex-col-center;
+	.container {
+		width: 50vw;
+		height: 50vh;
+		@extend %flex-col-center;
+		@extend %bg-blue-inv;
+		position: relative;
+		border-radius: 25px;
+
+		.form {
+			width: 90%;
+			@extend %flex-col-center;
+			span {
+				@extend %flex-row-center;
+				justify-content: flex-start;
+			}
+			button {
+				width: 50%;
+			}
+		}
+		.row {
+			@extend %flex-row-center;
+		}
+		.icon {
+			@extend %bg-orange;
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			padding: 5px;
+			border-radius: 50%;
+			font-size: 5rem;
+			cursor: pointer;
+		}
+	}
 }
