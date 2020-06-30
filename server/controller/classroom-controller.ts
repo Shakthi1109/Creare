@@ -6,7 +6,7 @@ import { User } from "../model/user-model";
 import { UserRole } from "../util/enum/user-roles";
 
 // add class -> except students add everything else and schedule class
-
+// get all classes only for admin
 // cancel class -> cancel class schedule , update status and cancelledBy
 // end class -> status update and endDateTime update (use Date.now())
 // fetch class by id -> populate all here;
@@ -84,29 +84,24 @@ export const updateClassroomController = async (
 export const endClassroomController = async (req: Request, res: Response) => {};
 
 // join  Classroom controller for students
-// this is put method
 export const joinClassroomController = async (req: Request, res: Response) => {
-  // join Classroom -> check for user role ,
-  // ** if teacher don't do anything
-  // ** if student also check if student is already in Classroom
-  // **** if not then  add to students
-
-  const existingClassroom = await Classroom.findById(req.params.classId);
+  const existingClassroom = await Classroom.findById(
+    req.params.classId
+  ).populate("students", "name id");
   if (!existingClassroom) throw new BadRequestError("No class found");
 
+  if (req.currentUser.role !== UserRole.Student)
+    return res.send(existingClassroom);
+
   const students = existingClassroom.students;
-  console.log({ students });
   const studentIndex = students.findIndex(
-    (studentId) =>
-      JSON.stringify(studentId) === JSON.stringify(req.currentUser.id)
+    (student) =>
+      JSON.stringify(student.id) === JSON.stringify(req.currentUser.id)
   );
-
   if (studentIndex >= 0) return res.send(existingClassroom);
-
-  const student = await User.findById(req.currentUser.id);
+  const student = await User.findById(req.currentUser.id).select("name id");
   const updatedStudents = [...students, student];
-  console.log({ updatedStudents });
   existingClassroom.set({ students: updatedStudents });
-
+  await existingClassroom.save();
   res.send(existingClassroom);
 };
