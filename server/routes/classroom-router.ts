@@ -30,7 +30,7 @@ router.get(
   fetchClassroomByIdController
 );
 
-router.post("/add", currentUser, requireAdminAuth, addClassController);
+router.post("/add", currentUser, requireAuth, addClassController);
 
 router.put("/join/:classId", currentUser, requireAuth, joinClassroomController);
 
