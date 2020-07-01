@@ -99,7 +99,6 @@ const schoolComponent = ({ currentUser, school }) => {
 							setaddress2(e.target.value)
 						}}
 					/>
-
 					<h2>City</h2>
 					<input
 						type='text'
@@ -109,7 +108,6 @@ const schoolComponent = ({ currentUser, school }) => {
 							setcity(e.target.value)
 						}}
 					/>
-
 					<h2>State</h2>
 					<input
 						type='text'
