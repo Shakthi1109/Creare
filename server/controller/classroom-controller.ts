@@ -4,8 +4,8 @@ import { BadRequestError } from "../errors/bad-request-error";
 import { Subject } from "../model/subject-model";
 import { User } from "../model/user-model";
 import { UserRole } from "../util/enum/user-roles";
-import { stat } from "fs";
 import { ClassroomStatus } from "../util/enum/classroom-status";
+import { scheduler } from "../util/scheduler";
 
 // add class -> except students add everything else and schedule class
 // get all classes only for admin
@@ -87,6 +87,14 @@ export const addClassController = async (req: Request, res: Response) => {
     (new Date(endDateTime).valueOf() - new Date(startDateTime).valueOf()) /
     milliSecsInHour;
 
+  // schedeule the classroom using scheduler
+  // TODO scheduleing debug.
+  scheduler.scheduleJob(topic, startDateTime, (data: any) => {
+    const status = (exisitingClassroom.status = ClassroomStatus.InProgress);
+    data = status;
+    data.save();
+  });
+
   const classroom = Classroom.build({
     topic,
     subject: exisitingSubject,
@@ -116,6 +124,7 @@ export const updateClassroomController = async (
 export const endClassroomController = async (req: Request, res: Response) => {
   // end class -> status update and endDateTime update (use Date.now())
   const existingClassroom = await Classroom.findById(req.params.classId);
+  const topic = existingClassroom.topic;
   if (!existingClassroom) throw new BadRequestError("No such classroom exists");
   // const status = existingClassroom.status;
   const isStudent = req.currentUser.role === UserRole.Student;
@@ -123,6 +132,7 @@ export const endClassroomController = async (req: Request, res: Response) => {
     throw new BadRequestError("only teacher or admin is allowed to end ");
   existingClassroom.set({ status: ClassroomStatus.Completed });
   existingClassroom.set({ endDateTime: Date.now() });
+  scheduler.cancel(topic);
   existingClassroom.save();
   res.send(existingClassroom);
 };
@@ -131,6 +141,7 @@ export const endClassroomController = async (req: Request, res: Response) => {
 export const cancelClassController = async (req: Request, res: Response) => {
   // cancel class -> cancel class schedule , update status and cancelledBy
   const existingClassroom = await Classroom.findById(req.params.classId);
+  const topic = existingClassroom.topic;
   if (!existingClassroom) throw new BadRequestError("No such classroom exists");
   // const status = existingClassroom.status;
   const isStudent = req.currentUser.role === UserRole.Student;
@@ -138,6 +149,7 @@ export const cancelClassController = async (req: Request, res: Response) => {
     throw new BadRequestError("only teacher or admin is allowed to cancel");
   existingClassroom.set({ status: ClassroomStatus.Cancelled });
   existingClassroom.set({ cancelledBy: req.currentUser.id });
+  scheduler.cancel(topic);
   existingClassroom.save();
   res.send(existingClassroom);
 };

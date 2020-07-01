@@ -1,5 +1,4 @@
 import Agenda from "agenda";
-import { Socket } from "dgram";
 class Scheduler {
   agenda: Agenda = null;
 
