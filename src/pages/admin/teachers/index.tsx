@@ -4,6 +4,7 @@ import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
 import { FaExternalLinkAlt } from "react-icons/fa"
 import buildClient from "../../../service/build-client"
+import Router from "next/router"
 
 const teacherComponent = ({ resp }) => {
 	useEffect(() => {
@@ -75,7 +76,9 @@ const teacherComponent = ({ resp }) => {
 									<td id='view'>
 										<FaExternalLinkAlt
 											onClick={() => {
-												setoverlay(true)
+												Router.push(
+													`/admin/teachers/${item.id}`
+												)
 											}}
 											className='icon'
 										/>

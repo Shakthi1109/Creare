@@ -1,5 +1,4 @@
 import { TiArrowBack } from "react-icons/ti"
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import buildClient from "../../../service/build-client"
 import { redirectClient } from "../../../service/redirect-client"
