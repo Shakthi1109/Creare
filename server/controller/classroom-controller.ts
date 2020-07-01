@@ -6,6 +6,7 @@ import { User } from "../model/user-model";
 import { UserRole } from "../util/enum/user-roles";
 import { ClassroomStatus } from "../util/enum/classroom-status";
 import { scheduler } from "../util/scheduler";
+import { start } from "repl";
 
 export const fetchAllClassroomController = async (
   req: Request,
@@ -57,6 +58,14 @@ export const addClassController = async (req: Request, res: Response) => {
     (new Date(endDateTime).valueOf() - new Date(startDateTime).valueOf()) /
     milliSecsInHour;
 
+  if (duration < 1)
+    throw new BadRequestError("Class duration should be atleast 1 hour");
+
+  const startTime =
+    (new Date(startDateTime).valueOf() - Date.now()) / milliSecsInHour;
+  if (startTime < 1)
+    throw new BadRequestError("Class scheduled must be min of 1 hour");
+
   const classroom = Classroom.build({
     topic,
     subject: exisitingSubject,
@@ -69,7 +78,7 @@ export const addClassController = async (req: Request, res: Response) => {
   await classroom.save();
 
   // schedeule the classroom using scheduler
-  // TODO scheduleing debug.
+
   scheduler.scheduleJob(
     topic,
     startDateTime,
@@ -145,8 +154,7 @@ export const joinClassroomController = async (req: Request, res: Response) => {
     existingClassroom.status === ClassroomStatus.Cancelled
   )
     throw new BadRequestError("Class is unavailable");
-  if (req.currentUser.role !== UserRole.Student)
-    return res.send(existingClassroom);
+  if (req.currentUser.role !== UserRole.Student) return res.send({});
 
   const students = existingClassroom.students;
   const studentIndex = students.findIndex(
