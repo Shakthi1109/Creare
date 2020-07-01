@@ -4,21 +4,23 @@ import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
 import { FaPencilAlt } from "react-icons/fa"
 import buildClient from "../../../service/build-client"
-
+import Router from "next/router"
 const userComponent = ({ resp }) => {
+	useEffect(() => {
+		setdata([...resp])
+		setlength(resp.length)
+	}, [resp])
+
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
 	const [data, setdata] = useState([])
 	const [slicedData, setslicedData] = useState([])
 	const [indexRef, setindexRef] = useState(0)
-	useEffect(() => {
-		let arr = Array(110).fill(dummyData)
-		setdata([...arr])
-	}, [])
+
 	const [index, setindex] = useState(0)
 	const [capacity, setcapacity] = useState(20)
 	const [selected, setselected] = useState(-1)
-	const [length, setlength] = useState(110)
+	const [length, setlength] = useState(0)
 
 	useEffect(() => {
 		setslicedData(data.slice(0, capacity))
@@ -57,7 +59,11 @@ const userComponent = ({ resp }) => {
 								<input type='text' placeholder='search' />
 							</th>
 							<th>
-								Type
+								Role
+								<input type='text' placeholder='search' />
+							</th>
+							<th>
+								e-Mail
 								<input type='text' placeholder='search' />
 							</th>
 							<th id='view'>
@@ -69,14 +75,17 @@ const userComponent = ({ resp }) => {
 					<tbody>
 						{slicedData.map((item, index) => {
 							return (
-								<tr key={index}>
-									<td>{index}</td>
+								<tr key={item.id}>
+									<td>{item.id}</td>
 									<td>{item.name}</td>
-									<td>{item.type}</td>
+									<td>{item.role}</td>
+									<td>{item.email}</td>
 									<td id='view'>
 										<FaPencilAlt
 											onClick={() => {
-												setoverlay(true)
+												Router.push(
+													`/admin/requests/${item.id}`
+												)
 											}}
 											className='icon'
 										/>
@@ -103,9 +112,8 @@ const userComponent = ({ resp }) => {
 }
 
 userComponent.getInitialProps = async (appContext) => {
-	// const { data } = await buildClient(appContext).get("/api/user/")
-	// console.log(data)
-	// return { resp: data }
+	const { data } = await buildClient(appContext).get(`/api/user/requested`)
+	return { resp: data }
 }
 
 export default userComponent

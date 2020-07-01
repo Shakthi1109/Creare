@@ -3,16 +3,20 @@ import Overlay from "../../../components/overlay"
 import Paginate from "../../../components/paginate"
 import { useState, useEffect } from "react"
 import { FaExternalLinkAlt } from "react-icons/fa"
-export default () => {
+import buildClient from "../../../service/build-client"
+
+const teacherComponent = ({ resp }) => {
+	useEffect(() => {
+		setdata([...resp])
+		setlength(resp.length)
+	}, [resp])
+
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	const [overlay, setoverlay] = useState(false)
 	const [data, setdata] = useState([])
 	const [slicedData, setslicedData] = useState([])
 	const [indexRef, setindexRef] = useState(0)
-	useEffect(() => {
-		let arr = Array(110).fill(dummyData)
-		setdata([...arr])
-	}, [])
+
 	const [index, setindex] = useState(0)
 	const [capacity, setcapacity] = useState(20)
 	const [selected, setselected] = useState(-1)
@@ -55,22 +59,19 @@ export default () => {
 								<input type='text' placeholder='search' />
 							</th>
 							<th>
-								Type
+								e-Mail
 								<input type='text' placeholder='search' />
 							</th>
-							<th id='view'>
-								View
-								{/* <input type='text' placeholder='search' /> */}
-							</th>
+							<th id='view'>View</th>
 						</tr>
 					</thead>
 					<tbody>
 						{slicedData.map((item, index) => {
 							return (
-								<tr>
-									<td>{index}</td>
+								<tr key={item.id}>
+									<td>{item.id}</td>
 									<td>{item.name}</td>
-									<td>{item.type}</td>
+									<td>{item.email}</td>
 									<td id='view'>
 										<FaExternalLinkAlt
 											onClick={() => {
@@ -99,3 +100,13 @@ export default () => {
 		</>
 	)
 }
+
+teacherComponent.getInitialProps = async (appContext) => {
+	const { data } = await buildClient(appContext).get(
+		`/api/user/active/${"teacher"}`
+	)
+	console.log(data)
+	return { resp: data }
+}
+
+export default teacherComponent

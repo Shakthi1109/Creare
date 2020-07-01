@@ -7,7 +7,8 @@ import buildClient from "../../../service/build-client"
 
 const subjectComponent = ({ subjects }) => {
 	useEffect(() => {
-		console.log(subjects)
+		setdata([...subjects])
+		setlength(subjects.length)
 	}, [subjects])
 
 	let dummyData = { name: "name", type: "scl", add: "syz" }
@@ -19,7 +20,7 @@ const subjectComponent = ({ subjects }) => {
 	const [index, setindex] = useState(0)
 	const [capacity, setcapacity] = useState(10)
 	const [selected, setselected] = useState(-1)
-	const [length, setlength] = useState(subjects.length)
+	const [length, setlength] = useState(0)
 
 	useEffect(() => {
 		setslicedData(data.slice(0, capacity))
@@ -30,6 +31,7 @@ const subjectComponent = ({ subjects }) => {
 		setindexRef(ind)
 		setslicedData(data.slice(ind, ind + capacity))
 	}, [index])
+
 	return (
 		<>
 			<Sidebar route={"subjects"} />
