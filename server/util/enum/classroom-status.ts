@@ -1,6 +1,6 @@
 export enum ClassroomStatus {
   Scheduled = "scheduled",
-  InProgress = "in -progress",
+  InProgress = "inprogress",
   Completed = "completed",
   Cancelled = "cancelled",
 }
