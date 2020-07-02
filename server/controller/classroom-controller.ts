@@ -32,11 +32,11 @@ export const fetchClassroomByIdController = async (
   if (!classroom) throw new BadRequestError("No such classroom");
 
   // NEW ADDITION
-  // const messages = await Message.find({ roomId: classroom.id });
-  // // classroom["messages"] = messages;
-  // const classroomWithMessages = { ...classroom, messages };
+  const messages = await Message.find({ roomId: classroom.id });
+  const updatedClassroom = classroom.toJSON();
+  updatedClassroom.messages = messages;
 
-  res.status(200).send(classroom);
+  res.status(200).send(updatedClassroom);
 };
 
 export const addClassController = async (req: Request, res: Response) => {
