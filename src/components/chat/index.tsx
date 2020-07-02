@@ -50,7 +50,7 @@ export default ({ classroomMessages, currentUser, classroomId }) => {
 					return (
 						<div id='receivedMsg' key={Math.random() * 1000}>
 							<h4>
-								{name} at {getTime(createdAt)} asks
+								{name} at {getTime(createdAt)}
 							</h4>
 							{message}
 						</div>
