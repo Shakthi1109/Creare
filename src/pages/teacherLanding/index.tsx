@@ -9,6 +9,7 @@ alert('clicked');
 
 function teacherLanding() {
 	return (
+        
 		<div className='header'>
 
 			<img src={logoImg} alt='logo' id='logoImg' />
