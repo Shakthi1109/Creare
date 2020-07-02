@@ -309,6 +309,15 @@ select:focus {
   font-size: 3rem;
   cursor: pointer; }
 
+.chat .chatWindow #receivedMsg, .chat .chatWindow #sentMsg {
+  padding: 10px 15px;
+  margin: 5px;
+  border-width: 7px;
+  border-color: inherit;
+  clear: both;
+  height: fit-content;
+  font-size: 1.1em; }
+
 .chat {
   width: 100%;
   height: 100%; }
@@ -319,6 +328,24 @@ select:focus {
     overflow-y: auto;
     border-radius: 1rem;
     margin: 0.5rem 0rem; }
+    .chat .chatWindow #receivedMsg {
+      float: left;
+      text-align: left;
+      border-radius: 0px 40px 40px 0px;
+      background: #4a97f533;
+      color: #0c3d54;
+      border-style: none none none solid; }
+      .chat .chatWindow #receivedMsg h4 {
+        font-size: 0.7em; }
+    .chat .chatWindow #sentMsg {
+      float: right;
+      text-align: right;
+      border-radius: 40px 0px 0px 40px;
+      background: #fd90656e;
+      color: #ac3709;
+      border-style: none solid none none; }
+      .chat .chatWindow #sentMsg h4 {
+        font-size: 0.7em; }
   .chat .send {
     width: 100%;
     position: relative;
