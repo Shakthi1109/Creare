@@ -27,7 +27,7 @@
 		font-size: xx-large;
 		color: white;
 		transform: translateX(0px);
-   		 transition: transform 500ms ease-in-out;
+   		transition: transform 500ms ease-in-out;
 	}
 
 	#floatLeft {
@@ -36,7 +36,7 @@
 		top: 1.5rem;
 		font-size: 3rem;
 		.options {	
-			top: 5.4rem;
+			top: 5rem;
 			right: 1rem;
 			display: none;
 			position: fixed;
@@ -53,8 +53,6 @@
 			}
 			
 		}
-	
-	
 
 		cursor: pointer;
 		&:hover {
@@ -70,7 +68,7 @@
 		margin-top: 280px;
 	
 		.teacherCards{
-
+ 
 			border: 1px solid #1abe5d;
 			background: none;
 			padding: 100px 150px;
@@ -120,9 +118,9 @@
     top:0;
     width: 300px;
     margin-top:60px;
-    background: rgba(236, 236, 236, 0.904);
+    background: white;
     transform: translateX(-300px);
-    transition: transform 300ms ease-in-out
+    transition: transform 500ms ease-in-out
   }
 
   .menu
@@ -149,7 +147,10 @@
   #openSidebarMenu:checked ~ #sidebarMenu1
   {
     transform: translateX(0px);
+    margin-right: 100px;
+    transition: transform 500ms ease-in-out;
   }
+  
   .sidebarIconToggle
   {
     height: 22px;

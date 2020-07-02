@@ -465,7 +465,7 @@ select:focus {
     font-size: 3rem;
     cursor: pointer; }
     .header #floatLeft .options {
-      top: 5.4rem;
+      top: 5rem;
       right: 1rem;
       display: none;
       position: fixed;
@@ -519,9 +519,9 @@ select:focus {
   top: 0;
   width: 300px;
   margin-top: 60px;
-  background: rgba(236, 236, 236, 0.904);
+  background: white;
   transform: translateX(-300px);
-  transition: transform 300ms ease-in-out; }
+  transition: transform 500ms ease-in-out; }
 
 .menu {
   list-style: none;
@@ -540,7 +540,9 @@ select:focus {
   font-weight: bold; }
 
 #openSidebarMenu:checked ~ #sidebarMenu1 {
-  transform: translateX(0px); }
+  transform: translateX(0px);
+  margin-right: 100px;
+  transition: transform 500ms ease-in-out; }
 
 .sidebarIconToggle {
   height: 22px;
