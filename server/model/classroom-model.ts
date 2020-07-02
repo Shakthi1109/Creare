@@ -2,10 +2,8 @@ import mongoose, { Mongoose } from "mongoose";
 import { SubjectDoc, Subject } from "../model/subject-model";
 
 import { UserDoc } from "./user-model";
-import { UserRole } from "../util/enum/user-roles";
 import { ClassroomStatus } from "../util/enum/classroom-status";
 
-// TODO add addedBy (admin or teacher) - UserDoc
 interface ClassroomAttrs {
   topic: string;
   subject: SubjectDoc;
@@ -15,9 +13,7 @@ interface ClassroomAttrs {
   endDateTime: Date;
   addedBy: UserDoc;
 }
-// TODO add class status
-// TODO add addedBy (admin or teacher) - UserDoc
-// TODO add cancelledBy (admin or teacher) - UserDoc
+
 export interface ClassroomDoc extends mongoose.Document {
   topic: string;
   subject: SubjectDoc;
@@ -34,9 +30,7 @@ export interface ClassroomDoc extends mongoose.Document {
 interface ClassroomModel extends mongoose.Model<ClassroomDoc> {
   build(attrs: ClassroomAttrs): ClassroomDoc;
 }
-// TODO add class status (scheduled,in-progress,completed,cancelled)
-// TODO add addedBy (admin or teacher) - UserDoc
-// TODO add cancelledBy (admin or teacher) - UserDoc
+
 const ClassroomSchema = new mongoose.Schema(
   {
     addedBy: {
@@ -50,6 +44,7 @@ const ClassroomSchema = new mongoose.Schema(
     },
 
     topic: { type: String, required: true },
+
     subject: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subjects",

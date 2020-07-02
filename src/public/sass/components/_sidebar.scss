@@ -10,6 +10,7 @@
   border-bottom-width: 5px;
 }
 .sideBar {
+<<<<<<< HEAD
   width: 10rem;
   // width: 6rem;
   background-color: #0cbd57;
@@ -64,4 +65,55 @@
       }
     }
   }
+=======
+
+	width: 7rem;
+	@extend %bg-blue;
+	height: 100%;
+	position: fixed;
+	@extend %flex-col-center;
+	justify-content: flex-start;
+	z-index: 99;
+	transition: 400ms ease-out;
+	a {
+		display: none;
+		font-size: 1.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		transition: 400ms ease-out;
+	}
+	.icon {
+		font-size: 3rem;
+		transition: 600ms ease-out;
+	}
+	.current {
+		@extend %tab;
+		background-color: #1f202060;
+		border-width: 5px;
+		border-bottom-width: 0px;
+		margin-bottom: 5px;
+		border-style: none none none solid;
+		border-color: inherit;
+	}
+	.option {
+		@extend %tab;
+	}
+	.logo {
+		width: 90%;
+		margin: 5rem 0rem;
+	}
+
+	&:hover {
+		width: 13rem;
+		a {
+			display: block;
+		}
+		.icon {
+			font-size: 2rem;
+		}
+		.logo {
+			font-size: 2.5rem;
+		}
+	}
+>>>>>>> 793e7c3b2e62e2576e3878402dc7fbd395d9c90e
 }

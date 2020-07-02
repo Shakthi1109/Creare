@@ -16,19 +16,9 @@ import { requireAuth } from "../middlewares/require-auth";
 
 const router = express.Router();
 
-router.get(
-  "/fetch/all",
-  currentUser,
-  requireAdminAuth,
-  fetchAllClassroomController
-);
+router.get("/all", currentUser, requireAdminAuth, fetchAllClassroomController);
 
-router.get(
-  "/fetch/:classId",
-  currentUser,
-  requireAuth,
-  fetchClassroomByIdController
-);
+router.get("/:classId", currentUser, requireAuth, fetchClassroomByIdController);
 
 router.post("/add", currentUser, requireAuth, addClassController);
 

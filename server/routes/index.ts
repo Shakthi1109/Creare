@@ -6,6 +6,7 @@ import { subjectRouter } from "./subject-router";
 import { classroomRouter } from "./classroom-router";
 
 import { teacherProfileRouter } from "./teacher-profile-router";
+import { messageRouter } from "./message-router";
 
 const router = express.Router();
 
@@ -18,6 +19,8 @@ router.use("/subject", subjectRouter);
 router.use("/teacher/profile", teacherProfileRouter);
 
 router.use("/classroom", classroomRouter);
+
+router.use("/message", messageRouter);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server api is responding");
