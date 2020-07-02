@@ -27,7 +27,7 @@ const start = async () => {
     app.all("*", (req: Request, res: Response) => handler(req, res));
     // server start listening here
     console.log("Mongo db is connected");
-    const server = app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT, () => {
       console.log(`Creare ready on port ${process.env.PORT} !!!`);
     });
   } catch (error) {
