@@ -32,21 +32,15 @@ export const fetchClassroomByIdController = async (
   if (!classroom) throw new BadRequestError("No such classroom");
 
   // NEW ADDITION
-  const messages = await Message.find({ roomId: classroom.id });
-  classroom["messages"] = messages;
+  // const messages = await Message.find({ roomId: classroom.id });
+  // // classroom["messages"] = messages;
+  // const classroomWithMessages = { ...classroom, messages };
 
   res.status(200).send(classroom);
 };
 
 export const addClassController = async (req: Request, res: Response) => {
-  const {
-    topic,
-    subjectId,
-    teacherId,
-    addedBy,
-    startDateTime,
-    endDateTime,
-  } = req.body;
+  const { topic, subjectId, teacherId, startDateTime, endDateTime } = req.body;
 
   const milliSecsInHour = 3600000;
 
@@ -80,17 +74,17 @@ export const addClassController = async (req: Request, res: Response) => {
 
   if (!exisitingSubject) throw new BadRequestError("No subject exists");
 
+  const user = await User.findById(req.currentUser.id);
   const classroom = Classroom.build({
     topic,
     subject: exisitingSubject,
     teacher: existingTeacher,
-    // TODO find user By id and to addedBy user
-    addedBy,
+    addedBy: user,
     duration,
     startDateTime,
     endDateTime,
   });
-  addedBy;
+
   await classroom.save();
 
   // schedule the classroom using scheduler
@@ -145,6 +139,7 @@ export const endClassroomController = async (req: Request, res: Response) => {
 
 // cancel class
 export const cancelClassController = async (req: Request, res: Response) => {
+  const user = await User.findById(req.currentUser.id);
   const existingClassroom = await Classroom.findById(req.params.classId);
   if (!existingClassroom) throw new BadRequestError("No such classroom exists");
   if (existingClassroom.status !== ClassroomStatus.Scheduled)
@@ -158,8 +153,7 @@ export const cancelClassController = async (req: Request, res: Response) => {
 
   existingClassroom.set({
     status: ClassroomStatus.Cancelled,
-    // TODO find user By id and to cancelledBy
-    cancelledBy: req.currentUser.id,
+    cancelledBy: user,
   });
 
   existingClassroom.save();
