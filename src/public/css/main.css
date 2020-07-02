@@ -450,14 +450,10 @@ select:focus {
     margin: 4px;
     margin-left: 70px; }
   .header #teacherHeading {
-    position: relative;
     text-align: center;
-    top: 0px;
     font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
     font-size: xx-large;
-    color: white;
-    transform: translateX(0px);
-    transition: transform 500ms ease-in-out; }
+    color: white; }
   .header #floatLeft {
     position: fixed;
     right: 2rem;
@@ -481,10 +477,11 @@ select:focus {
     .header #floatLeft:hover .options {
       display: block;
       z-index: 100; }
-  .header .btnContainer {
+  .header #btnContainer {
     text-align: center;
-    margin-top: 280px; }
-    .header .btnContainer .teacherCards {
+    margin-top: 280px;
+    margin-left: 150px; }
+    .header #btnContainer .teacherCards {
       border: 1px solid #1abe5d;
       background: none;
       padding: 100px 150px;
@@ -494,11 +491,12 @@ select:focus {
       margin: 20px;
       color: #1abe5d;
       transition: 0.8s;
-      position: relative;
-      overflow: hidden; }
-    .header .btnContainer .teacherCards:hover {
+      overflow: hidden;
+      transform: translateX(0px);
+      transition: transform 500ms ease-in-out; }
+    .header #btnContainer .teacherCards:hover {
       color: #fff; }
-    .header .btnContainer .teacherCards::before {
+    .header #btnContainer .teacherCards::before {
       content: "";
       position: absolute;
       left: 0;
@@ -509,7 +507,7 @@ select:focus {
       transition: 0.8s;
       bottom: 0;
       border-radius: 50% 50% 0 0; }
-    .header .btnContainer .teacherCards:hover::before {
+    .header #btnContainer .teacherCards:hover::before {
       height: 180%; }
 
 #sidebarMenu1 {
@@ -519,7 +517,7 @@ select:focus {
   top: 0;
   width: 300px;
   margin-top: 60px;
-  background: white;
+  background: rgba(226, 231, 226, 0.966);
   transform: translateX(-300px);
   transition: transform 500ms ease-in-out; }
 
@@ -541,7 +539,10 @@ select:focus {
 
 #openSidebarMenu:checked ~ #sidebarMenu1 {
   transform: translateX(0px);
-  margin-right: 100px;
+  transition: transform 500ms ease-in-out; }
+
+#openSidebarMenu:checked ~ .teacherCards {
+  transform: translate(1000px);
   transition: transform 500ms ease-in-out; }
 
 .sidebarIconToggle {

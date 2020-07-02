@@ -1,5 +1,5 @@
 import React from "react";
-// import logoImg from "../../public/static/logo1.png"
+import logoImg from "../../public/static/logo1.png"
 import SlidingBar from "../../components/SlidingBar/index";
 import { FaBars, FaUserAlt } from "react-icons/fa";
 
@@ -10,7 +10,7 @@ function clickMe() {
 function teacherLanding() {
 	return (
 		<div className='header'>
-			{/* <img src={logoImg} alt='logo' id='logoImg' /> */}
+			<img src={logoImg} alt='logo' id='logoImg' />
 
 			<h1 id='teacherHeading'>Teacher Workspace</h1>
 
@@ -23,9 +23,9 @@ function teacherLanding() {
 				</div>
 			</span>
 
-			<SlidingBar />
+			<SlidingBar/>
 
-			<div className='btnContainer'>
+			<div id='btnContainer'>
 				<button className='teacherCards' onClick={clickMe}>
 					Classes
 				</button>
