@@ -1,0 +1,10 @@
+#dashboard {
+	.cbtn {
+		position: fixed;
+		bottom: 5rem;
+		right: 5rem;
+	}
+	#row {
+		@extend %flex-row-center;
+	}
+}

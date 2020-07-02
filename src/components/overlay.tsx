@@ -1,4 +1,4 @@
-import { MdClose } from "react-icons/md";
+import { MdClose } from "react-icons/md"
 
 export default ({ data, closeFunc, canAccept = false }) => (
 	<div className='overlay'>
@@ -9,12 +9,12 @@ export default ({ data, closeFunc, canAccept = false }) => (
 			<MdClose onClick={() => closeFunc()} className='icon' />
 			{canAccept ? (
 				<div className='row'>
-					<button className='red-btn'>Reject</button>
-					<button className='btn-inverse'>Accept</button>
+					<button className='btn--orange'>Reject</button>
+					<button className='btn--blue'>Accept</button>
 				</div>
 			) : (
 				<></>
 			)}
 		</div>
 	</div>
-);
+)

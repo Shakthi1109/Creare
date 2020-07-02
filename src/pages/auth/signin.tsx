@@ -21,12 +21,8 @@ export default () => {
 		},
 		onSuccess: () => Router.push("/home"),
 		onError: (error) => {
-			let str = ""
-			error.map(({ message }) => {
-				str += message + ". "
-			})
 			setonErr(true)
-			seterr(str)
+			seterr(error)
 			setisLoading(false)
 		}
 	})
@@ -38,9 +34,13 @@ export default () => {
 
 	return (
 		<div className='sign'>
+			<img
+				className='logo'
+				src={require("../../public/assets/logo.png")}
+				alt=''
+			/>
 			{onErr ? <Toast data={err} /> : <> </>}
 			<div className='form'>
-				<h1>Creare</h1>
 				<br />
 				<input
 					type='text'
@@ -75,14 +75,19 @@ export default () => {
 					<Loader isLoading={isLoading}></Loader>
 				) : (
 					<>
-						<button className='btn' onClick={() => Login()}>
-							Sign In
+						<button
+							// className='btn--blue'
+							className='btn--blue'
+							onClick={() => {
+								Login()
+							}}>
+							Sign-In
 						</button>
 					</>
 				)}
 				<br />
-				<b>or</b>
-				<Link href='/signup'>
+				<h3>or</h3>
+				<Link href='/auth/signup'>
 					<a>Create New Account</a>
 				</Link>
 			</div>

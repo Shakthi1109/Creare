@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react"
-export default () => {
+export default ({ currentUser }) => {
+	useEffect(() => {
+		console.log(currentUser)
+	}, [currentUser])
 	const [Index, setIndex] = useState(0)
 	const [count, setCount] = useState(3)
 
@@ -12,7 +15,7 @@ export default () => {
       Random XYZ Quotes Lorem ipsum dolor, sit amet consectetur
       adipisicing elit. Ratione commodi obcaecati, adipisci suscipit at
       eaque dicta voluptas aut temporibus id hic eos ad et velit animi
-      nesciunt, eligendi deleniti reprehenderit`,
+      nesciunt, eligendi deleniti reprehenderit`
 		},
 		{
 			url:
@@ -22,7 +25,7 @@ export default () => {
     Random XYZ Quotes Lorem ipsum dolor, sit amet consectetur
     adipisicing elit. Ratione commodi obcaecati, adipisci suscipit at
     eaque dicta voluptas aut temporibus id hic eos ad et velit animi
-    nesciunt, eligendi deleniti reprehenderit`,
+    nesciunt, eligendi deleniti reprehenderit`
 		},
 		{
 			url:
@@ -32,8 +35,8 @@ export default () => {
     Random XYZ Quotes Lorem ipsum dolor, sit amet consectetur
     adipisicing elit. Ratione commodi obcaecati, adipisci suscipit at
     eaque dicta voluptas aut temporibus id hic eos ad et velit animi
-    nesciunt, eligendi deleniti reprehenderit`,
-		},
+    nesciunt, eligendi deleniti reprehenderit`
+		}
 	]
 
 	// useEffect(() => {
