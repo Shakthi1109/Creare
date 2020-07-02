@@ -179,7 +179,7 @@ export const joinClassroomController = async (req: Request, res: Response) => {
     (student) =>
       JSON.stringify(student.id) === JSON.stringify(req.currentUser.id)
   );
-  if (studentIndex >= 0) return res.send(existingClassroom);
+  if (studentIndex >= 0) return res.send({});
   const student = await User.findById(req.currentUser.id).select("name id");
   const updatedStudents = [...students, student];
   existingClassroom.set({ students: updatedStudents });

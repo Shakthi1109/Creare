@@ -1,70 +1,73 @@
 %message {
-	padding: 10px 15px;
-	margin: 5px;
-	border-width: 7px;
-	border-color: inherit;
-	clear: both;
-	height: fit-content;
-	font-size: 1.1em;
+  padding: 10px 15px;
+  margin: 5px;
+  border-width: 7px;
+  border-color: inherit;
+  clear: both;
+  height: fit-content;
+  width: 95%;
+  font-size: 1.5rem;
 }
 .chat {
-	width: 100%;
-	height: 100%;
-	.chatWindow {
-		background: #fff;
-		width: 100%;
-		height: 65vh;
-		overflow-y: auto;
-		border-radius: 1rem;
-		margin: 0.5rem 0rem;
+  width: 100%;
+  height: 100%;
+  .chatWindow {
+    background: #fff;
+    width: 100%;
+    height: 65vh;
+    overflow-y: auto;
+    border-radius: 1rem;
+    margin: 0.5rem 0rem;
 
-		#receivedMsg {
-			float: left;
-			text-align: left;
-			border-radius: 0px 40px 40px 0px;
-			background: #4a97f533;
-			color: #0c3d54;
-			border-style: none none none solid;
-			@extend %message;
-			h4 {
-				font-size: 0.7em;
-			}
-		}
+    #receivedMsg {
+      float: left;
+      text-align: left;
+      border-radius: 0.4rem;
+      background: #4a97f533;
+      color: #0c3d54;
+      border-style: none none none solid;
+      @extend %message;
+      h4 {
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0;
+      }
+    }
 
-		#sentMsg {
-			float: right;
-			text-align: right;
-			border-radius: 40px 0px 0px 40px;
-			background: #fd90656e;
-			color: #ac3709;
-			border-style: none solid none none;
-			@extend %message;
-			h4 {
-				font-size: 0.7em;
-			}
-		}
-	}
-	.send {
-		width: 100%;
-		position: relative;
-		margin: 3rem 0rem;
-		height: 2rem;
-		@extend %flex-row-center;
-		input {
-			margin: 0;
-			padding: 0;
-			position: absolute;
-			&:focus {
-				border-bottom-color: #fff;
-			}
-		}
-		.icon {
-			font-size: 3.5rem;
-			position: absolute;
-			right: 5px;
-			bottom: 5px;
-			padding: 2px;
-			cursor: pointer;
-		}
-	}
+    #sentMsg {
+      float: right;
+      text-align: right;
+      border-radius: 40px 0px 0px 40px;
+      background: #fd90656e;
+      color: #ac3709;
+      border-style: none solid none none;
+      @extend %message;
+      h4 {
+        font-size: 0.7em;
+      }
+    }
+  }
+  .send {
+    width: 100%;
+    position: relative;
+    margin: 3rem 0rem;
+    height: 2rem;
+    @extend %flex-row-center;
+    input {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      &:focus {
+        border-bottom-color: #fff;
+      }
+    }
+    .icon {
+      font-size: 3.5rem;
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      padding: 2px;
+      cursor: pointer;
+    }
+  }
 }

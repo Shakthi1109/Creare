@@ -14,37 +14,32 @@ import { UserRole } from '../../../server/util/enum/user-roles'
 import buildClient from '../../service/build-client'
 import { redirectClient } from '../../service/redirect-client'
 
-// { students: [],
-// status: 'scheduled',
-// topic: 'sub3',
-// subject:
-//  { name: 'breanne.net', grade: 8, id: '5ef9d90db71c3c818bdc57ac' },
-// teacher: { name: 'Trace71', id: '5ef9d90fb71c3c818bdc57b7' },
-// addedBy: '5ef9d90fb71c3c818bdc57b7',
-// duration: 1.0166666666666666,
-// startDateTime: '2020-07-01T12:19:00.000Z',
-// endDateTime: '2020-07-01T13:20:00.000Z',
-// id: '5efc70f62714285a6ceddfb4',
-// messages: [ [Object] ] }
 
 const Classroom = ({ classroom, currentUser }) => {
 	// states
 	const [sideOptions, setsideOptions] = useState(false)
 	const [QA, setQA] = useState(false)
-	let dummyData = { name: "name", type: "scl", add: "syz" }
+	const [students, setStudents] = useState(classroom.students);
 	// effects
 	useEffect(() => {
+		if (currentUser.role === UserRole.Student) handleStudent()
+		else socketEvent.joinClassroom(classroom.id)
+		socketEvent.addToClassroom(addStudentToClassroom);
+	}, []);
+	// method
+	const handleStudent = async () => {
+		socketEvent.joinStudentToClassroom({ id: currentUser.id, name: currentUser.name, room: classroom.id });
 
-	}, [])
-	// method 
+	}
+
 	// add student to classroom
-	// const addStudentToClassroom = (data: StudentAdd) => {
-	// 	// alert(JSON.stringify(data));
-	// }
-	// if (currentUser.role === UserRole.Student) {
-	// 	socketEvent.joinClassroom({ id: currentUser.id, name: currentUser.name, room: classroomId });
-	// 	socketEvent.addToClassroom(addStudentToClassroom)
-	// }
+	const addStudentToClassroom = (data: StudentAdd) => {
+		const studentIndex = Array.from(students)
+			.findIndex((student: StudentAdd) => JSON.stringify(student.id) === JSON.stringify(data.id));
+		if (studentIndex === -1) {
+			setStudents([...students, data])
+		}
+	}
 
 	// render
 	return (
@@ -88,7 +83,7 @@ const Classroom = ({ classroom, currentUser }) => {
 										<span>Q & A</span>
 										<FaChevronUp />
 									</button>
-									<Chat />
+									<Chat classroomMessages={classroom.messages} currentUser={currentUser} classroomId={classroom.id} />
 								</div>
 							) : (
 									<div>
@@ -96,10 +91,9 @@ const Classroom = ({ classroom, currentUser }) => {
 											<span>Students</span>
 											<FaChevronUp />
 										</button>
-										{Array(10)
-											.fill(dummyData)
-											.map((item) => {
-												return <h3>{item.name}</h3>
+										{students
+											.map((student: StudentAdd) => {
+												return <h4 key={student.id}>{student.name}</h4>
 											})}
 									</div>
 								)}
@@ -143,7 +137,6 @@ Classroom.getInitialProps = async (ctx: GetServerSidePropsContext) => {
 	} catch (error) {
 		redirectClient(ctx);
 	}
-	console.log({ classroom })
 	return ({ classroom })
 }
 
