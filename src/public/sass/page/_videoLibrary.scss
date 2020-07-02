@@ -1,0 +1,48 @@
+.vidLib_Cont {
+	@extend %body-page;
+	@extend %flex-col-center;
+	justify-content: unset;
+	// padding: 5rem;
+	.vidLib {
+		@extend %flex-row-center;
+		flex-wrap: wrap;
+		.vidCard {
+			width: 20vw;
+			@include respond(phone) {
+				width: 45vw;
+			}
+			@extend %flex-col-center;
+			border-radius: 2rem;
+			padding: 1rem 0rem;
+			height: max-content;
+			margin: 1rem;
+			background: #fd90656e;
+			color: #ac3709;
+			.img {
+				width: 95%;
+				padding: 1rem 0rem;
+				position: relative;
+				.playIcon {
+					position: absolute;
+					top: 40%;
+					left: 45%;
+					z-index: 1;
+					font-size: 3rem;
+					color: #ffffff86;
+					&:hover {
+						color: #fff;
+						transform: scale(1.3);
+						cursor: pointer;
+					}
+				}
+				img {
+					width: 100%;
+				}
+			}
+			.details {
+				color: #0c3d54;
+				text-align: left;
+			}
+		}
+	}
+}
