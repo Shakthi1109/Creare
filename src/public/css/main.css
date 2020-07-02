@@ -455,7 +455,9 @@ select:focus {
     top: 0px;
     font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
     font-size: xx-large;
-    color: white; }
+    color: white;
+    transform: translateX(0px);
+    transition: transform 500ms ease-in-out; }
   .header #floatLeft {
     position: fixed;
     right: 2rem;
