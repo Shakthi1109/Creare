@@ -26,7 +26,7 @@ function classes() {
 			<SlidingBar/>
 
 			<div id="classCardContainer">
-				
+				 
 			</div>
 		</div>
 	);
