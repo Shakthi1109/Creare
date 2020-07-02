@@ -2,12 +2,17 @@
 	@extend %overlay;
 	@extend %flex-col-center;
 	.container {
-		width: 50vw;
-		height: 50vh;
+		width: max-content;
+		height: max-content;
+		padding: 1rem;
 		@extend %flex-col-center;
 		@extend %bg-blue-inv;
 		position: relative;
 		border-radius: 25px;
+
+		.details {
+			text-align: left;
+		}
 
 		.form {
 			width: 90%;

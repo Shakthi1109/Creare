@@ -1,6 +1,7 @@
 import Paginate from "../../../components/paginate";
 import { useState, useEffect } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import Router from "next/router";
 
 const classesComponent = ({ status, wholeData }) => {
 	const [overlay, setoverlay] = useState(false);
@@ -68,7 +69,9 @@ const classesComponent = ({ status, wholeData }) => {
 										<td id='view'>
 											<FaExternalLinkAlt
 												onClick={() => {
-													setoverlay(true);
+													Router.push(
+														`/admin/classes/${id}`
+													);
 												}}
 												className='icon'
 											/>

@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import buildClient from "../../../service/build-client";
 import Classes from "./classes";
 import AddClass from "./addClass";
-const classComponent = ({ data }) => {
+const classComponent = ({ data, teachers, subjects }) => {
 	useEffect(() => {
-		console.log(data);
-	}, [data]);
+		console.log(data, teachers, subjects);
+	}, [data, teachers, subjects]);
 
 	const [active, setactive] = useState("scheduled");
 	const [addClass, setaddClass] = useState(false);
@@ -18,6 +18,8 @@ const classComponent = ({ data }) => {
 					closeFunc={() => {
 						setaddClass(false);
 					}}
+					teachers={teachers}
+					subjects={subjects}
 				/>
 			) : (
 				<></>
@@ -68,7 +70,13 @@ const classComponent = ({ data }) => {
 
 classComponent.getInitialProps = async (appContext) => {
 	const { data } = await buildClient(appContext).get(`/api/classroom/all`);
-	return { data };
+	const teachersData = await buildClient(appContext).get(
+		`/api/user/active/${"teacher"}`
+	);
+	const subjectsData = await buildClient(appContext).get("/api/subject/all");
+	const teachers = teachersData.data.map(({ name, id }) => [name, id]);
+	const subjects = subjectsData.data.map(({ name, id }) => [name, id]);
+	return { data, teachers, subjects };
 };
 
 export default classComponent;
