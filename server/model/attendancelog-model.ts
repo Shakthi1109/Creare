@@ -2,24 +2,24 @@ import mongoose from "mongoose";
 
 interface AttendancelogAttrs {
   userId: string;
-  classId: string;
+  classroomId: string;
   dateTime: Date;
 }
 
-export interface AttendeancelogDoc extends mongoose.Document {
+export interface AttendancelogDoc extends mongoose.Document {
   userId: string;
-  classId: string;
+  classroomId: string;
   dateTime: Date;
 }
 
-interface AttendeancelogModel extends mongoose.Model<AttendeancelogDoc> {
-  build(attrs: AttendeancelogModel): AttendeancelogDoc;
+interface AttendancelogModel extends mongoose.Model<AttendancelogDoc> {
+  build(attrs: AttendancelogAttrs): AttendancelogDoc;
 }
 
 const AttendancelogSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true },
-    classId: { type: String, required: true },
+    classroomId: { type: String, required: true },
     dateTime: { type: mongoose.Schema.Types.Date, required: true },
   },
   {
@@ -37,7 +37,7 @@ AttendancelogSchema.statics.build = (attrs: AttendancelogAttrs) => {
   return new Attendancelog(attrs);
 };
 
-const Attendancelog = mongoose.model<AttendeancelogDoc, AttendeancelogModel>(
+const Attendancelog = mongoose.model<AttendancelogDoc, AttendancelogModel>(
   "Attendancelog",
   AttendancelogSchema
 );
