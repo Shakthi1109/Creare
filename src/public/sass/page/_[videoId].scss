@@ -1,0 +1,22 @@
+.videoId {
+	@extend %body-page;
+	@extend %flex-col-center;
+	background: #4a97f533;
+	align-items: center;
+	position: relative;
+	color: #ac3709;
+	font-size: 2rem;
+	.icon {
+		position: fixed;
+		top: 1rem;
+		left: 1rem;
+		font-size: 5rem;
+	}
+	.video {
+		width: 90%;
+		height: 75%;
+	}
+	.details {
+		margin: 1rem;
+	}
+}

@@ -2,14 +2,14 @@ import express, { Request, Response } from "express";
 // TODO once you write validator uncomment the below
 import { signupValidator, signinValidator } from "../validator/user-validator";
 import {
-  signupController,
-  signinController,
-  currentUserController,
-  getUsersController,
-  signoutController,
-  requestedUserController,
-  activeUsersController,
-  getParticularUserController,
+	signupController,
+	signinController,
+	currentUserController,
+	getUsersController,
+	signoutController,
+	requestedUserController,
+	activeUsersController,
+	getParticularUserController
 } from "../controller/user-controller";
 
 import { validateRequest } from "../middlewares/validate-request";
@@ -29,10 +29,10 @@ router.get("/requests", currentUser, requireAdminAuth, requestedUserController);
 
 // to get role base approved users
 router.get(
-  "/active/:type",
-  currentUser,
-  requireAdminAuth,
-  activeUsersController
+	"/active/:type",
+	currentUser,
+	requireAdminAuth,
+	activeUsersController
 );
 
 // to fetch all users that belong to particular school
@@ -40,10 +40,10 @@ router.get("/", currentUser, requireAdminAuth, getUsersController);
 
 // to get particular user
 router.get(
-  "/:userId",
-  currentUser,
-  requireAdminAuth,
-  getParticularUserController
+	"/:userId",
+	currentUser,
+	requireAdminAuth,
+	getParticularUserController
 );
 
 // to signup new User
@@ -56,7 +56,7 @@ router.post("/signin", signinValidator, validateRequest, signinController);
 router.get("/all", currentUser, requireAdminAuth, getUsersController);
 
 router.get("/test", (req: Request, res: Response) => {
-  res.send("server user api is responding");
+	res.send("server user api is responding");
 });
 
 export { router as userRouter };

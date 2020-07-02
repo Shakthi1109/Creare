@@ -1,17 +1,22 @@
-import Sidebar from "../../../components/side-nav"
-import { useState, useEffect } from "react"
-import Classes from "./classes"
-import AddClass from "./addClass"
-export default () => {
-	const [active, setactive] = useState("Upcoming")
-	const [addClass, setaddClass] = useState(false)
+import Sidebar from "../../../components/side-nav";
+import { useState, useEffect } from "react";
+import buildClient from "../../../service/build-client";
+import Classes from "./classes";
+import AddClass from "./addClass";
+const classComponent = ({ data }) => {
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
+
+	const [active, setactive] = useState("scheduled");
+	const [addClass, setaddClass] = useState(false);
 	return (
 		<>
 			<Sidebar route={"class"} />
 			{addClass ? (
 				<AddClass
 					closeFunc={() => {
-						setaddClass(false)
+						setaddClass(false);
 					}}
 				/>
 			) : (
@@ -21,35 +26,49 @@ export default () => {
 				<div id='row'>
 					<button
 						className={
-							active == "Upcoming" ? "btn--orange" : "btn--blue"
+							active == "scheduled" ? "btn--orange" : "btn--blue"
 						}
-						onClick={() => setactive("Upcoming")}>
-						Upcoming
+						onClick={() => setactive("scheduled")}>
+						Scheduled
 					</button>
 					<button
 						className={
-							active == "InProgress" ? "btn--orange" : "btn--blue"
+							active == "inprogress" ? "btn--orange" : "btn--blue"
 						}
-						onClick={() => setactive("InProgress")}>
+						onClick={() => setactive("inprogress")}>
 						InProgress
 					</button>
 					<button
 						className={
-							active == "Completed" ? "btn--orange" : "btn--blue"
+							active == "completed" ? "btn--orange" : "btn--blue"
 						}
-						onClick={() => setactive("Completed")}>
+						onClick={() => setactive("completed")}>
 						Completed
 					</button>
+					<button
+						className={
+							active == "cancelled" ? "btn--orange" : "btn--blue"
+						}
+						onClick={() => setactive("cancelled")}>
+						Cancelled
+					</button>
 				</div>
-				<Classes status={active} />
+				<Classes status={active} wholeData={data} />
 				<button
 					className='cbtn'
 					onClick={() => {
-						setaddClass(true)
+						setaddClass(true);
 					}}>
 					+
 				</button>
 			</div>
 		</>
-	)
-}
+	);
+};
+
+classComponent.getInitialProps = async (appContext) => {
+	const { data } = await buildClient(appContext).get(`/api/classroom/all`);
+	return { data };
+};
+
+export default classComponent;
