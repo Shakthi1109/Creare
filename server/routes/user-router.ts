@@ -15,7 +15,6 @@ import {
 import { validateRequest } from "../middlewares/validate-request";
 import { currentUser } from "../middlewares/current-user";
 import { requireAdminAuth } from "../middlewares/require-admin-auth";
-import { requireAuth } from "../middlewares/require-auth";
 
 const router = express.Router();
 
@@ -52,6 +51,9 @@ router.post("/signup", signupValidator, validateRequest, signupController);
 
 // to login new User
 router.post("/signin", signinValidator, validateRequest, signinController);
+
+// to fetch all users that belong to particular school
+router.get("/all", currentUser, requireAdminAuth, getUsersController);
 
 router.get("/test", (req: Request, res: Response) => {
 	res.send("server user api is responding");
