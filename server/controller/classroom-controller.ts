@@ -6,6 +6,7 @@ import { User } from "../model/user-model";
 import { UserRole } from "../util/enum/user-roles";
 import { ClassroomStatus } from "../util/enum/classroom-status";
 import { scheduler } from "../util/scheduler";
+import { Message } from "../model/message-model";
 
 export const fetchAllClassroomController = async (
   req: Request,
@@ -23,14 +24,18 @@ export const fetchClassroomByIdController = async (
   req: Request,
   res: Response
 ) => {
-  const classrooms = await Classroom.findById(req.params.classId)
+  const classroom = await Classroom.findById(req.params.classId)
     .populate("teacher", "name id")
     .populate("students", "name id")
     .populate("subject", "id name grade");
 
-  // TODO add messages fetch
+  if (!classroom) throw new BadRequestError("No such classroom");
 
-  res.status(200).send(classrooms);
+  // NEW ADDITION
+  const messages = await Message.find({ roomId: classroom.id });
+  classroom["messages"] = messages;
+
+  res.status(200).send(classroom);
 };
 
 export const addClassController = async (req: Request, res: Response) => {
