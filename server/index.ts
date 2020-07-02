@@ -7,6 +7,7 @@ import { router } from "./routes";
 import { app, handler, nextApp } from "./app";
 import { errorHandler } from "./middlewares/error-handler";
 import { envCheck } from "./util/env-check";
+import { scheduler } from "./util/scheduler";
 
 const start = async () => {
   try {
@@ -16,6 +17,7 @@ const start = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    await scheduler.connect(process.env.MONGO_URI);
     await nextApp.prepare();
     // middleware for server routes -> /api/<name or the route>
     app.use("/api", router);
@@ -30,6 +32,7 @@ const start = async () => {
     });
   } catch (error) {
     console.log(error.message);
+    scheduler.removeAllJobs();
     process.exit(0);
   }
 };

@@ -12,8 +12,8 @@ export const addSubjectController = async (req: Request, res: Response) => {
   if (!existingSchool) throw new BadRequestError("No School found");
   const existingSubject = await Subject.findOne({ name, grade });
   if (existingSubject) throw new BadRequestError("Subject already exists");
-  const uniqId = randomBytes(4).toString("hex").substr(0, 4);
-  const subjectId = name.substr(0, 3) + uniqId;
+  const uniqId = randomBytes(4).toString("hex").substr(0, 3);
+  const subjectId = name.substr(0, 3) + grade + uniqId;
   const subject = Subject.build({
     name,
     grade,
