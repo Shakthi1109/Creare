@@ -9,7 +9,7 @@ export default ({ url, method, body, onSuccess, onError }) => {
 			}
 			return response.data
 		} catch (err) {
-			const errors = err.response.data.errors
+			const errors = err.response.data.errors;
 			console.log(errors)
 			if (onError) {
 				onError(errors)

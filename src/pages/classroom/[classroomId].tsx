@@ -11,22 +11,40 @@ import Chat from "../../components/chat"
 import { socketEvent } from '../../service/socket-client'
 import { StudentAdd } from '../../../server/util/interface/student-add'
 import { UserRole } from '../../../server/util/enum/user-roles'
-const Classroom = ({ classroomId, currentUser }) => {
+import buildClient from '../../service/build-client'
+import { redirectClient } from '../../service/redirect-client'
+
+// { students: [],
+// status: 'scheduled',
+// topic: 'sub3',
+// subject:
+//  { name: 'breanne.net', grade: 8, id: '5ef9d90db71c3c818bdc57ac' },
+// teacher: { name: 'Trace71', id: '5ef9d90fb71c3c818bdc57b7' },
+// addedBy: '5ef9d90fb71c3c818bdc57b7',
+// duration: 1.0166666666666666,
+// startDateTime: '2020-07-01T12:19:00.000Z',
+// endDateTime: '2020-07-01T13:20:00.000Z',
+// id: '5efc70f62714285a6ceddfb4',
+// messages: [ [Object] ] }
+
+const Classroom = ({ classroom, currentUser }) => {
 	// states
 	const [sideOptions, setsideOptions] = useState(false)
 	const [QA, setQA] = useState(false)
 	let dummyData = { name: "name", type: "scl", add: "syz" }
 	// effects
 	useEffect(() => {
-		if (currentUser.role === UserRole.Student) {
-			socketEvent.joinClassroom({ id: currentUser.id, name: currentUser.name, room: classroomId });
-			socketEvent.addToClassroom(addStudentToClassroom)
-		}
+
 	}, [])
 	// method 
-	const addStudentToClassroom = (data: StudentAdd) => {
-		// alert(JSON.stringify(data));
-	}
+	// add student to classroom
+	// const addStudentToClassroom = (data: StudentAdd) => {
+	// 	// alert(JSON.stringify(data));
+	// }
+	// if (currentUser.role === UserRole.Student) {
+	// 	socketEvent.joinClassroom({ id: currentUser.id, name: currentUser.name, room: classroomId });
+	// 	socketEvent.addToClassroom(addStudentToClassroom)
+	// }
 
 	// render
 	return (
@@ -116,7 +134,17 @@ const Classroom = ({ classroomId, currentUser }) => {
 	)
 }
 
-Classroom.getInitialProps =
-	(ctx: GetServerSidePropsContext) => ({ ...ctx.query })
+Classroom.getInitialProps = async (ctx: GetServerSidePropsContext) => {
+	let classroom: any;
+	try {
+		const { classroomId } = ctx.query;
+		const { data } = await buildClient(ctx).get(`api/classroom/${classroomId}`);
+		classroom = data;
+	} catch (error) {
+		redirectClient(ctx);
+	}
+	console.log({ classroom })
+	return ({ classroom })
+}
 
 export default Classroom;

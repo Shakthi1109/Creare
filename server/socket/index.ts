@@ -9,7 +9,7 @@ export const socketServer = (server: any) => {
   const io = SocketIo(server);
   io.on("connection", async (socket) => {
     console.log("socket connected");
-    let room;
+    let room: string;
     socket.on(ClassroomEvent.StudentJoined, (data: StudentJoined) => {
       room = data.room;
       socket.join(data.room);
