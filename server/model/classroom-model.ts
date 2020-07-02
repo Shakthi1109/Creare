@@ -1,5 +1,5 @@
-import mongoose, { Mongoose } from "mongoose";
-import { SubjectDoc, Subject } from "../model/subject-model";
+import mongoose from "mongoose";
+import { SubjectDoc } from "../model/subject-model";
 
 import { UserDoc } from "./user-model";
 import { ClassroomStatus } from "../util/enum/classroom-status";

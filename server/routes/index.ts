@@ -8,6 +8,8 @@ import { classroomRouter } from "./classroom-router";
 import { teacherProfileRouter } from "./teacher-profile-router";
 import { messageRouter } from "./message-router";
 
+import { attendancelogRouter } from "./attendancelog-router";
+
 const router = express.Router();
 
 router.use("/user", userRouter);
@@ -21,6 +23,8 @@ router.use("/teacher/profile", teacherProfileRouter);
 router.use("/classroom", classroomRouter);
 
 router.use("/message", messageRouter);
+
+router.use("/attendance", attendancelogRouter);
 
 router.get("/test", (req: Request, res: Response) => {
   res.send("server api is responding");
