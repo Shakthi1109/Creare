@@ -200,7 +200,7 @@ select:focus {
 
 .sideBar {
   width: 7rem;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   justify-content: flex-start;
   z-index: 99;
@@ -457,6 +457,8 @@ select:focus {
   text-align: center; }
 
 .dashboard {
+  height: 100%;
+  width: 95%;
   margin-left: 10rem !important;
   color: #0c3d54; }
   .dashboard .cbtn {
@@ -476,7 +478,8 @@ select:focus {
     width: 95%; }
     .dashboard table tr #view {
       width: 5%;
-      text-align: center; }
+      text-align: center;
+      cursor: pointer; }
     .dashboard table tr td {
       font-weight: 600;
       border-radius: 0.55rem; }

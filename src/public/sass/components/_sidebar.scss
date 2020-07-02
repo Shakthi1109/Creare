@@ -13,7 +13,7 @@
 
 	width: 7rem;
 	@extend %bg-blue;
-	height: 100vh;
+	height: 100%;
 	position: fixed;
 	@extend %flex-col-center;
 	justify-content: flex-start;

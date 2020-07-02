@@ -1,13 +1,19 @@
 import Sidebar from "../../../components/side-nav"
 import Overlay from "../../../components/overlay"
 import { useState, useEffect } from "react"
-import { FaPencilAlt } from "react-icons/fa"
 import buildClient from "../../../service/build-client"
 import { redirectClient } from "../../../service/redirect-client"
+import useRequest from "../../../custom-hook/use-request"
 
 const schoolComponent = ({ currentUser, school }) => {
 	useEffect(() => {
-		console.log(school)
+		const { address1, address2, city, state, pincode, name } = school
+		setaddress(address1)
+		setaddress2(address2)
+		setcity(city)
+		setstate(state)
+		setpinCode(pincode)
+		setname(name)
 	}, [school])
 
 	let dummyData = { name: "name", type: "scl", add: "syz" }
@@ -17,8 +23,35 @@ const schoolComponent = ({ currentUser, school }) => {
 	const [address2, setaddress2] = useState("Address Cont..")
 	const [city, setcity] = useState("XYZ")
 	const [state, setstate] = useState("ABC")
-	const [pinCode, setpinCode] = useState("School Phone-No")
+	const [pincode, setpinCode] = useState("School Phone-No")
 	const [canEdit, setcanEdit] = useState(false)
+	const [isLoading, setisLoading] = useState(false)
+	const [onErr, setonErr] = useState(false)
+	const [err, seterr] = useState("")
+	const { doRequest } = useRequest({
+		url: "/api/school/update",
+		method: "put",
+		body: {
+			name,
+			address,
+			address2,
+			city,
+			state,
+			pincode
+		},
+		onSuccess: () => {
+			setcanEdit(false)
+		},
+		onError: (err) => {
+			setonErr(true)
+			seterr(err)
+		}
+	})
+
+	const updateDetails = async () => {
+		const resp = await doRequest()
+	}
+
 	return (
 		<>
 			<Sidebar route={"school"} />
@@ -34,7 +67,7 @@ const schoolComponent = ({ currentUser, school }) => {
 					<></>
 				)}
 				<div className='col'>
-					<h1>Schools Info</h1>
+					<h1>School's Info</h1>
 					<br />
 					<br />
 					<h2>Name</h2>
@@ -66,7 +99,6 @@ const schoolComponent = ({ currentUser, school }) => {
 							setaddress2(e.target.value)
 						}}
 					/>
-
 					<h2>City</h2>
 					<input
 						type='text'
@@ -76,7 +108,6 @@ const schoolComponent = ({ currentUser, school }) => {
 							setcity(e.target.value)
 						}}
 					/>
-
 					<h2>State</h2>
 					<input
 						type='text'
@@ -90,7 +121,7 @@ const schoolComponent = ({ currentUser, school }) => {
 					<h2>PinCode</h2>
 					<input
 						type='text'
-						value={pinCode}
+						value={pincode}
 						disabled={!canEdit}
 						onChange={(e) => {
 							setpinCode(e.target.value)
@@ -99,9 +130,7 @@ const schoolComponent = ({ currentUser, school }) => {
 					{canEdit ? (
 						<button
 							className='btn--blue'
-							onClick={() => {
-								setcanEdit(false)
-							}}>
+							onClick={() => updateDetails()}>
 							Confirm Changes
 						</button>
 					) : (
