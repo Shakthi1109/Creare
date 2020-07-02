@@ -9,8 +9,11 @@
 	text-align: center;
 }
 .dashboard {
+	height: 100%;
+	width: 95%;
 	margin-left: 10rem !important;
 	color: $color-primary;
+
 	@extend %flex-col-center;
 	.cbtn {
 		position: fixed;
@@ -44,6 +47,7 @@
 			#view {
 				width: 5%;
 				text-align: center;
+				cursor: pointer;
 			}
 			td {
 				@extend %tableData;

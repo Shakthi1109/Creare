@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../model/user-model";
 import { BadRequestError } from "../errors/bad-request-error";
 import { School } from "../model/school-model";
+import { UserStatus } from "../util/enum/user-status";
 
 export const currentUserController = async (req: Request, res: Response) => {
   res.send({ currentUser: req.currentUser || null });
@@ -62,4 +63,35 @@ export const signinController = async (req: Request, res: Response) => {
   );
   req.session.jwt = token;
   res.send(existingUser.role);
+};
+
+export const requestedUserController = async (req: Request, res: Response) => {
+  const { schoolId } = req.currentUser;
+  const school = await School.findById(schoolId);
+  const users = await school.getUsers();
+  const requestedUsers = await users.filter(
+    ({ activity }) => activity === UserStatus.ApprovalPending
+  );
+  res.status(200).send(requestedUsers);
+};
+
+export const activeUsersController = async (req: Request, res: Response) => {
+  const { schoolId } = req.currentUser;
+  const { type } = req.params;
+  const school = await School.findById(schoolId);
+  const users = await school.getUsers();
+  const requestedUsers = await users.filter(
+    ({ role, activity }) => activity === UserStatus.Approved && role === type
+  );
+  res.status(200).send(requestedUsers);
+};
+
+export const getParticularUserController = async (
+  req: Request,
+  res: Response
+) => {
+  const { userId } = req.params;
+  const user = await User.findById(userId);
+  if (!user) throw new BadRequestError("No User found for the provided id.");
+  res.status(200).send(user);
 };
