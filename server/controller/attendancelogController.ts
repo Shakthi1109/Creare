@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import { Attendancelog } from "../model/attendanceLog-model";
-import { Classroom } from "../model/classroom-model";
-import { BadRequestError } from "../errors/bad-request-error";
+import { Attendancelog } from "../model/attendancelog-model";
 
 export const getAllAttendancelogController = async (
   userId: string,
@@ -16,15 +14,17 @@ export const getAllAttendancelogController = async (
 export const addAttendancelogController = async (
   userId: string,
   classroomId: string,
-  dateTime: Date
+  pingCount: number
 ) => {
-  const exisitingUserId = await Attendancelog.findById(userId);
-  if (exisitingUserId) throw new BadRequestError("User already there");
-
+  const existingPingCount = Attendancelog.findOne({ userId, classroomId });
+  if (!existingPingCount) {
+    const count = (await existingPingCount).pingCount + 1;
+    (await existingPingCount).set({ pingCount: count });
+  }
   const newAttendancelog = Attendancelog.build({
     userId,
     classroomId,
-    dateTime,
+    pingCount,
   });
   await newAttendancelog.save();
 };
