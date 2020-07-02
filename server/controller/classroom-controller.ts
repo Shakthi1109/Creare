@@ -6,7 +6,6 @@ import { User } from "../model/user-model";
 import { UserRole } from "../util/enum/user-roles";
 import { ClassroomStatus } from "../util/enum/classroom-status";
 import { scheduler } from "../util/scheduler";
-import { start } from "repl";
 
 export const fetchAllClassroomController = async (
   req: Request,
@@ -29,31 +28,23 @@ export const fetchClassroomByIdController = async (
     .populate("students", "name id")
     .populate("subject", "id name grade");
 
+  // TODO add messages fetch
+
   res.status(200).send(classrooms);
 };
 
 export const addClassController = async (req: Request, res: Response) => {
   const {
     topic,
-    subject,
-    teacher,
+    subjectId,
+    teacherId,
     addedBy,
     startDateTime,
     endDateTime,
   } = req.body;
 
-  const exisitingClassroom = await Classroom.findOne({
-    topic,
-    status: { $in: [ClassroomStatus.InProgress, ClassroomStatus.Scheduled] },
-  });
-  if (exisitingClassroom)
-    throw new BadRequestError("A classroom already exists");
-  const existingTeacher = await User.findById(teacher);
-  const exisitingSubject = await Subject.findById(subject);
-
-  if (!exisitingSubject) throw new BadRequestError("No subject exists");
-  if (!existingTeacher) throw new BadRequestError("No Teacher exists");
   const milliSecsInHour = 3600000;
+
   const duration =
     (new Date(endDateTime).valueOf() - new Date(startDateTime).valueOf()) /
     milliSecsInHour;
@@ -62,30 +53,48 @@ export const addClassController = async (req: Request, res: Response) => {
     throw new BadRequestError("Class duration should be atleast 1 hour");
 
   const startTime =
-    (new Date(startDateTime).valueOf() - Date.now()) / milliSecsInHour;
+    (new Date(startDateTime).valueOf() - Date.now().valueOf()) /
+    milliSecsInHour;
   if (startTime < 1)
-    throw new BadRequestError("Class scheduled must be min of 1 hour");
+    throw new BadRequestError("Class must be scheduled atleast 1 hour ahead");
+
+  const exisitingClassroom = await Classroom.findOne({
+    topic,
+    status: { $in: [ClassroomStatus.InProgress, ClassroomStatus.Scheduled] },
+  });
+
+  if (exisitingClassroom) throw new BadRequestError("Classroom already exists");
+
+  const existingTeacher = await User.findById(teacherId);
+
+  if (!existingTeacher) throw new BadRequestError("No Teacher exists");
+  if (existingTeacher.isNotActive())
+    throw new BadRequestError("Cannot create class with this teacher");
+
+  const exisitingSubject = await Subject.findById(subjectId);
+
+  if (!exisitingSubject) throw new BadRequestError("No subject exists");
 
   const classroom = Classroom.build({
     topic,
     subject: exisitingSubject,
     teacher: existingTeacher,
+    // TODO find user By id and to addedBy user
     addedBy,
     duration,
     startDateTime,
     endDateTime,
   });
+  addedBy;
   await classroom.save();
 
-  // schedeule the classroom using scheduler
-
+  // schedule the classroom using scheduler
   scheduler.scheduleJob(
-    topic,
+    classroom.id,
     startDateTime,
     async (data: any) => {
       const classroom = await Classroom.findById(data.classroomId);
-
-      if (classroom) {
+      if (classroom && classroom?.status === ClassroomStatus.Scheduled) {
         classroom.set({ status: ClassroomStatus.InProgress });
         await classroom.save();
       }
@@ -110,34 +119,44 @@ export const updateClassroomController = async (
 
 // end class
 export const endClassroomController = async (req: Request, res: Response) => {
-  // end class -> status update and endDateTime update (use Date.now())
   const existingClassroom = await Classroom.findById(req.params.classId);
-  const topic = existingClassroom.topic;
   if (!existingClassroom) throw new BadRequestError("No such classroom exists");
-  // const status = existingClassroom.status;
+  if (existingClassroom.status !== ClassroomStatus.InProgress)
+    throw new BadRequestError("Class has not started yet");
   const isStudent = req.currentUser.role === UserRole.Student;
   if (isStudent)
     throw new BadRequestError("only teacher or admin is allowed to end ");
+
   existingClassroom.set({ status: ClassroomStatus.Completed });
-  existingClassroom.set({ endDateTime: Date.now() });
-  scheduler.cancel(topic);
+  const milliSecsInHour = 3600000;
+  const endDateTime = Date.now().valueOf();
+  const startDateTime = new Date(existingClassroom.startDateTime).valueOf();
+  const duration = (endDateTime - startDateTime) / milliSecsInHour;
+
+  existingClassroom.set({ endDateTime, duration });
   existingClassroom.save();
   res.send(existingClassroom);
 };
 
 // cancel class
 export const cancelClassController = async (req: Request, res: Response) => {
-  // cancel class -> cancel class schedule , update status and cancelledBy
   const existingClassroom = await Classroom.findById(req.params.classId);
-  const topic = existingClassroom.topic;
   if (!existingClassroom) throw new BadRequestError("No such classroom exists");
-  // const status = existingClassroom.status;
+  if (existingClassroom.status !== ClassroomStatus.Scheduled)
+    throw new BadRequestError("Cannot cancel class");
+
   const isStudent = req.currentUser.role === UserRole.Student;
   if (isStudent)
     throw new BadRequestError("only teacher or admin is allowed to cancel");
-  existingClassroom.set({ status: ClassroomStatus.Cancelled });
-  existingClassroom.set({ cancelledBy: req.currentUser.id });
-  scheduler.cancel(topic);
+
+  scheduler.cancel(existingClassroom.id);
+
+  existingClassroom.set({
+    status: ClassroomStatus.Cancelled,
+    // TODO find user By id and to cancelledBy
+    cancelledBy: req.currentUser.id,
+  });
+
   existingClassroom.save();
   res.send(existingClassroom);
 };
@@ -153,7 +172,7 @@ export const joinClassroomController = async (req: Request, res: Response) => {
     existingClassroom.status === ClassroomStatus.Completed ||
     existingClassroom.status === ClassroomStatus.Cancelled
   )
-    throw new BadRequestError("Class is unavailable");
+    throw new BadRequestError("Class unavailable");
   if (req.currentUser.role !== UserRole.Student) return res.send({});
 
   const students = existingClassroom.students;
